@@ -1,0 +1,276 @@
+<mxfile host="Electron" modified="2024-03-26T17:10:55.028Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="6fbjfmG9WghADexNxyRd" version="24.0.4" type="device" pages="2">
+  <diagram id="4GwoP6jHERcEGrlMx34i" name="Slide-Architecture">
+    <mxGraphModel dx="1886" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="OKWn2RnnMmRBz43cwLYN-1" value="Slide báo cáo Reactive" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="365" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OKWn2RnnMmRBz43cwLYN-2" value="Reactive Programming là gì ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-370" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="OKWn2RnnMmRBz43cwLYN-3" value="Hình ảnh minh họa về chủ đề:&lt;div&gt;What is Reactive Programming ?&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="-380" y="660" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="OKWn2RnnMmRBz43cwLYN-4" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-2" target="OKWn2RnnMmRBz43cwLYN-3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="640" as="sourcePoint" />
+            <mxPoint x="-160" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="OKWn2RnnMmRBz43cwLYN-5" value="Reactive System ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="435" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-1" value="Hình ảnh minh họa về chủ đề:&lt;div&gt;Reactive System&lt;/div&gt;&lt;div&gt;(Hình ảnh này có ở trang manifesto)&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="425" y="690" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-2" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-5" target="Q0XO2YQ2Z2rA4kN2160t-1" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="335" y="670" as="sourcePoint" />
+            <mxPoint x="385" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-4" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-1" target="OKWn2RnnMmRBz43cwLYN-2" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="420" as="sourcePoint" />
+            <mxPoint x="530" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-5" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-1" target="OKWn2RnnMmRBz43cwLYN-5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="420" as="sourcePoint" />
+            <mxPoint x="530" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-6" value="Observable ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-160" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-7" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-2" target="Q0XO2YQ2Z2rA4kN2160t-6" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="640" as="sourcePoint" />
+            <mxPoint x="-160" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-8" value="Hình ảnh minh họa về chủ đề: Observable - Observer và cây nội dung. Ví dụ:&lt;div&gt;N.1. Khái niệm&lt;/div&gt;&lt;div&gt;N.2. Khởi tạo&lt;/div&gt;&lt;div&gt;N.3. Các loại Observables ?&lt;/div&gt;&lt;div&gt;N.3.1. Cold Observable ?&lt;/div&gt;&lt;div&gt;N.3.2. Hot Observable ?&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="-205" y="760" width="210" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-9" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-16" target="Q0XO2YQ2Z2rA4kN2160t-18" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-310" y="770" as="sourcePoint" />
+            <mxPoint x="-260" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-10" value="Observer ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-530" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-11" value="Hình ảnh minh họa về chủ đề: Observable - Observer" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="-540" y="760" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-12" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-10" target="Q0XO2YQ2Z2rA4kN2160t-11" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-590" y="770" as="sourcePoint" />
+            <mxPoint x="-540" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-13" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-2" target="Q0XO2YQ2Z2rA4kN2160t-10" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="640" as="sourcePoint" />
+            <mxPoint x="-160" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-16" value="Operators ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="50" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-17" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-2" target="Q0XO2YQ2Z2rA4kN2160t-16" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="640" as="sourcePoint" />
+            <mxPoint x="-160" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-18" value="Hình ảnh minh họa về chủ đề:&lt;div&gt;Một Observable khi áp dụng một Operator.&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="805" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-19" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-6" target="Q0XO2YQ2Z2rA4kN2160t-8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-220" y="770" as="sourcePoint" />
+            <mxPoint x="-170" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-20" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-21" target="Q0XO2YQ2Z2rA4kN2160t-22" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-1070" y="770" as="sourcePoint" />
+            <mxPoint x="-1020" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-21" value="Backpressure Handling ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="-710" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-22" value="Hình ảnh minh họa về chủ đề:&lt;div&gt;Quá tải dữ liệu hoặc tắt nghẽn hệ thống.&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="-720" y="805" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-23" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-2" target="Q0XO2YQ2Z2rA4kN2160t-21" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="640" as="sourcePoint" />
+            <mxPoint x="-160" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-24" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-25" target="Q0XO2YQ2Z2rA4kN2160t-26" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-110" y="770" as="sourcePoint" />
+            <mxPoint x="-60" y="720" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-25" value="Schedulers ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="250" y="630" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-26" value="Icon một bộ lịch." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="240" y="805" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-27" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-2" target="Q0XO2YQ2Z2rA4kN2160t-25" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="-210" y="640" as="sourcePoint" />
+            <mxPoint x="-160" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-28" value="Lợi thế của Reactive ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="645" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-29" value="Hình ảnh minh họa về Rective Programming (Có thể lấy logo tựa tựa React.JS cũng được)" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="635" y="690" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-30" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-28" target="Q0XO2YQ2Z2rA4kN2160t-29" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="545" y="670" as="sourcePoint" />
+            <mxPoint x="595" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-31" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-1" target="Q0XO2YQ2Z2rA4kN2160t-28" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="420" as="sourcePoint" />
+            <mxPoint x="530" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-32" value="Ứng dụng thực tế ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="865" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-33" value="1. Hình ảnh minh họa về chủ đề: Facebook, Amazon, ...&lt;div&gt;2. Hình ảnh minh họa về chủ đề Reactive Programming (như phần Lợi Thế)&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="840" y="685" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-34" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-32" target="Q0XO2YQ2Z2rA4kN2160t-33" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="765" y="670" as="sourcePoint" />
+            <mxPoint x="815" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-35" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-1" target="Q0XO2YQ2Z2rA4kN2160t-32" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="420" as="sourcePoint" />
+            <mxPoint x="530" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-36" value="Sẽ như thế nào nếu không có Reactive Programming ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1070" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-37" value="Hình ảnh minh họa này Hải sẽ cung cấp." style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;fontStyle=1" parent="1" vertex="1">
+          <mxGeometry x="1045" y="685" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-38" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-36" target="Q0XO2YQ2Z2rA4kN2160t-37" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="970" y="670" as="sourcePoint" />
+            <mxPoint x="1020" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-39" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-1" target="Q0XO2YQ2Z2rA4kN2160t-36" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="420" as="sourcePoint" />
+            <mxPoint x="530" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-40" value="Reactive Programming so với những mô hình lập trình khác ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1310" y="605" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-42" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-36" target="Q0XO2YQ2Z2rA4kN2160t-40" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="970" y="670" as="sourcePoint" />
+            <mxPoint x="1020" y="620" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-43" value="Bảng so sánh ưu, nhược giữa Reactive Programming và các mô hình lập trình khác.&lt;div&gt;(Dựa vào file .txt Hải gửi và vẽ bảng phân tích)&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="1285" y="795" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-44" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-40" target="Q0XO2YQ2Z2rA4kN2160t-43" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="970" y="755" as="sourcePoint" />
+            <mxPoint x="1020" y="705" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-45" value="Tại sao phải Reactive ?" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1525" y="430" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-46" value="Hình ảnh minh họa về chủ đề:&lt;div&gt;Why Reactive ?&lt;/div&gt;" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;fontColor=#000000;darkOpacity=0.05;fillColor=#FFF9B2;strokeColor=none;fillStyle=solid;direction=west;gradientDirection=north;gradientColor=#FFF2A1;shadow=1;size=20;pointerEvents=1;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="620" width="170" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-47" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="Q0XO2YQ2Z2rA4kN2160t-45" target="Q0XO2YQ2Z2rA4kN2160t-46" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="1185" y="580" as="sourcePoint" />
+            <mxPoint x="1235" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Q0XO2YQ2Z2rA4kN2160t-48" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="OKWn2RnnMmRBz43cwLYN-1" target="Q0XO2YQ2Z2rA4kN2160t-45" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="480" y="420" as="sourcePoint" />
+            <mxPoint x="530" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="T_-sadjo3UN4FC18QTyl" name="Page-2">
+    <mxGraphModel dx="863" dy="512" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-1" value="Observable Creation ?" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="490" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-2" value="List of Data" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="190" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-3" value="User input" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-4" value="Timer" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="590" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-5" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="Zyl9zwbtMMaZLNVtIXDW-1" target="Zyl9zwbtMMaZLNVtIXDW-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="320" as="sourcePoint" />
+            <mxPoint x="500" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-6" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="Zyl9zwbtMMaZLNVtIXDW-1" target="Zyl9zwbtMMaZLNVtIXDW-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="320" as="sourcePoint" />
+            <mxPoint x="500" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-7" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="Zyl9zwbtMMaZLNVtIXDW-1" target="Zyl9zwbtMMaZLNVtIXDW-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="320" as="sourcePoint" />
+            <mxPoint x="500" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-8" value="...&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="Zyl9zwbtMMaZLNVtIXDW-9" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="Zyl9zwbtMMaZLNVtIXDW-1" target="Zyl9zwbtMMaZLNVtIXDW-8">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="450" y="320" as="sourcePoint" />
+            <mxPoint x="500" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

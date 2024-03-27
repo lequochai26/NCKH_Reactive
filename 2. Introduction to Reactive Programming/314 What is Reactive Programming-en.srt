@@ -1,0 +1,1115 @@
+1
+00:00:01,066 --> 00:00:04,149
+(light guitar music)
+
+2
+00:00:05,534 --> 00:00:08,196
+- [Instructor] Alright, what
+is reactive programming?
+
+3
+00:00:08,196 --> 00:00:11,911
+So, this is kind of a
+rather meaty topic today,
+
+4
+00:00:11,911 --> 00:00:15,048
+so the big thing about
+reactive programming
+
+5
+00:00:15,048 --> 00:00:17,600
+is gonna be focusing on processing
+
+6
+00:00:17,600 --> 00:00:20,017
+asynchronous streams of data,
+
+7
+00:00:21,121 --> 00:00:23,151
+so we'll take in a stream of data
+
+8
+00:00:23,151 --> 00:00:25,460
+and process it asynchronously.
+
+9
+00:00:25,460 --> 00:00:28,188
+A good quote here by Gerard Berry,
+
+10
+00:00:28,188 --> 00:00:30,164
+French computer science guy,
+
+11
+00:00:30,164 --> 00:00:32,711
+"Reactive programs also maintain
+
+12
+00:00:32,711 --> 00:00:35,388
+"a continuous interaction
+with their environment,
+
+13
+00:00:35,388 --> 00:00:38,546
+"but at a speed which is
+determined by the environment,
+
+14
+00:00:38,546 --> 00:00:40,585
+"not the program itself.
+
+15
+00:00:40,585 --> 00:00:42,752
+"Interactive programs
+work at their own pace,
+
+16
+00:00:42,752 --> 00:00:44,390
+"mostly deal with communication,
+
+17
+00:00:44,390 --> 00:00:46,437
+"while reactive programs
+only work in response
+
+18
+00:00:46,437 --> 00:00:47,792
+"to external demands
+
+19
+00:00:47,792 --> 00:00:51,664
+"and mostly deal with
+accurate interrupt handling.
+
+20
+00:00:51,664 --> 00:00:54,504
+"Real-time programs are usually reactive."
+
+21
+00:00:54,504 --> 00:00:57,527
+So, that's a fairly
+comprehensive statement there
+
+22
+00:00:57,527 --> 00:00:58,940
+about reactive programming.
+
+23
+00:00:58,940 --> 00:01:02,563
+The big thing is that you wanna remember
+
+24
+00:01:02,563 --> 00:01:05,292
+that you're processing mainly events.
+
+25
+00:01:05,292 --> 00:01:08,669
+It's gonna be some type of
+event or a stream of events
+
+26
+00:01:08,669 --> 00:01:10,382
+is what you're gonna be working with
+
+27
+00:01:10,382 --> 00:01:13,298
+in a reactive programming context.
+
+28
+00:01:13,298 --> 00:01:16,032
+So, a lot of common use cases
+for reactive programming
+
+29
+00:01:16,032 --> 00:01:18,147
+are external service calls,
+
+30
+00:01:18,147 --> 00:01:20,568
+where you're calling out to somebody else,
+
+31
+00:01:20,568 --> 00:01:23,083
+or a highly concurrent message consumer.
+
+32
+00:01:23,083 --> 00:01:26,051
+Actually, they're starting
+to do batch processing
+
+33
+00:01:26,051 --> 00:01:30,549
+with reactive programming,
+where you have a batch of data
+
+34
+00:01:30,549 --> 00:01:32,634
+that you need to process,
+
+35
+00:01:32,634 --> 00:01:35,190
+and in the old day, you'd
+put it on this big server
+
+36
+00:01:35,190 --> 00:01:36,713
+and just let it crank away.
+
+37
+00:01:36,713 --> 00:01:39,775
+Now, we're actually going
+into a streaming mentality
+
+38
+00:01:39,775 --> 00:01:43,738
+and getting some nice
+efficiencies out of that,
+
+39
+00:01:43,738 --> 00:01:45,405
+and one of the goals
+
+40
+00:01:47,217 --> 00:01:49,180
+of some of the frameworks
+
+41
+00:01:49,180 --> 00:01:52,462
+is to provide an abstraction
+over it being asynchronous,
+
+42
+00:01:52,462 --> 00:01:55,623
+meaning that you, as the developer,
+
+43
+00:01:55,623 --> 00:01:57,334
+when you're working with these frameworks,
+
+44
+00:01:57,334 --> 00:01:59,704
+you're not really totally aware that it is
+
+45
+00:01:59,704 --> 00:02:02,126
+an asynchronous or synchronous application
+
+46
+00:02:02,126 --> 00:02:04,682
+that you're working with,
+so it's easy to forget
+
+47
+00:02:04,682 --> 00:02:08,061
+that's actually happening
+under the covers.
+
+48
+00:02:08,061 --> 00:02:10,569
+So, some core features
+of reactive programming,
+
+49
+00:02:10,569 --> 00:02:12,462
+we already talked about data streams
+
+50
+00:02:12,462 --> 00:02:13,687
+and being asynchronous.
+
+51
+00:02:13,687 --> 00:02:15,996
+Another one is non-blocking.
+
+52
+00:02:15,996 --> 00:02:18,022
+Then, we also have backpressure
+
+53
+00:02:18,022 --> 00:02:21,542
+and failures as messages,
+or some people call it
+
+54
+00:02:21,542 --> 00:02:24,002
+failures as first class citizens,
+
+55
+00:02:24,002 --> 00:02:26,933
+and we'll get into each
+one of these coming up.
+
+56
+00:02:26,933 --> 00:02:30,050
+So, data streams, that's
+kind of a nebulous term.
+
+57
+00:02:30,050 --> 00:02:31,820
+It can be just about anything.
+
+58
+00:02:31,820 --> 00:02:33,545
+It can be like mouse clicks,
+
+59
+00:02:33,545 --> 00:02:37,034
+mouse movements, or
+other user interactions,
+
+60
+00:02:37,034 --> 00:02:39,341
+so this is pretty common
+when you're working
+
+61
+00:02:39,341 --> 00:02:42,798
+with GUI applications, but it
+can also be like JMS messages,
+
+62
+00:02:42,798 --> 00:02:45,128
+sending and receiving REST service calls,
+
+63
+00:02:45,128 --> 00:02:47,998
+monitoring a Twitter feed, stock trades,
+
+64
+00:02:47,998 --> 00:02:50,592
+processing a list of
+data out of a database,
+
+65
+00:02:50,592 --> 00:02:54,854
+so a stream is just a sequence
+of events ordered in time,
+
+66
+00:02:54,854 --> 00:02:57,206
+and these are events that
+you wanna be listening to
+
+67
+00:02:57,206 --> 00:03:00,193
+and taking some type of actions.
+
+68
+00:03:00,193 --> 00:03:04,252
+So, asynchronous, the events
+are captured asynchronously.
+
+69
+00:03:04,252 --> 00:03:08,756
+A function is defined to execute
+when the event is emitted.
+
+70
+00:03:08,756 --> 00:03:11,244
+There's a different
+function that you can use
+
+71
+00:03:11,244 --> 00:03:13,331
+when an error is emitted,
+
+72
+00:03:13,331 --> 00:03:16,227
+and then, finally, there's
+a function that's defined
+
+73
+00:03:16,227 --> 00:03:19,058
+when the complete event is emitted,
+
+74
+00:03:19,058 --> 00:03:21,838
+so you might have just
+like one item on your,
+
+75
+00:03:21,838 --> 00:03:23,594
+air quotes, data stream,
+
+76
+00:03:23,594 --> 00:03:25,489
+or you could have five items,
+
+77
+00:03:25,489 --> 00:03:27,762
+and then you get a done signal,
+
+78
+00:03:27,762 --> 00:03:29,697
+so these are all different functions,
+
+79
+00:03:29,697 --> 00:03:31,074
+and we'll see these coming in.
+
+80
+00:03:31,074 --> 00:03:33,629
+I'm just laying down some
+concepts here right now.
+
+81
+00:03:33,629 --> 00:03:35,713
+An important piece of the picture
+
+82
+00:03:35,713 --> 00:03:38,929
+is the Gang of Four Observer Pattern,
+
+83
+00:03:38,929 --> 00:03:41,313
+so this is an iconic book, Gang of Four.
+
+84
+00:03:41,313 --> 00:03:43,980
+This is the observer pattern out of here,
+
+85
+00:03:43,980 --> 00:03:46,670
+and basically, you have a subject
+
+86
+00:03:46,670 --> 00:03:50,560
+and the processing that
+we're gonna be seeing
+
+87
+00:03:50,560 --> 00:03:53,844
+with reactive programming
+kinda is founded on this.
+
+88
+00:03:53,844 --> 00:03:56,099
+Not exactly, but fairly close to this,
+
+89
+00:03:56,099 --> 00:03:57,414
+so you'll have a subject
+
+90
+00:03:57,414 --> 00:03:59,067
+and then you'll have an observer.
+
+91
+00:03:59,067 --> 00:04:01,193
+That observer is gonna
+take some type of action,
+
+92
+00:04:01,193 --> 00:04:03,700
+so the subject is going to change,
+
+93
+00:04:03,700 --> 00:04:06,867
+and then it will notify the observers,
+
+94
+00:04:07,772 --> 00:04:11,940
+so when the subject changes,
+the observers get notified.
+
+95
+00:04:11,940 --> 00:04:14,249
+So, ReactiveX extended it.
+
+96
+00:04:14,249 --> 00:04:16,241
+They actually have a slogan saying that
+
+97
+00:04:16,241 --> 00:04:17,757
+it's observable done right,
+
+98
+00:04:17,757 --> 00:04:20,194
+so this is timeline.
+
+99
+00:04:20,194 --> 00:04:22,518
+You can see in the top left corner there,
+
+100
+00:04:22,518 --> 00:04:24,172
+they're talking about a timeline,
+
+101
+00:04:24,172 --> 00:04:26,669
+and those are events
+that have been emitted by
+
+102
+00:04:26,669 --> 00:04:30,580
+the observable, and these
+can be different things.
+
+103
+00:04:30,580 --> 00:04:32,588
+And then, they take some type of action,
+
+104
+00:04:32,588 --> 00:04:34,568
+and here, we're calling it a flip,
+
+105
+00:04:34,568 --> 00:04:36,802
+so we're doing some type of flip action,
+
+106
+00:04:36,802 --> 00:04:38,515
+and you can see, through time,
+
+107
+00:04:38,515 --> 00:04:40,185
+you have the stream of events
+
+108
+00:04:40,185 --> 00:04:42,875
+and you get a result on
+the other side of it,
+
+109
+00:04:42,875 --> 00:04:45,055
+and then, in the bottom right, there,
+
+110
+00:04:45,055 --> 00:04:46,383
+we also have an event.
+
+111
+00:04:46,383 --> 00:04:50,129
+If, for some reason, that
+observable terminates abnormally.
+
+112
+00:04:50,129 --> 00:04:53,149
+Now, in that center box
+there, that transformation,
+
+113
+00:04:53,149 --> 00:04:55,182
+there's a lot that can
+be happening with that.
+
+114
+00:04:55,182 --> 00:04:56,569
+You can subscribe to certain events.
+
+115
+00:04:56,569 --> 00:04:58,737
+You can say I want like every third event.
+
+116
+00:04:58,737 --> 00:05:01,364
+You can put a filter on
+there before it gets down
+
+117
+00:05:01,364 --> 00:05:03,639
+to the bottom and the action is taken,
+
+118
+00:05:03,639 --> 00:05:07,285
+so this has a lot to do
+with the Java 8 Streams API,
+
+119
+00:05:07,285 --> 00:05:08,772
+where you have a lot of interaction
+
+120
+00:05:08,772 --> 00:05:12,660
+of controlling what the
+events are going through that.
+
+121
+00:05:12,660 --> 00:05:15,078
+Non-blocking is another key concept.
+
+122
+00:05:15,078 --> 00:05:19,161
+This is pretty complex,
+but the basic concept is,
+
+123
+00:05:20,177 --> 00:05:22,884
+in blocking code, the code is gonna stop
+
+124
+00:05:22,884 --> 00:05:24,158
+and wait for more data,
+
+125
+00:05:24,158 --> 00:05:25,830
+so you could be reading from a disk
+
+126
+00:05:25,830 --> 00:05:27,598
+and you're gonna wait
+for the disk to set up.
+
+127
+00:05:27,598 --> 00:05:30,041
+Non-blocking, in contrast,
+
+128
+00:05:30,041 --> 00:05:32,372
+it's gonna process what's available
+
+129
+00:05:32,372 --> 00:05:34,573
+and then ask the center to be notified
+
+130
+00:05:34,573 --> 00:05:38,232
+when more is available,
+but the core concept here
+
+131
+00:05:38,232 --> 00:05:40,102
+is when you're non-blocking,
+
+132
+00:05:40,102 --> 00:05:42,048
+that task or that thread
+
+133
+00:05:42,048 --> 00:05:44,582
+is going to go on to something else,
+
+134
+00:05:44,582 --> 00:05:48,379
+wherein blocking, you're
+gonna stop and block and wait.
+
+135
+00:05:48,379 --> 00:05:52,272
+Now, here's an example of a
+typical multi threaded server,
+
+136
+00:05:52,272 --> 00:05:54,334
+so we have requests coming in,
+
+137
+00:05:54,334 --> 00:05:57,116
+and they're gonna get
+blocked at certain points,
+
+138
+00:05:57,116 --> 00:05:58,765
+and they'll block and wait,
+
+139
+00:05:58,765 --> 00:06:01,212
+and traditionally, in the Java community,
+
+140
+00:06:01,212 --> 00:06:04,240
+we're thinking okay,
+we have lots of cores,
+
+141
+00:06:04,240 --> 00:06:06,415
+lots of threads that we can use this,
+
+142
+00:06:06,415 --> 00:06:08,166
+and it's actually a good thing.
+
+143
+00:06:08,166 --> 00:06:10,511
+So, again, we have a thread
+wait while the IO catches up,
+
+144
+00:06:10,511 --> 00:06:13,990
+and do something else with the
+other threads on the server,
+
+145
+00:06:13,990 --> 00:06:15,962
+so it's fairly efficient.
+
+146
+00:06:15,962 --> 00:06:17,525
+It does scale pretty well,
+
+147
+00:06:17,525 --> 00:06:20,156
+and this is at a very, very low level,
+
+148
+00:06:20,156 --> 00:06:23,329
+and this has been
+tradition for a long time.
+
+149
+00:06:23,329 --> 00:06:25,418
+And then what happened was,
+
+150
+00:06:25,418 --> 00:06:27,840
+really what grabbed the
+community's attention,
+
+151
+00:06:27,840 --> 00:06:31,130
+was Node.js came out, and they don't have
+
+152
+00:06:31,130 --> 00:06:34,230
+much control over threads,
+so they set up a event loop,
+
+153
+00:06:34,230 --> 00:06:36,634
+and in Node.js, if you block,
+
+154
+00:06:36,634 --> 00:06:39,061
+you really kill the system performance.
+
+155
+00:06:39,061 --> 00:06:42,561
+So, what happens is there's an event loop,
+
+156
+00:06:43,548 --> 00:06:45,415
+and they have a very small thread pool,
+
+157
+00:06:45,415 --> 00:06:47,348
+but they do all non-blocking,
+
+158
+00:06:47,348 --> 00:06:49,265
+so what happens is nothing waits.
+
+159
+00:06:49,265 --> 00:06:51,633
+It processes it right through,
+
+160
+00:06:51,633 --> 00:06:54,060
+and there's no threads waiting,
+
+161
+00:06:54,060 --> 00:06:58,194
+and they do put up a lot
+of impressive numbers
+
+162
+00:06:58,194 --> 00:06:59,809
+in terms of performance.
+
+163
+00:06:59,809 --> 00:07:03,193
+I think that's when the Java
+community really started going
+
+164
+00:07:03,193 --> 00:07:04,697
+hey, what's this non-blocking stuff?
+
+165
+00:07:04,697 --> 00:07:06,179
+Kinda makes sense to get into it,
+
+166
+00:07:06,179 --> 00:07:09,072
+so the way I kinda envision in my head is
+
+167
+00:07:09,072 --> 00:07:11,722
+you can move a lot of
+traffic on a road like this,
+
+168
+00:07:11,722 --> 00:07:13,170
+but it's all stop and go,
+
+169
+00:07:13,170 --> 00:07:14,958
+so you're gonna be stop
+and go, stop and go,
+
+170
+00:07:14,958 --> 00:07:18,130
+stop and go, but in a
+non-blocking environment,
+
+171
+00:07:18,130 --> 00:07:20,596
+you have a very efficient,
+speedy super highway,
+
+172
+00:07:20,596 --> 00:07:22,567
+where everything's
+moving along efficiently.
+
+173
+00:07:22,567 --> 00:07:26,686
+So, let's take a look at this
+in a more typical context,
+
+174
+00:07:26,686 --> 00:07:28,731
+so this is a web request.
+
+175
+00:07:28,731 --> 00:07:31,062
+So, we get a request that
+comes in on the port.
+
+176
+00:07:31,062 --> 00:07:34,128
+Let's say we're posting
+JSON-2 in a web service.
+
+177
+00:07:34,128 --> 00:07:36,585
+We're gonna parse that
+JSON, probably with Jackson,
+
+178
+00:07:36,585 --> 00:07:39,224
+then go through some business logic,
+
+179
+00:07:39,224 --> 00:07:41,994
+and ultimately, we'll probably
+make a call to the database.
+
+180
+00:07:41,994 --> 00:07:43,847
+The database is going to process it,
+
+181
+00:07:43,847 --> 00:07:45,846
+and then it's gonna return back.
+
+182
+00:07:45,846 --> 00:07:49,233
+We'll parse it back to JSON and
+then return it on that port.
+
+183
+00:07:49,233 --> 00:07:53,195
+Now, it's important to
+understand, I put red Xs here,
+
+184
+00:07:53,195 --> 00:07:56,449
+and in a traditional
+sense, each one of these
+
+185
+00:07:56,449 --> 00:07:57,990
+is where blocking is gonna occur.
+
+186
+00:07:57,990 --> 00:08:01,835
+In the traditional Servlet
+API, we have blocking in that.
+
+187
+00:08:01,835 --> 00:08:05,259
+Traditionally, in Jackson
+parser, there's blocking in that.
+
+188
+00:08:05,259 --> 00:08:07,491
+Calling the database,
+there's blocking in that,
+
+189
+00:08:07,491 --> 00:08:11,087
+so these are all instances
+of where blocking occurs.
+
+190
+00:08:11,087 --> 00:08:14,395
+In a reactive system,
+what's gonna happen is
+
+191
+00:08:14,395 --> 00:08:17,414
+that request is gonna come
+in like a callable future,
+
+192
+00:08:17,414 --> 00:08:21,139
+and it will get passed along
+until the last very minute,
+
+193
+00:08:21,139 --> 00:08:23,169
+probably about where we're
+calling the database here,
+
+194
+00:08:23,169 --> 00:08:25,667
+and then we are gonna process that stream,
+
+195
+00:08:25,667 --> 00:08:29,295
+parse a JSON, call the
+database in a reactive format,
+
+196
+00:08:29,295 --> 00:08:33,376
+so that thread of processing
+will stay on the CPU longer
+
+197
+00:08:33,376 --> 00:08:35,723
+in one continuous chunk.
+
+198
+00:08:35,723 --> 00:08:38,617
+It's not gonna block,
+stop, wait, then come back,
+
+199
+00:08:38,617 --> 00:08:42,886
+so the CPU is able to
+handle that more efficiently
+
+200
+00:08:42,886 --> 00:08:44,991
+because it's sitting
+there in the same context,
+
+201
+00:08:44,991 --> 00:08:46,945
+and it's not stopping and
+waiting and stopping and waiting,
+
+202
+00:08:46,945 --> 00:08:48,436
+stopping and waiting.
+
+203
+00:08:48,436 --> 00:08:51,778
+Next up is back pressure, so
+this is an important concept.
+
+204
+00:08:51,778 --> 00:08:54,575
+The subscriber is able to throttle data,
+
+205
+00:08:54,575 --> 00:08:57,416
+so you can set up, say,
+give me 100 records
+
+206
+00:08:57,416 --> 00:09:01,228
+or give me 10 records or give
+me 1,000 records at a time,
+
+207
+00:09:01,228 --> 00:09:04,633
+or elements, so this
+is an important concept
+
+208
+00:09:04,633 --> 00:09:08,655
+to allow communication between
+the subscriber and publisher.
+
+209
+00:09:08,655 --> 00:09:11,076
+And I put a little fire hose here,
+
+210
+00:09:11,076 --> 00:09:14,232
+so basically, in a reactive architecture,
+
+211
+00:09:14,232 --> 00:09:16,134
+you wanna wait to throttle things.
+
+212
+00:09:16,134 --> 00:09:18,723
+If the client is becoming overwhelmed,
+
+213
+00:09:18,723 --> 00:09:20,548
+you want to be able to back it down,
+
+214
+00:09:20,548 --> 00:09:22,127
+so in the states, we have a saying about
+
+215
+00:09:22,127 --> 00:09:23,652
+trying to drink from a fire hose.
+
+216
+00:09:23,652 --> 00:09:26,321
+Obviously, you don't wanna
+be drinking from a fire hose.
+
+217
+00:09:26,321 --> 00:09:28,876
+That would be a bad idea.
+
+218
+00:09:28,876 --> 00:09:32,650
+Okay, the next up is failures as messages,
+
+219
+00:09:32,650 --> 00:09:35,207
+and exceptions are not gonna be thrown
+
+220
+00:09:35,207 --> 00:09:37,799
+in a traditional sense,
+so if we're processing
+
+221
+00:09:37,799 --> 00:09:40,845
+a stream of data and we have
+some type of function there,
+
+222
+00:09:40,845 --> 00:09:44,175
+if we threw an exception, it
+would break the processing
+
+223
+00:09:44,175 --> 00:09:45,528
+of the stream of data.
+
+224
+00:09:45,528 --> 00:09:48,911
+Instead, we are gonna
+gracefully handle the exceptions
+
+225
+00:09:48,911 --> 00:09:52,347
+through a handler function,
+so we called out that before,
+
+226
+00:09:52,347 --> 00:09:56,870
+so this is a core concept that
+we don't throw exceptions at,
+
+227
+00:09:56,870 --> 00:09:58,812
+but we do handle them gracefully
+
+228
+00:09:58,812 --> 00:10:01,105
+with a specific handler function
+
+229
+00:10:01,105 --> 00:10:02,909
+for when things to go wrong.
+
+230
+00:10:02,909 --> 00:10:05,352
+Now, a couple key take aways
+that I want you to have
+
+231
+00:10:05,352 --> 00:10:08,622
+from this presentation
+is reactive programming
+
+232
+00:10:08,622 --> 00:10:11,683
+is gonna focusing on
+processing streams of data,
+
+233
+00:10:11,683 --> 00:10:13,394
+and it's not for everything.
+
+234
+00:10:13,394 --> 00:10:16,027
+So, traditional CRUD applications
+are still alive and well.
+
+235
+00:10:16,027 --> 00:10:18,522
+There's times where you
+just wanna be processing
+
+236
+00:10:18,522 --> 00:10:21,250
+a forum post, and that's perfectly fine,
+
+237
+00:10:21,250 --> 00:10:24,445
+so it's gonna be very
+application specific.
+
+238
+00:10:24,445 --> 00:10:25,626
+You can do it.
+
+239
+00:10:25,626 --> 00:10:27,266
+I expect to see the community's probably
+
+240
+00:10:27,266 --> 00:10:28,656
+gonna start over-using it,
+
+241
+00:10:28,656 --> 00:10:30,586
+but the traditional CRUD applications
+
+242
+00:10:30,586 --> 00:10:32,453
+and what we're been
+doing as Java developers,
+
+243
+00:10:32,453 --> 00:10:33,935
+still gonna work just fine.
+
+244
+00:10:33,935 --> 00:10:36,040
+As far as performance goes,
+
+245
+00:10:36,040 --> 00:10:37,744
+you can expect the system's probably
+
+246
+00:10:37,744 --> 00:10:39,326
+gonna gain some advantages,
+
+247
+00:10:39,326 --> 00:10:43,718
+but this area's still very
+early and still evolving,
+
+248
+00:10:43,718 --> 00:10:47,765
+so you know, you do expect
+to see performance gains
+
+249
+00:10:47,765 --> 00:10:49,834
+in terms of server efficiency,
+
+250
+00:10:49,834 --> 00:10:53,308
+but, like everything else
+in terms of performance,
+
+251
+00:10:53,308 --> 00:10:55,558
+your mileage is gonna vary.
+

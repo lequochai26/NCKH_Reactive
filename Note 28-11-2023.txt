@@ -1,0 +1,19 @@
+1. Imperative Programming
+- Dễ phát sinh lỗi
++ Trạng thái ? Trạng thái là gì ?
++ Dễ phát sinh lỗi ? Dễ chỗ nào ?
+- Khó kiểm soát mã nguồn: Khi lập trình Imperative Programming, mã nguồn chương trình sẽ phát sinh một số lượng lớn các dòng code và khiến cho người lập trình rơi vào tình trạng không kiểm soát được mã nguồn.
+- Không thực hiện nhiệm vụ song song ?
++ async / await
+2. Functional programming
+=> Functional là lập trình theo hàm. Tức là nhóm những hành động chung vào 1 hàm.
+=> Functional không tồn tại đối tượng.
+3. Object Oriented Programming (OOP)
+- Class là gì ? Class nhìn chung là một khuôn mẫu chung cho những đối tượng được tạo ra từ nó.
+- Vậy, đối tượng là gì ? Đối tượng là những instance được tạo ra dựa theo khuôn mẫu là những Class.
+
+=> Các khái niệm được nhắc đến hoặc liên quan trong quá trình tìm hiểu, phải giải thích được. Ví dụ: Nói về OOP thì có class và object thì phải giải thích được class là gì ? object là gì ? và sau cùng, phải giải thích được, OOP là gì ?
+
+Tìm hiểu kỹ về các ưu nhược điểm của các công nghệ cũ hơn khi so sánh với Reactive Programming.
+Tìm hiểu kỹ nội dung 2.1 và 2.2 xem có phần nào không hợp lý và loại bỏ những phần không hợp lý đó.
+=> Phần không hợp lý: Là phần không tìm ra được nội dung nào hoặc không cần thiết hoặc bị trùng lặp.

@@ -1,0 +1,415 @@
+WEBVTT
+
+00:05.720 --> 00:06.080
+All right.
+
+00:06.090 --> 00:10.160
+And this video we want to talk about the re-active manifesto.
+
+00:10.220 --> 00:18.080
+So this was originally published in 2013 and you can go over to w w w re-active manifesto dot org to
+
+00:18.080 --> 00:20.670
+read it in its complete form.
+
+00:20.670 --> 00:23.680
+Some interesting authors there you have John Boehner.
+
+00:23.840 --> 00:30.950
+He's the co-founder cause a pretty cool library folks and a lot of big scale distributed type systems.
+
+00:30.950 --> 00:37.640
+Dave Farley Roland Kohn And Martin Thompson I want to point out that the term the act of is really getting
+
+00:37.730 --> 00:42.800
+overloaded in the community there's a lot of misinformation out there I guess you could say a lot of
+
+00:42.800 --> 00:48.740
+confusion about what is and what isn't or act of it's kind of a becoming a real buzz word right now.
+
+00:48.740 --> 00:53.820
+So there are several reactive paradigms out there that we need to clarify.
+
+00:54.110 --> 01:01.210
+So in this presentation I'm referring to reactive systems and this is an architecture and design pattern
+
+01:01.310 --> 01:08.630
+and you'll see like cloud native and cloud based applications so that type of systems think large scale
+
+01:08.720 --> 01:16.700
+self-healing systems like Google's G-mail is a great example or Amazon.com obviously a very active system
+
+01:16.720 --> 01:24.470
+they do not go down on Black Friday sales events and an act of programming is much more granular is
+
+01:24.470 --> 01:33.080
+focusing on that based it's asynchronous non-blocking programming techniques focus on handling an event
+
+01:33.290 --> 01:40.040
+and that event would probably be with an a reactive system so reactive system is a much more broader
+
+01:40.040 --> 01:40.670
+concept.
+
+01:40.670 --> 01:45.920
+We're looking at how you're laying out your servers anti-earmark Micro's services whether you're not
+
+01:45.920 --> 01:49.100
+you're using messaging or big monolithic application.
+
+01:49.280 --> 01:55.980
+So it's more at the architecture level what react programming is a technique that you're using to code
+
+01:55.980 --> 02:00.460
+in now functional reactive programming is also a buzzword.
+
+02:00.460 --> 02:05.870
+You're hearing a lot of functional buzz right now especially in the Java community on the heels of Java
+
+02:05.900 --> 02:06.610
+8.
+
+02:06.800 --> 02:14.180
+The founders one of the founders of the re-active manifesto believes that functional programming is
+
+02:14.420 --> 02:21.920
+definitely misused right now by a lot of libraries that are claiming to be functional reactive programming
+
+02:21.920 --> 02:25.280
+libraries when in fact they're more active programming.
+
+02:25.550 --> 02:31.100
+I'm not going to get into the nuts and bolts of that just want to make you aware that there is disparity
+
+02:31.160 --> 02:37.940
+in the community about what is functional react to programming and react to programming so some people
+
+02:37.940 --> 02:45.880
+believe is a functional model and doing reactively you are now doing FRB but not necessarily the case.
+
+02:46.340 --> 02:49.150
+So let's take a look at the re-active manifesto.
+
+02:49.340 --> 02:57.190
+This is going to be looking at four areas and this is an image adopted right off their Web site responsive
+
+02:57.260 --> 02:59.510
+resilient message driven elastic.
+
+02:59.810 --> 03:04.180
+So let's take a little closer look to what each one of those means.
+
+03:05.410 --> 03:11.950
+So responsive means that the system's going to respond in a timely manner and responsiveness is the
+
+03:11.950 --> 03:16.110
+cornerstone of usability and utility in it.
+
+03:16.240 --> 03:19.330
+Not sure if everybody understands what cornerstone means.
+
+03:19.330 --> 03:25.090
+A lot of times when you're building an old building or an old architectural style as you set down a
+
+03:25.870 --> 03:31.510
+cornerstone which became the stone that you built upon the entire building so that's what that connotation
+
+03:31.690 --> 03:39.580
+means in a broader sense so that might get lost in other communities outside the US and Europe responsiveness
+
+03:40.360 --> 03:44.390
+also means that problems may be detected quickly and dealt with affectively.
+
+03:44.710 --> 03:53.310
+So this means that this system is going to effectively be self-healing so all responses systems also
+
+03:53.310 --> 04:01.230
+provide rapid response times and this consistent behavior simplifies error handling and builds and user
+
+04:01.230 --> 04:04.380
+confidence and encourages further interaction.
+
+04:04.380 --> 04:11.580
+So think about if you're using like Facebook and you're on Facebook and usually Facebook works pretty
+
+04:11.580 --> 04:12.860
+consistent for me.
+
+04:12.930 --> 04:17.930
+But there is time so slow and I get frustrated with that and it's usually when I'm on my mobile and
+
+04:17.940 --> 04:20.360
+have a bad data connection.
+
+04:20.550 --> 04:23.610
+So having a consistent responses.
+
+04:23.700 --> 04:30.680
+Important for your end users so resilient so systems SES response in the face of failure.
+
+04:30.860 --> 04:37.880
+So resilience is achieved by replication containment isolation and delegation and then failures are
+
+04:37.880 --> 04:39.140
+contained within a component.
+
+04:39.140 --> 04:44.920
+So you don't want a single part of the system failing and taking down the whole system.
+
+04:44.930 --> 04:53.840
+So recovery is delegated to another and that means there is redundancy in the system so there's no single
+
+04:53.840 --> 05:00.170
+point of failure in the system and high availability ensured by replication where necessary.
+
+05:00.410 --> 05:07.440
+So it's be like if you're running a rabbit MQ server you'd be running in a cluster so that the nose
+
+05:07.440 --> 05:09.290
+and the cluster could go down.
+
+05:09.290 --> 05:15.200
+Or if you have Micro's services you're going to have the load balanced against multiple nodes that Microcircuits
+
+05:16.990 --> 05:18.400
+an elastic.
+
+05:18.790 --> 05:21.750
+So the system stays responsive uttering varying workload.
+
+05:21.940 --> 05:28.270
+So reactive systems can react to changes to the input rate by increasing or decreasing resources allocated
+
+05:28.270 --> 05:30.560
+to those service inputs.
+
+05:30.760 --> 05:39.210
+And they asked Chief the less sticky on cost effective platform so using commodity hardware and software
+
+05:39.760 --> 05:47.230
+and Amazon dotcom was a great example of this because they do run a lot of nodes behind Amazon.com but
+
+05:47.770 --> 05:50.870
+both Amazon and Google are well known for using commodity hardware.
+
+05:51.090 --> 05:57.050
+So just the chief of servers that they can find and they structure their system so that that people
+
+05:57.060 --> 06:01.670
+server can go down and it doesn't matter because they have other things to back it up.
+
+06:01.780 --> 06:08.810
+And then also Google is the founder of Cooper Noddy's and within Kooper Nettie's and you can look at
+
+06:08.810 --> 06:14.050
+the workload and say OK well I want three notes of this running but if it starts getting busy if the
+
+06:14.050 --> 06:20.680
+CPA goes above X bring on additional nos to handle the load so it will automatically scale in response
+
+06:20.680 --> 06:21.450
+to that load.
+
+06:21.640 --> 06:26.270
+And when that load goes away then that will scale down as well.
+
+06:26.680 --> 06:33.450
+So having this dynamic scaling is important and while it's doing this the system will stay responsa.
+
+06:33.770 --> 06:43.040
+So for the end user the user experience is the same depending on if there's five users 5000 50000.
+
+06:43.120 --> 06:49.680
+The experience for each user is going to be the same in those now this is probably one of the more important
+
+06:49.680 --> 06:52.640
+parts for us as far as being Java developers.
+
+06:52.680 --> 06:59.460
+Reactive systems are message driven and we rely on asynchronous message passing to establish a boundary
+
+06:59.460 --> 07:01.180
+between components.
+
+07:01.440 --> 07:08.120
+So this is going to ensure loose coupling isolation and location transparency so message passing also
+
+07:08.120 --> 07:12.230
+knew it was load management plasticity and flow control.
+
+07:12.240 --> 07:19.270
+So this makes it important because now you have a distributed system and you're passing messages.
+
+07:19.470 --> 07:26.070
+So if you're sending a message and just for clarity a message can be going over like rabbit MQ Damus
+
+07:26.100 --> 07:27.320
+brokers such as academic.
+
+07:27.330 --> 07:34.650
+You can even be a web service call because you are posting the contents of a message to rest and point.
+
+07:34.650 --> 07:40.310
+So the message passing you can take a number of different forms but the concept means the same as that
+
+07:40.320 --> 07:48.540
+you're passing some chunk of data whether it's Jason ex-model realized object you're passing that message
+
+07:48.930 --> 07:54.870
+across some boundary to another system that's going to act on it and location transparent messaging
+
+07:54.870 --> 08:02.430
+means that you're not dependent on server a talking to server B you're going from message group cluster
+
+08:02.430 --> 08:12.450
+of micro services a to a cluster of micro surfaces be that you're not concerned about the specific server.
+
+08:12.450 --> 08:18.600
+So this is important architectural shift and then the nonblocking communication allows recipients to
+
+08:18.600 --> 08:20.930
+consume only resources while active.
+
+08:21.140 --> 08:27.520
+And that this is also important so if you have say a message queue you can have a consumer come up and
+
+08:27.530 --> 08:33.690
+you can have one consumer in five consumers so you can dynamically take that and that consumers they're
+
+08:33.690 --> 08:38.340
+not active aren't going to be adding it to the overall system load.
+
+08:38.370 --> 08:44.620
+Now I sold this diagram right from a hipster guys because I think it's really good when we hear the
+
+08:44.640 --> 08:51.330
+term cloud native spring guys definitely I like to talk about cloud native and this is a good overview
+
+08:51.330 --> 08:52.620
+of what that involves.
+
+08:52.620 --> 08:59.550
+Netflix has been a huge contributor to the components within spring cloud so there's a lot of cool stuff
+
+08:59.550 --> 08:59.970
+there.
+
+09:00.060 --> 09:06.150
+And what we have is a distributed architecture probably going to be deployed in darker containers.
+
+09:06.150 --> 09:09.290
+There's a number of different ways of managing those containers.
+
+09:09.300 --> 09:15.030
+Cooper net is one that I mentioned Dockers swarm as another there's Patchi I think is mesos.
+
+09:15.030 --> 09:18.470
+So there's a number of different ways of managing this.
+
+09:18.540 --> 09:24.070
+And then there's different ways of using like Zoul and Ricca.
+
+09:24.300 --> 09:28.340
+You can just pull up these nodes and you could manually do it with these.
+
+09:28.350 --> 09:36.160
+So now you have a truly distributed application here so if you're not familiar with a spring micro surfaces
+
+09:36.180 --> 09:41.490
+what's going to happen here is if I deploy a micro service that's going to wake up go out to what you
+
+09:41.490 --> 09:48.270
+see in the diagram as a hipster registry and get its configuration from a spring cloud config and then
+
+09:48.270 --> 09:51.040
+register itself with the Eureka server.
+
+09:51.040 --> 09:56.160
+So it says OK I'm this micro service here I am on this IP address and node.
+
+09:56.330 --> 10:01.090
+Now the Zuel proxy is also in communication with the Greek server.
+
+10:01.110 --> 10:07.030
+QUEST comes in through the gateway and it knows to route to that note that Microcircuits.
+
+10:07.050 --> 10:12.720
+Now that Microcircuits can go down that box that's running I could get terminated and you could bring
+
+10:12.720 --> 10:15.340
+up another Micro's service on another box.
+
+10:15.520 --> 10:18.390
+And the process would go through the same where.
+
+10:18.690 --> 10:22.950
+Now it's registered again or they reach a server and gets this configuration.
+
+10:22.950 --> 10:26.460
+So I would say you're going to be running multiple notes on those micro services.
+
+10:26.450 --> 10:33.510
+So now any time those Michod services can fail a node could fail and the system is now self-healing
+
+10:33.510 --> 10:40.560
+because now you have that redundancy there and it's also very scalable this way so as different services
+
+10:40.560 --> 10:43.350
+become hotspots you can spool up additional nodes.
+
+10:43.500 --> 10:48.440
+And what's important to read architecture like this is that it is elastic.
+
+10:48.660 --> 10:52.330
+Do you see the log slashing cabana.
+
+10:52.350 --> 10:57.120
+This is quite a bit different from having a big monolithic application where you have one spot to go
+
+10:57.120 --> 10:58.510
+look at the logs on.
+
+10:58.620 --> 11:03.300
+Now you could have dozens if not hundreds of nodes out there each collecting logs.
+
+11:03.300 --> 11:06.170
+That's why you use something like phone log stash.
+
+11:06.190 --> 11:13.320
+So this is a distorted architecture you can see that what I have here is much more broad in terms of
+
+11:13.590 --> 11:20.240
+entire system architecture and purposes courses look more granular at Spring 5.
+
+11:20.240 --> 11:22.200
+And what's going on in censoring.
+
+11:22.860 --> 11:29.460
+Now re-active programming is very important and is a useful implementation technique.
+
+11:29.460 --> 11:36.840
+So now we're going from the overall system architecture with reactive systems down to reactive program
+
+11:36.900 --> 11:43.440
+which is like the individual nodes in a micro server so one is broad and one is very granular reactive
+
+11:43.470 --> 11:47.860
+programming focuses on nonblocking asynchronous execution.
+
+11:47.910 --> 11:52.660
+And this is a very important characteristic of over all reactive systems.
+
+11:53.070 --> 11:58.360
+At the end of the day reactive programming is just one tool in building reactive systems.
+
+11:58.410 --> 12:03.430
+So I think it's a goal we all have very fast very reliable systems.
+
+12:03.570 --> 12:07.920
+It's important to understand the distinction here so one has an overall architecture.
+
+12:07.920 --> 12:14.190
+But we're going to be diving into reactive programming which is an implementation technique of a very
+
+12:14.580 --> 12:15.830
+granular service.

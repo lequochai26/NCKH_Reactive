@@ -1,0 +1,70 @@
+<mxfile host="Electron" modified="2024-03-20T15:49:07.039Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.0.4 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="rc8lYEllMzugf-lb9Cg_" version="24.0.4" type="device">
+  <diagram name="Page-1" id="VnuZ87zRjKPs6b5GPjeE">
+    <mxGraphModel dx="1502" dy="629" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-1" value="Demo ?&lt;div&gt;Phải cho thấy được lợi thế của Reactive và sự khác biệt giữa có / không có Reactive&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="685" y="180" width="225" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-2" value="Java thuần" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="390" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-3" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="-U0y3Tk5oN8tYbDE86gJ-1" target="-U0y3Tk5oN8tYbDE86gJ-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="390" as="sourcePoint" />
+            <mxPoint x="780" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-4" value="RxJava" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="737.5" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-5" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="-U0y3Tk5oN8tYbDE86gJ-1" target="-U0y3Tk5oN8tYbDE86gJ-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="390" as="sourcePoint" />
+            <mxPoint x="780" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-6" value="Web Flux" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-10" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="-U0y3Tk5oN8tYbDE86gJ-1" target="-U0y3Tk5oN8tYbDE86gJ-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="730" y="390" as="sourcePoint" />
+            <mxPoint x="780" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-11" value="Web Java / Server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-12" value="Biên dịch mã nguồn Java" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="460" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-13" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="-U0y3Tk5oN8tYbDE86gJ-11" target="-U0y3Tk5oN8tYbDE86gJ-12">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="920" as="sourcePoint" />
+            <mxPoint x="610" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-14" value="Tạo nội dung HTML" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="790" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-15" value="Xử lý chính" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="-U0y3Tk5oN8tYbDE86gJ-12" target="-U0y3Tk5oN8tYbDE86gJ-14">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="560" y="920" as="sourcePoint" />
+            <mxPoint x="610" y="870" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-16" value="Client" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1110" y="850" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="-U0y3Tk5oN8tYbDE86gJ-17" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1" source="-U0y3Tk5oN8tYbDE86gJ-14" target="-U0y3Tk5oN8tYbDE86gJ-16">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="850" y="880" as="sourcePoint" />
+            <mxPoint x="900" y="830" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

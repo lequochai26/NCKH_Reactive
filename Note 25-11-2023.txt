@@ -1,0 +1,13 @@
+- Đối tượng nghiên cứu
+- Tính cấp thiết
++ Vì sao nó cần ?
++ So sánh công nghệ cũ với hiện tại ?
+	. Ưu điểm ?
+		=> Ưu điểm của mô hình Reactive Programming.
+	. Nhược điểm ?
+		=> Nhược điểm chung của các công nghệ cũ
+- Mục tiêu nghiên cứu
++ Phân tích và đánh giá các thư viện reactive.
+	. Ưu điểm, khuyết điểm so với các thư viện.
++ Đề xuất và tư vấn ngữ cảnh sử dụng của từng thư viện.
+- Phương pháp thực hiện : xây dựng demo để phân tích và đánh giá thư viện

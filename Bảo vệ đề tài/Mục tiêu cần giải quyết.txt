@@ -1,0 +1,111 @@
+1. What is Reactive Programming ?
+Reactive Programming là một mô hình lập trình tập trung vào việc phản ứng hay xử lý đối với những sự thay đổi hay những sự kiện được phát ra bởi những luồng dữ liệu bất đồng bộ (asynchronous) một cách non-blocking.
+
+Những khái niệm cót lõi của Reactive Programming:
+- Observables:
+	+ Khái niệm: Là những luồng dữ liệu bất đồng bộ, thứ mà sẽ phát ra tín hiệu, sự kiện khi: Có dữ liệu mới đã sẵn sàng (next), có lỗi xảy ra (error), đã hoàn thành và không còn dữ liệu mới nào đang chờ (complete). Các Observables được coi là các Publishers trong mẫu thiết kế Publisher - Consumer.
+	+ Khởi tạo: Observables có thể được khởi tạo từ các nguồn dữ liệu như: tập dữ liệu, Promises, Timers (bộ đếm thời gian), User inputs (dữ liệu được nhập bởi người dùng), ... 
+	{ +  Lắng nghe: Để có thể nhận và xử lý những tín hiệu do Observable phát ra, cần có những đối tượng Observer để lắng nghe những tín hiệu này và những đối tượng Observer này phải đăng ký lắng nghe từ Observable. }
+	{ + Operators: Là những phương thức được sử dụng để làm biến đổi một Observable, chẳng hạn như: map (chuyển đổi dữ liệu của một Observable), filter (lọc dữ liệu của một Observable), combine (Kết hợp dữ liệu từ một nguồn khác vào Observable), ... }
+	+ Các loại Observables:
+		. Cold Observables: Là những Observable mà khi có một Observer đăng ký lắng nghe, Observable này sẽ phát lại tín hiệu cho toàn bộ dữ liệu có trong luồng dữ liệu cho Observer đó. Và những Observables này sẽ và chỉ sẽ phát tín hiệu khi tất cả dữ liệu đã sẵn sàng để được phát đi.
+		. Hot Observable: Là những Observable sẽ phát tín hiệu ngay khi dữ liệu mới đã sẵn sàng và khi một Observer đăng ký lắng nghe Observable này, chỉ nhận được tín hiệu cho dữ liệu đang phát ở thời điểm đó và sẽ không nhận được tín hiệu cho những dữ liệu đã được phát trước khi Observer này đăng ký.
+	{ + Xử lý quá tải (Backpressure Handling): Khi làm việc với những nguồn dữ liệu, sẽ có những trường hợp khi mà tốc độ phát ra dữ liệu nhanh hơn tốc độ xử lý những dữ liệu đã được phát ra đó. Khi đó, việc xử lý quá tải (Backpressure Handling) trở nên cần thiết và quan trọng để đảm bảo tính kiên cố cho hệ thống, giúp hệ thống không bị sập vì quá tải và không làm giảm đi hiệu suất xử lý của hệ thống. Mỗi thư viện Reactive Programming đều hỗ trợ những phương pháp xử lý quá tải khác nhau giúp hệ thống luôn hoạt động hiệu quả và ổn định. }
+	{ + Hủy đăng ký: Một Observer đã đăng ký lắng nghe tín hiệu từ một Observable có thể hủy đăng ký lắng nghe tín hiệu từ Observable đó để giúp tối ưu bộ nhớ cũng như hiệu suất của hệ thống, tiết kiệm tài nguyên hệ thống. }
+
+- Observers: Để có thể nhận và xử lý những tín hiệu do Observable phát ra, cần có những đối tượng Observer để lắng nghe những tín hiệu này và những đối tượng Observer này phải đăng ký lắng nghe từ Observable. Và ngược lại, khi không cần lắng nghe tín hiệu từ Observable nữa, Observer này cũng có thể hủy đăng ký lắng nghe tín hiệu từ một Observable bất kỳ.
+
+- Operators: Là những phương thức được sử dụng để làm biến đổi một Observable, chẳng hạn như: map (chuyển đổi dữ liệu của một Observable), filter (lọc dữ liệu của một Observable), combine (Kết hợp dữ liệu từ một nguồn khác vào Observable), ...
+
+- Backpressure Handling (Xử lý quá tải): Khi làm việc với những nguồn dữ liệu, sẽ có những trường hợp khi mà tốc độ phát ra dữ liệu nhanh hơn tốc độ xử lý những dữ liệu đã được phát ra đó. Khi đó, việc xử lý quá tải (Backpressure Handling) trở nên cần thiết và quan trọng để đảm bảo tính kiên cố cho hệ thống, giúp hệ thống không bị sập vì quá tải và không làm giảm đi hiệu suất xử lý của hệ thống. Mỗi thư viện Reactive Programming đều hỗ trợ những phương pháp xử lý quá tải khác nhau giúp hệ thống luôn hoạt động hiệu quả và ổn định.
+
+- Schedulers: Là những bộ quản lý thời gian cũng như thời điểm mà một tác vụ nào đó được thực thi, chẳng hạn như: Thời điểm phát dữ liệu của một Observable, ... Bộ quản lý thời gian thực thi này là yếu tố chính đảm bảo cho tính bất đồng bộ trong hệ thống Reactive.
+
+
+
+2. What is Reactive System ?
+	+ Là một hệ thống đáp ứng 4 tính chất: Responsive, Resilient, Elastic, Message Driven.
+	+ Responsive (Tính phản hồi): Hệ thống có thời gian phản hồi nhanh và nhất quán. Ví dụ: Khi truy cập vào ứng dụng / trang web Facebook thì hệ thống lập tức phản hồi cho chúng ta thấy giao diện, mặc dù có thể là những hình ảnh, bài viết chưa được tải lên hết nhưng hệ thống gần như phản hồi ngay lập tức cho ta biết hệ thống vẫn đang hoạt động.
+		=> Vì hệ thống Reactive chủ yếu dựa trên việc xử lý luồng dữ liệu một các bất đồng bộ, nên cung cấp cho hệ thống khả năng phản hồi gần như là ngay lập tức mà không có chậm trễ.
+
+	+ Resilient (Tính kiên cố): Hệ thống vẫn ở trong trạng thái ổn định và phản hồi nhanh chóng ngay cả khi gặp sự cố hay lỗi. Ví dụ: Trong một hệ thống lớn như Facebook, việc xảy ra lỗi dưới phần xử lý của hệ thống là chuyện không thể tránh khỏi, vì kích thước hệ thống quá lớn, quá rộng, sức con người không thể nào quản lý hết được, nên việc xảy ra lỗi hoặc gặp sự cố là hoàn toàn có thể xảy ra. Nhưng khi điều đó xảy ra, hệ thống chỉ đơn giản là xuất ra một thông báo lỗi cho người dùng biết là đã gặp sự cố ở phía xử lý và hệ thống vẫn tiếp tục hoạt động bình thường mà không bị ảnh hưởng bởi sự cố kia.
+		=> Vì hệ thống Reactive vận hành dựa trên việc xử lý luồng dữ liệu bất đồng bộ và làm việc với những luồng dữ liệu này, khi có lỗi hoặc sự có gì đó xảy ra, lỗi đó sẽ được truyền đi dưới dạng là một thông điệp đến các bộ xử lý đang lắng nghe luồng sự kiện này và vì thế đảm bảo hệ thống luôn trong trạng thái hoạt động và ổn định mà không bị ảnh hưởng bởi lỗi hay sự cố đã xảy ra kia.
+
+	+ Elastic (Tính co giãn): Hệ thống vẫn giữ thời gian phản hồi nhất quán và cố định ngay cả khi chịu tải lớn và không làm ảnh hưởng đến tính ổn định của hệ thống và thời gian phản hồi của hệ thống. Ví dụ: Các trang thương mại điện tử như Amazon vào các dịp khuyến mại lớn thì lượng truy cập rất cao từ khắp các nơi trên thế giới, nhiều đến mức chúng ta cũng không tưởng tượng được con số bao nhiêu. Thế nhưng, ngay cả khi nhiều lượt truy cập được thực hiện như vậy thì hệ thống vẫn phản hồi trong khoảng thời gian rất cố định, nhất quán và hầu như không bị ảnh hưởng gì bởi lượng truy cập khủng đó.
+		=> Vì trong các thư viện lập trình Reactive đều có hỗ trợ Backpressure Handling (xử lý quá tải) như đã đề cập ở trên, giúp tài nguyên hệ thống được sử dụng hợp lý và tiết kiệm và từ đó tối ưu hiệu suất xử lý của hệ thống và mang đến thời gian phản hồi nhất quán và không bị ảnh hưởng.
+
+	+ Message Driven (Khả năng truyền thông điệp): Khả năng truyền thông điệp giữa các thành phần trong một hệ thống giúp định hình rõ ranh giới giữa các thành phần trong hệ thống, giúp các thành phần trong hệ thống ít phụ thuộc nhau hơn.
+		. Nó mang đến TÍNH CO GIÃN cho hệ thống, vì thông qua việc các thành phần trong hệ thống giao tiếp với nhau thông qua các thông điệp, nó giúp cho hệ thống có thể kiểm soát lượng tải thông qua việc quản lý hàng chờ (queue) thông điệp.
+		. Nó mang đến TÍNH KIÊN CỐ cho hệ thống, vì thông qua việc các thành phần trong hệ thống giao tiếp với nhau thông qua các thông điệp, nó giúp cho các thành phần trong hệ thống biệt lặp với nhau và ít phụ thuộc nhau nhất có thể. Và khi có sự cố hay lỗi xảy ra ở một thành phần bất kỳ, lỗi đó sẽ được gửi đi cho một thành phần khác xử lý dưới dạng là một thông điệp. Giúp cho hệ thống không bị sập mỗi khi xảy ra lỗi hay sự cố ở một thành phần bất kỳ trong hệ thống.
+		. Nó mang đến TÍNH PHẢN HỒI cho hệ thống, vì thông qua việc các thành phần trong hệ thống giao tiếp với nhau thông qua các thông điệp bất đồng bộ, và xử lý chủ yếu dựa trên thông điệp nên thời gian phản hồi lúc nào cũng nhất quán và ổn định, hầu như không có sự chậm trễ.
+		. Nó mang đến khả năng quản lý luồng xử lý tốt hơn cho hệ thống thông qua việc xử lý dựa trên thông điệp.
+
+
+
+#3. Pros of Reactive Programming ?
+
+
+
+#4. Reactive in real-life scenarios ?
+
+
+
+5. What if without Reactive ?
+- Nếu không có mô hình lập trình Reactive, hệ thống của chúng ta sẽ gặp các vấn đề về:
+	+ Thời gian phản hồi: Vì thông thường, theo các mô hình lập trình trước đây, đa phần mọi tác vụ đều được thực thi một các đồng bộ và blocking. Cụ thể là khi xử lý một các vụ nào đó có rất nhiều bước, nhưng phải xong bước 1 mới đến được bước 2 và cứ như thế đến bước cuối cùng mới phản hồi. Như vậy, thời gian phản hồi của hệ thống sẽ bị kéo dài.
+	+ Tính kiên cố: Theo các mô hình lập trình trước đây, việc xử lý lỗi chủ yếu thông qua việc dự đoán, nắm bắt và xử lý một cách thủ công. Nhưng, nếu như vậy, hệ thống không được xử lý lỗi khéo sẽ dẫn đến tình trạng hệ thống bị sập và ngừng hoạt động, không thể phản hồi được nữa.
+	+ Tính co giãn: Đối với các mô hình lập trình trước đây, việc quyết định phân bổ tài nguyên phần cứng cho một hệ thống nào đó phụ thuộc vào các yếu tố bên ngoài. Và như thế, thời gian phản hồi hay hiệu suất của hệ thống được quyết định bởi các yếu tố bên ngoài.
+
+- Để có cái nhìn tốt hơn, ta hãy so sánh với các mô hình lập trình trước đây:
+	+ Xử lý sự kiện, tác vụ đồng bộ:
+		. Reactive Programming: Xử lý các tác vụ bất đồng bộ hiệu quả và kiến trúc mặc định của Reactive Programming là dựa trên việc xử lý sự kiện.
+		. Procedural Programming: Gặp rất nhiều vấn đề và khó khăn trong việc quản lý các tác vụ bất đồng bộ.
+		. Functional Programming: Cần có các thư viện bổ sung và xử lý kém hiệu quả hơn vì kiến trúc của nó không giống với kiến trúc dựa trên việc xử lý sự kiện như Reactive Programming.
+	
+	+ Mã nguồn dễ hiểu và rõ ràng:
+		. Reactive Programming: Tập trung vào việc phản ứng với những sự thay đổi thay vì tập trung vào việc làm rõ làm thế nào mà điều này có thể thực hiện được.
+		. Procedural Programming: Thực hiện từng bước step-by-step khiến mã nguồn trở nên phức tạp hơn và khó hiểu hơn vài dài dòng hơn, khó khăn hơn khi làm việc với nó.
+
+	+ Khả năng co giãn:
+		. Reactive Programming: Hỗ trợ sẵn việc quản lý các thông điệp, các sự kiện bất đồng bộ như một phần cốt lõi giúp mang đến khả năng co giãn tốt hơn cho hệ thống.
+		. Procedural Programming: Gặp rất nhiều thử thách trong việc quản lý bất đồng bộ nên không mang đến khả năng co giãn hiệu quả cho hệ thống.
+	+ Khả năng phản hồi:
+		. Reactive Programming: Tập trung vào việc phản ứng với những sự thay đổi thời gian thực một cách bất đồng bộ, non-blocking nên mang đến thời gian phản hồi nhanh và nhất quán.
+		. Procedural Programming: Xử lý các tác vụ blocking từng bước một nên dẫn đến thời gian phản hồi của hệ thống tùy thuộc vào kích thước dữ liệu xử lý.
+		. Functional Programming: Xử lý các tác vụ  thông qua các hàm và theo hướng blocking nên dẫn đến thời gian phản hồi của hệ thống tùy thuộc vào kích thước dữ liệu xử lý.
+	+ Sự phức tạp
+		. Reactive Programming: Xử lý một chuỗi các tác vụ bất đồng bộ nên việc quản lý state trở nên phức tạp hơn.
+		. Procedural Programming, Functional Programming: Quản lý các dữ liệu thông qua các biến nên đơn giản hơn rất nhiều.
+	+ Xử lý lỗi:
+		. Reactive Progtramming: Xử lý lỗi thông qua cơ chế truyền thông điệp, nên việc xử lý lỗi sẽ hiệu quả hơn và giúp đảm bảo tính kiên cố của hệ thống.
+		. Procedural Programming, Functional Programming: Xử lý lỗi thủ công và phải dự đoán khả năng xảy ra lỗi ở mã nguồn. Dẫn đến khả năng sập khi hệ thống gặp sự cố hoặc lỗi.
+
+
+
+6. Why Reactive ?
+- Vì nhu cầu của người dùng ngày một cao lên theo sự tiến hóa của môi trường công nghệ. Nên các hệ thống, phần mềm phải phát triển theo để mang đến trải nghiệm người dùng tốt nhất có thể và phải đảm bảo chất lượng dịch vụ lúc nào cũng tốt nhất. Tuy nhiên, ở các mô hình lập trình cũ, hệ thống sẽ gặp rất nhiều các vấn đề về khả năng phản hồi, tính kiên cố, tính co giãn khiến cho chất lượng dịch vụ bị ảnh hưởng cũng như không đáp ứng được nhu cầu người dùng ở thị trường công nghệ ngày nay. Nên chúng ta phải áp dụng mô hình lập trình Reactive để mang đến một hệ thống có khả năng phản hồi tốt, một hệ thống có tính kiên cố cao và tính co giãn thật tốt để đáp ứng nhu cầu của thị trường hiện nay.
+
+
+
+7. RxJava ?
+7.1. Giới thiệu về Reactive X ?
+- Reactive X là một dự án tập trung vào việc mang mô hình lập trình Reactive Programming đến với các ngôn ngữ lập trình, môi trường thực thi khác nhau. Trong đó có: Java, JavaScript, C#, Python, ...
+
+7.2. Giới thiệu về RxJava ?
+- RxJava là một bản triển khai (implementation) của dự án ReactiveX cho ngôn ngữ cũng như môi trường thực thi Java.
+
+7.2.1. Các thành phần cốt lõi trong RxJava ?
+7.2.1.1. Observables ?
+- Có các loại Observables: Observable, Flowable, Single, Maybe, ...
+
+8. Spring Web Flux ?
+8.1. Spring MVC's Architecture vs Spring Web Flux's Architecture ?
+9. RxJava vs Web Flux ?
+10. Demo ?
+10.1. Without Reactive
+10.2. With RxJava
+=> Must show the uses of RxJava in this demo application
+10.3. With Web Flux
+=> Must show the uses of Web Flux in this demo application
+11. When will this project done ?
+12. The cost of this project ?

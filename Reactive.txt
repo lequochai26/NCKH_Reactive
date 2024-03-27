@@ -1,0 +1,8 @@
+Note ngày: 26/10/2023
+Tiêu đề: The Reactive Manifesto
+Nội dung:
+- Những hệ thống có khả năng phản hồi nhanh (Responsive), kiên cố (Resilient), linh hoạt (Elastic) và khả năng gửi thông điệp (Message Driven) là những hệ thống Reactive.
+- Những hệ thống Reactive có khả năng phản hồi rất nhanh, mang đến phản hồi hiệu quả cho người dùng từ việc tương tác.
+- Hệ thống Reactive là:
+	+ Khả năng phản hồi: Hệ thống phản hồi trong thời gian nhanh nhất có thể. Sự phản hồi là nền tảng của việc sử dụng và tiện ích, hơn nữa, sự phản hồi còn có nghĩa là các vấn đề có thể được phát hiện nhanh chóng và xử lý hiệu quả. Các hệ thống có khả năng phản hồi tập trung vào việc mang đến phản hồi nhanh chóng và nhất quán, thiết lập sự tin cậy trên cả giới hạn và mang đến một chất lượng nhất quán của dịch vụ. Hành động nhất quán này lần lượt làm đơn giản hóa việc xử lý lỗi, xây dựng sự tin tưởng của người dùng cuối và thúc đẩy sự tương tác.
+	

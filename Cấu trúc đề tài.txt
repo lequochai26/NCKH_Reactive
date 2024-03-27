@@ -1,0 +1,32 @@
+2.1 Tổng quan về reactive programming
+	2.1.1 Giới thiệu về RP: Hiếu
+	2.1.2 Tình hình phát triển của RP(lịch sử): Hiếu / Khuyến / Quang
+2.2 Lý thuyết về reactive programming
+	2.2.1 Định nghĩa
+		2.2.1.1. Reactive là gì ?: Hiếu
+		2.2.1.2. Cách tiếp cận của Reactive Programming ?: Hải
+		2.2.1.3. Phương pháp triển khai mô hình Reactive Programming ?: Quang
+		2.2.1.4. Công nghệ được sử dụng trong mô hình Reactive Programming ?: Tiến
+		2.2.1.5. Sẽ như thế nào nếu không có Reactive Programming ?: Hải
+	2.2.2 Đánh giá ưu nhược điểm của RP (-)
+		2.2.2.1. Ưu điểm của Reactive Programming ?: Quang (-)
+		2.2.2.2. Nhược điểm của Reactive Programming ?: Quang (-)
+	2.2.3 So sánh giữa RP với các công nghệ khác: Hiếu - Quang
+		2.2.3.1. Imperative Programming: Hiếu - Quang
+		2.2.3.2. Functional Programming: Hiếu - Quang
+		2.2.3.3. Functional Reactive Programming (FRP): Hiếu - Quang
+	2.2.4 Ứng dụng thực tế: Tiến
+----------------------------------------------------------------------------------------------------------
+2.3 Các thư viện của RP
+	2.3.1 Spring Web Flux
+	- Giới thiệu: Hiếu
+	- Kiến trúc: Tiến
+	- Cơ chế hoạt động: Quang
+	- Hiệu suất: Khuyến
+	2.3.2 RxJava
+	- Giới thiệu
+	- Kiến trúc
+	- Cơ chế hoạt động
+	- Hiệu suất
+- So sánh giữa các thư viện đã liệt kê
+- Sự phù hợp của các thư viện trong các ngữ cảnh khác nhau.

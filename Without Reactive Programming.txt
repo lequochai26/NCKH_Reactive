@@ -1,0 +1,7 @@
+- Thiếu Linh Hoạt: Mô hình đồng bộ thường đòi hỏi chương trình phải đợi đến khi một tác vụ hoàn thành trước khi chuyển sang tác vụ tiếp theo. Điều này có thể dẫn đến thời gian chờ đợi và giảm hiệu suất chung của hệ thống.
+
+- Chậm Trễ Thời Gian Phản Hồi: Trong mô hình đồng bộ, khi một yêu cầu được gửi, chương trình có thể phải đợi cho đến khi nó hoàn thành trước khi có thể xử lý yêu cầu tiếp theo. Điều này có thể làm cho thời gian phản hồi của hệ thống trở nên không đồng đều và có thể làm chậm quá trình xử lý tổng thể.
+
+- Khó Khăn Trong Việc Quản lý Đồng Thời: Trong môi trường đồng bộ, việc quản lý các tác vụ đồng thời và sự kiện có thể trở nên phức tạp. Điều này có thể dẫn đến việc phải triển khai các giải pháp phức tạp hơn để đảm bảo tính đồng đều và hiệu quả trong xử lý sự kiện đồng thời.
+
+- Khả Năng Mở Rộng Giảm Đi: Mô hình đồng bộ có thể gặp khó khăn khi cố gắng mở rộng để xử lý một lượng lớn các yêu cầu đồng thời. Điều này có thể dẫn đến hiện tượng quá tải và giảm hiệu suất của hệ thống khi có nhiều người dùng hoặc sự kiện đồng thời.

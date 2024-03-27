@@ -1,0 +1,54 @@
+* Bing
+- Như thế nào là hệ thống Reactive ?
+Hệ thống Reactive, hay còn gọi là Reactive Programming, là một mô hình lập trình mà ở đó dữ liệu được truyền tải dưới dạng luồng (stream). Mô hình này dựa trên nguyên tắc Asynchronous và Non-Blocking để làm việc với dữ liệu.
+
+Trong Reactive Programming, chúng ta cần chú ý đến 2 điểm quan trọng là Stream & Asynchronous2. Khi thực hiện một task bất kỳ, chúng ta thường chỉ quan tâm đến 3 yếu tố: giá trị trả về từ task đó (Data), thông báo lỗi (Error nếu có), và thời điểm task hoàn thành (Completed). Trong lập trình đồng bộ (synchronous), việc xác định 3 yếu tố trên không khó khăn, nhưng khi lập trình bất đồng bộ (asynchronous), việc xác định 3 yếu tố này là không hề dễ dàng.
+
+Reactive Programming giải quyết vấn đề này bằng cách sử dụng stream để truyền tải dữ liệu: nó có thể sẽ emit ra 3 thứ: 1 value, 1 error, 1 completed (tín hiệu kết thúc 1 task) theo 1 trình tự thời gian từ nơi phát ra (Producer) tới nơi lắng nghe (Subscriber).
+Sức mạnh của Reactive Programming nằm ở việc áp dụng functional programming cho phép filter (filter, take, scan, …), chuyển đổi từ stream này qua stream khác (map, flatMap, reduce), hoặc merge nhiều stream thành một stream mới (combine, merge, zip, …) khá dễ dàng mà không làm thay đổi trạng thái của stream ban đầu.
+
+Việc sử dụng Reactive Programming sẽ cải thiện được trải nghiệm người dùng, khi chúng ta muốn ứng dụng phản hồi nhanh hơn. Lợi ích tiếp theo là giúp hạn chế lưu trữ, quản lý các state trung gian.
+
+- Thông tin chi tiết nhất về 4 nguyên tắc của các hệ thống Reactive:
+Hệ thống Reactive, hay còn gọi là Reactive Systems, được xây dựng dựa trên bốn nguyên tắc chính:
+Responsive: Hệ thống phản hồi một cách kịp thời nếu có thể. Đáp ứng nhanh chóng là nền tảng của khả năng sử dụng và tiện ích, nhưng hơn thế nữa, khả năng phản hồi nhanh chóng có nghĩa là các vấn đề có thể được phát hiện và xử lý một cách hiệu quả.
+
+Resilient: Hệ thống vẫn phản hồi trong trường hợp gặp phải lỗi. Điều này không chỉ áp dụng cho các hệ thống có sẵn, nhiệm vụ quan trọng - bất kỳ hệ thống nào không phục hồi sẽ không phản hồi sau khi gặp lỗi. Sự phục hồi được đạt được thông qua việc sao chép, chứa chấp, cô lập và ủy quyền.
+
+Elastic: Hệ thống vẫn phản hồi dưới áp lực biến đổi. Các hệ thống Reactive có thể phản ứng trước các thay đổi trong tốc độ đầu vào bằng cách tăng hoặc giảm các tài nguyên được phân bổ để phục vụ các đầu vào này.
+
+Message Driven: Hệ thống có khả năng xử lý yêu cầu bằng cách trao đổi các tin nhắn không đồng bộ.
+
+Các hệ thống được xây dựng dưới dạng Hệ thống Reactive thường linh hoạt hơn, có sự kết hợp lỏng lẻo hơn và có thể mở rộng hơn. Điều này khiến chúng dễ phát triển hơn và dễ thay đổi hơn. Chúng đáng kể hơn nữa có khả năng chịu đựng lỗi và khi lỗi xảy ra, chúng đối mặt với nó một cách thanh lịch thay vì thảm họa.
+
+- Chi tiết hơn về tính chất "Elastic"
+Tính chất “Elastic” trong hệ thống Reactive nghĩa là hệ thống có khả năng mở rộng hoặc thu hẹp dựa trên yêu cầu tải của nó. Điều này có nghĩa là, khi tải lên, hệ thống có thể tự động cung cấp thêm tài nguyên để xử lý tải tăng lên. Ngược lại, khi tải giảm, hệ thống có thể tự động giảm bớt tài nguyên để tiết kiệm chi phí.
+
+Trong thực tế, Elastic có thể được thấy rõ trong các hệ thống như Elastic Stack1. Elastic Stack là một nhóm các dự án mã nguồn mở được triển khai nhằm mục đích thu thập, phân tích, thống kê, tìm kiếm và trực quan hóa dòng dữ liệu (Data Stream) theo thời gian thực1. Elastic Stack có thể mở rộng để xử lý lượng dữ liệu lớn và thu hẹp khi không cần thiết.
+
+Tóm lại, tính chất “Elastic” giúp hệ thống Reactive linh hoạt hơn và phản ứng tốt hơn với sự thay đổi trong tải hệ thống.
+
+* Note từ tài liệu https://www.reactivemanifesto.org/
+- Responsive: Khả năng phản hồi
++ Khả năng phản hồi là nền tảng của việc sử dụng và tiện ích hóa.
++ Dễ dàng phát hiện vấn đề và xử lý hiệu quả.
+
+- Resilient: Khả năng xử lý lỗi hoặc cách mà các hệ thống Reactive đối mặt với lỗi
++ Khả năng phục hồi khi gặp lỗi. Sự phục hồi có thể đạt được thông qua việc: nhân bản (replication), ngăn chặn (containment), cô lập (isolation) và ủy quyền (delegation).
++ Lỗi được chứa trong mỗi thành phần, cô lập các thành phần khỏi nhau và từ đó đảm bảo các phần của hệ thống có thể gặp lỗi và khôi phục mà không gây ảnh hưởng đến cả hệ thống.
++ Việc khôi phục của mỗi thành phần được ủy quyền cho một thành phần khác và tính sẵn sàng cao được đảm bảo bằng sự nhân bản khi cần thiết.
++ Các thành phần không bị gánh nặng trong việc xử lý lỗi của chính nó.
+
+** Elastic: The system stays responsive under varying workload. Reactive Systems can react to changes in the input rate by increasing or decreasing the resources allocated to service these inputs. This implies designs that have no contention points or central bottlenecks, resulting in the ability to shard or replicate components and distribute inputs among them. Reactive Systems support predictive, as well as Reactive, scaling algorithms by providing relevant live performance measures. They achieve elasticity in a cost-effective way on commodity hardware and software platforms. **
+
+- Elastic: Sự co giãn linh hoạt
++ Hệ thống vẫn có khả năng phản ứng khi chịu tải nhiều kích thước khác nhau.
++ Các hệ thống Reactive có khả năng phản ứng để thay đổi tốc độ xử lý đầu vào bằng việc tăng hoặc giảm lượng tài nguyên được phân bổ để xử lý những dữ liệu đầu vào này.
++ 
+
+- Bám vào đề cương, đừng tìm hiểu ko ko.
+- Không có nó thì gặp vấn đề gì ?
+- Nó giải quyết vấn đề gì ? (Có thể ChatGPT, các thứ các thứ)
+- Tìm hiểu xem nó là cái gì ?
+
+- Reactive là xu hướng sắp tới

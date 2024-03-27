@@ -1,0 +1,43 @@
+WEBVTT
+
+00:10.610 --> 00:11.140
+Tudo bem.
+
+00:11.150 --> 00:14.770
+Estamos agora a entrar em algumas das coisas realmente legais do Spring Framework 5.
+
+00:14.860 --> 00:16.680
+Vamos começar a olhar para o programa re-ativo.
+
+00:16.680 --> 00:19.290
+Agora você pode até não ter ouvido falar de Rick para os aviadores.
+
+00:19.290 --> 00:21.780
+Eu tenho uma idéia do que é a programação de re-ato.
+
+00:21.780 --> 00:26.340
+Não se preocupe, vamos começar falando sobre o que é essa coisa toda chamada de programação reativa e
+
+00:26.750 --> 00:27.870
+porque é tão importante.
+
+00:27.900 --> 00:33.210
+E algumas das terminologias comuns e como isso foi implementado ou o ato de programar
+
+00:33.210 --> 00:35.200
+esteve por aí por um tempo.
+
+00:35.250 --> 00:40.740
+Na verdade, alguns conceitos muito antigos, mas agora estamos vendo alguns novos paradigmas modernos de
+
+00:40.740 --> 00:42.840
+programação que o tornam mais curável.
+
+00:42.960 --> 00:45.500
+Então você pode fazer algumas coisas bem interessantes com isso.
+
+00:45.600 --> 00:50.670
+Os primeiros vídeos da seção serão apenas informativos sobre programação reativa e,
+
+00:50.670 --> 00:57.060
+em seguida, começaremos a configurar um aplicativo reativo da web usando o Mago DV.

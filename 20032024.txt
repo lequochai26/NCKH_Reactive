@@ -1,0 +1,5 @@
+- Làm demo. Ví dụ: CRUD, ... Phải phô diễn làm sao để có kỹ thuật Reactive trong đó. Và một cái không Reactive.
+- Chốt lại thì Reactive này tác động như thế nào đến phát triển phần mềm và trend loại phần mềm hiện nay ?
+- Web Flux với web thường khác nhau chỗ nào ?
+- Kiến trúc bên dưới khác nhau như thế nào ?
+- Reactive sẽ tác động như thế nào đến phát triển phần mềm ?

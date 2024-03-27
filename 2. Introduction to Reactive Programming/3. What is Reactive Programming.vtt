@@ -1,0 +1,424 @@
+WEBVTT
+
+00:04.880 --> 00:07.860
+Tudo bem, o que é uma programação reativa?
+
+00:07.890 --> 00:12.050
+Então, esse é um assunto meio carnudo hoje.
+
+00:12.090 --> 00:20.190
+Assim, a grande coisa sobre a programação reativa será se concentrar no processamento de fluxos assíncronos de dados,
+
+00:20.190 --> 00:25.450
+assim, absorver um fluxo de dados e processar uma maneira assíncrona.
+
+00:25.530 --> 00:33.660
+Uma boa citação aqui por programas re-ativos de Barry French Computer Science Guy também mantém uma interação contínua com seu
+
+00:33.660 --> 00:38.760
+ambiente, mas a uma velocidade que é determinada pelo ambiente e não
+
+00:38.760 --> 00:40.000
+pelo próprio programa.
+
+00:40.010 --> 00:45.540
+Os programas ativos funcionam em seu próprio ritmo, principalmente lidam com comunicação, enquanto reagem a programas que
+
+00:45.540 --> 00:52.500
+só funcionam em resposta a demandas externas e, principalmente, lidam com programas precisos de manipulação de interrupções em tempo real que
+
+00:52.980 --> 00:54.200
+geralmente são reativos.
+
+00:54.200 --> 01:01.290
+Então essa é uma afirmação bastante abrangente sobre reagir à programação com a grande coisa é que você quer lembrar que
+
+01:01.290 --> 01:07.920
+você está processando principalmente eventos, vai ser algum tipo de evento ou como um fluxo de eventos é o
+
+01:07.920 --> 01:09.910
+que você vai estar trabalhando com.
+
+01:09.940 --> 01:13.350
+Um contexto de programação reativa.
+
+01:13.380 --> 01:18.240
+Portanto, muitos casos de uso comuns estavam programando ativamente nossas chamadas de serviço
+
+01:18.270 --> 01:25.080
+externo, quando você está chamando alguém ou um consumidor de mensagens altamente concorrente, na verdade, eles estão começando
+
+01:25.080 --> 01:32.100
+a fazer processamento em lote com programação reativa onde você tem um lote de dados que você precisa processar.
+
+01:32.370 --> 01:36.420
+E nos velhos tempos, colocava-se neste grande servidor e deixava-o funcionar.
+
+01:36.420 --> 01:42.750
+Agora estamos realmente entrando em uma mentalidade de streaming e obtendo algumas ótimas
+
+01:42.750 --> 01:43.710
+eficiências disso.
+
+01:43.770 --> 01:52.300
+E um dos objetivos de alguns dos frameworks é fornecer uma abstração sobre ele ser assíncrono.
+
+01:52.320 --> 01:58.110
+Então, o que significa que você, como desenvolvedor, quando está trabalhando com essas estruturas, não está totalmente ciente
+
+01:58.110 --> 02:03.690
+de que é um aplicativo assíncrono ou síncrono com o qual você está trabalhando, por isso é
+
+02:03.690 --> 02:06.760
+fácil esquecer que isso está realmente acontecendo embaixo das capas.
+
+02:07.920 --> 02:13.550
+Portanto, alguns recursos principais sobre programação ativa nos quais falamos sobre fluxos de dados e são assíncronos.
+
+02:13.640 --> 02:15.630
+Outra é não bloqueante.
+
+02:15.730 --> 02:22.880
+E então nós também temos pressão de retorno e falhas como mensagens ou algumas pessoas chamam de falhas como cidadãos de primeira classe
+
+02:22.880 --> 02:28.640
+e nós vamos entrar em cada um desses próximos para que os fluxos de dados sejam meio que
+
+02:28.640 --> 02:29.570
+um termo nebuloso.
+
+02:29.720 --> 02:36.950
+Pode ser apenas sobre qualquer coisa pode ser como movimentos do mouse cliques do mouse ou outra interação do usuário.
+
+02:36.950 --> 02:41.840
+Portanto, há um bastante comum e quando você está trabalhando com aplicativos GUI, mas também
+
+02:41.840 --> 02:49.130
+pode ser como mensagens JMS enviando e recebendo chamadas de serviço monitorando o estoque de feeds do Twitter que processa uma lista de
+
+02:49.130 --> 02:51.090
+dados de um banco de dados.
+
+02:51.320 --> 02:55.000
+Um fluxo é apenas uma sequência de eventos ordenados e tempo.
+
+02:55.050 --> 03:01.270
+E esses são eventos que você deseja estar ouvindo e realizando algum tipo de ação para que, de forma
+
+03:01.890 --> 03:04.510
+assíncrona, os eventos sejam capturados de forma assíncrona.
+
+03:04.510 --> 03:08.910
+Uma função é definida para executar um evento como um método.
+
+03:08.920 --> 03:14.430
+Há uma função diferente que você pode usar quando a área é um método e, finalmente, há
+
+03:14.440 --> 03:21.310
+uma função que é definida quando o evento completo é um minuto, então você pode ter apenas um item em seu
+
+03:21.310 --> 03:23.550
+fluxo de dados entre aspas aéreas.
+
+03:23.740 --> 03:27.450
+Ou você pode ter cinco itens e então você recebe um sinal feito.
+
+03:27.670 --> 03:32.260
+Então, essas são todas funções diferentes e nós veremos isso chegando, não
+
+03:32.260 --> 03:38.850
+apenas estabelecendo alguns conceitos aqui agora, uma parte importante da imagem é o padrão Gang of Four Observer.
+
+03:38.850 --> 03:41.220
+Então este é um livro icônico Gang of Four.
+
+03:41.290 --> 03:43.930
+Este é o padrão observador daqui.
+
+03:43.930 --> 03:51.340
+E basicamente você tem um assunto e o processamento que vamos ver com programação reativa é baseado
+
+03:51.910 --> 03:57.610
+naqueles que não são exatamente próximos, então você terá um assunto e então
+
+03:57.610 --> 03:59.090
+terá um observador.
+
+03:59.100 --> 04:01.240
+Esse observador vai tomar algum tipo de ação.
+
+04:01.240 --> 04:07.520
+Então o assunto vai mudar e então notificará os observadores.
+
+04:07.570 --> 04:14.590
+Então, quando o assunto muda, os observadores são notificados, de modo que o X reativo pode ter um
+
+04:14.590 --> 04:17.370
+slogan dizendo que é observável feito corretamente.
+
+04:17.380 --> 04:21.920
+Então, esta é a linha do tempo que você pode ver no canto superior esquerdo.
+
+04:22.060 --> 04:23.570
+Eles estão falando sobre o cronograma.
+
+04:23.800 --> 04:28.780
+E esses são eventos que foram emitidos pelo observável.
+
+04:28.870 --> 04:30.490
+E estas vão ser coisas diferentes.
+
+04:30.490 --> 04:34.330
+E então eles tomam algum tipo de ação e aqui estamos chamando de flip.
+
+04:34.330 --> 04:39.550
+Então estamos fazendo algum tipo de ação flip e você pode ver através do tempo que você tem o fluxo de eventos
+
+04:39.880 --> 04:41.200
+e você obtém um resultado.
+
+04:41.200 --> 04:47.710
+Do outro lado e depois no canto inferior direito, também temos que, se por alguma
+
+04:47.710 --> 04:49.990
+razão, o observável terminar anormalmente.
+
+04:50.040 --> 04:54.730
+Agora, nessa caixa central, há essa transformação que pode estar acontecendo com isso.
+
+04:54.730 --> 04:58.430
+Você pode se inscrever em certos eventos que você pode dizer que eu quero como cada terço disso.
+
+04:58.580 --> 05:02.760
+E você pode colocar um filtro lá antes que ele desça até o fundo e a ação seja tomada.
+
+05:02.760 --> 05:08.920
+Portanto, isso tem muito a ver com a API de fluxos Java, na qual você tem muita
+
+05:09.340 --> 05:14.850
+interação para controlar o que os eventos estão passando e que o nonblocking é outro conceito-chave.
+
+05:15.030 --> 05:17.760
+Isso é bem complexo.
+
+05:17.780 --> 05:23.750
+Mas o conceito básico está no código de bloqueio, o código vai parar e esperar por mais dados.
+
+05:23.990 --> 05:27.630
+Então você pode estar lendo em um disco e vai esperar que a poeira seja configurada.
+
+05:27.800 --> 05:34.340
+Nonblocking Em contraste, ele processará o que está disponível e, em seguida, solicitará ao senador que seja notificado
+
+05:34.340 --> 05:35.740
+quando houver mais disponibilidade.
+
+05:36.380 --> 05:43.280
+Mas o conceito básico aqui é quando você não está bloqueando essa tarefa ou essa discussão vai para outra
+
+05:43.280 --> 05:48.090
+coisa em que estou bloqueando que você vai parar e bloquear e esperar.
+
+05:48.180 --> 05:52.190
+Ora aqui está um exemplo de um típico servidor multithreaded.
+
+05:52.200 --> 05:58.280
+Então Everquest chegando e eles vão ficar bloqueados em certos pontos e Knoblock e esperar.
+
+05:58.290 --> 06:04.350
+E, tradicionalmente, na comunidade Java, estamos pensando que temos muitos lotes de tópicos que podemos
+
+06:04.350 --> 06:07.530
+usar e, na verdade, é uma coisa boa.
+
+06:07.530 --> 06:13.110
+Então, novamente eu tenho uma espera de thread enquanto o IO alcança e faz outra coisa com os outros
+
+06:13.110 --> 06:13.980
+threads no servidor.
+
+06:13.980 --> 06:19.320
+Por isso, é bastante eficiente e escala muito bem e este é um nível muito baixo.
+
+06:19.890 --> 06:23.110
+E isso é tradição há muito tempo.
+
+06:23.280 --> 06:27.560
+E então o que aconteceu foi que realmente o que atraiu a atenção da comunidade.
+
+06:27.750 --> 06:34.380
+Não há Jey mais saiu e eles não têm muito controle sobre o thread para que eles configurem um loop de eventos.
+
+06:34.470 --> 06:38.730
+E A. J. se você bloquear, você realmente mata o desempenho do sistema.
+
+06:38.760 --> 06:46.820
+Então, o que acontece é que há um loop de ventilação e eles têm um pool de threads muito pequeno, mas eles fazem todo o nonblocking.
+
+06:47.070 --> 06:51.520
+Então, o que acontece é nada nos processos.
+
+06:51.810 --> 06:54.090
+E não há tópicos esperando.
+
+06:54.120 --> 06:59.810
+E eles colocam muito mais números impressionantes em termos de desempenho.
+
+07:00.050 --> 07:04.710
+Eu acho que foi quando a comunidade Java realmente começou a funcionar e não foi bloqueada, então
+
+07:04.710 --> 07:05.780
+faz sentido entrar nela.
+
+07:06.040 --> 07:11.880
+Então, a maneira que eu posso imaginar meu capô é que você pode mover muito tráfego em uma estrada como esta, mas tudo é
+
+07:11.880 --> 07:12.720
+parar e ir embora.
+
+07:12.900 --> 07:17.810
+Então você vai parar e ir parar e ir às compras em um ambiente não-bloqueador.
+
+07:17.940 --> 07:22.050
+Você tem uma supervia rápida e muito eficiente, tudo está se movendo de forma eficiente.
+
+07:22.290 --> 07:26.920
+Então, vamos dar uma olhada nisso em um contexto típico mais típico.
+
+07:27.210 --> 07:30.840
+Então, essas são as solicitações da web para que você solicite a entrada na porta.
+
+07:30.840 --> 07:33.930
+Digamos que estamos postando o Jason em um serviço da web.
+
+07:33.950 --> 07:38.590
+Vamos analisá-lo provavelmente com Jackson e depois passar por alguma lógica de negócios e, finalmente, provavelmente
+
+07:38.590 --> 07:40.830
+faremos a chamada para o banco de dados.
+
+07:40.830 --> 07:45.580
+O banco de dados irá processá-lo e, em seguida, ele retornará.
+
+07:45.600 --> 07:49.320
+Vamos analisá-lo de volta para Jason e depois devolvê-lo nessa porta.
+
+07:49.320 --> 07:55.920
+Agora o que é importante entender eu coloquei X vermelho aqui e em um sentido tradicional cada um deles é
+
+07:55.920 --> 08:02.500
+onde o bloqueio vai ocorrer na API de servlet tradicional que temos bloqueando e que Adicionalmente e analisador de Jackson
+
+08:02.520 --> 08:07.130
+está bloqueando e que chamar o banco de dados lá está bloqueando e.
+
+08:07.160 --> 08:13.330
+Então, essas são todas as instâncias de onde o bloqueio ocorre em um sistema reativo.
+
+08:13.470 --> 08:19.080
+O que vai acontecer é que o pedido virá como um futuro que pode ser chamado e será repassado até
+
+08:19.080 --> 08:22.930
+o último minuto, provavelmente sobre onde estamos chamando o banco de dados aqui.
+
+08:23.130 --> 08:30.600
+E, em seguida, vamos processar o fluxo que um Jason chama um banco de dados em um formato reativo para que o
+
+08:31.020 --> 08:37.770
+thread de processamento permaneça no C. P. mais tempo em um bloco contínuo Asomugha
+
+08:37.770 --> 08:43.890
+bloquear parar caminho e depois voltar e assim o C. P é capaz de lidar com isso de maneira mais eficiente, porque
+
+08:43.890 --> 08:48.210
+está parado no mesmo contexto que não parar e esperar, parar e esperar parar e esperar.
+
+08:48.210 --> 08:50.150
+O próximo passo é a pressão de retorno.
+
+08:50.280 --> 08:52.130
+Então este é um conceito importante.
+
+08:52.230 --> 08:57.510
+O assinante é capaz de controlar os dados para que você possa configurar e dizer "Dê-me cem
+
+08:57.510 --> 09:01.050
+registros", dê-me 10 registros e me dê mil registros por vez.
+
+09:01.050 --> 09:02.620
+Então são elementos.
+
+09:02.700 --> 09:08.110
+Portanto, este é um conceito importante para permitir a comunicação entre o assinante e o editor.
+
+09:08.460 --> 09:15.600
+E eu coloco uma pequena mangueira de incêndio aqui, então basicamente em uma arquitetura reativa você quer um jeito de estrangular as coisas se
+
+09:15.600 --> 09:20.890
+o cliente está ficando sobrecarregado e você quer apoiá-lo para que nos Estados Unidos nós tenhamos um ditado
+
+09:20.890 --> 09:23.440
+sobre tentar beber de uma mangueira de incêndio.
+
+09:23.460 --> 09:25.980
+Obviamente, você não quer beber de uma mangueira de incêndio.
+
+09:25.980 --> 09:27.330
+Isso seria uma má ideia.
+
+09:28.600 --> 09:28.930
+ESTÁ BEM.
+
+09:28.990 --> 09:36.380
+Em seguida, há falhas, pois as mensagens e exceções não serão lançadas em um sentido tradicional.
+
+09:36.400 --> 09:42.640
+Então, se estamos processando um fluxo de dados e temos algum tipo de função, se lançarmos uma exceção, isso
+
+09:42.700 --> 09:45.190
+quebraria o processamento do fluxo de dados.
+
+09:45.400 --> 09:51.370
+Em vez disso, vamos lidar com as exceções por meio de uma função de manipulador, de modo que
+
+09:51.370 --> 09:52.510
+chamamos isso antes.
+
+09:52.510 --> 09:59.800
+Portanto, este é o conceito central de que não lançamos exceções, mas lidamos com elas graciosamente com uma função de manipulador
+
+09:59.800 --> 10:02.300
+específica para quando as coisas dão errado.
+
+10:02.620 --> 10:08.590
+Agora, alguns tópicos importantes que eu vejo desta apresentação é que a programação reativa vai se concentrar
+
+10:08.590 --> 10:14.650
+no processamento de fluxos de dados e não é para as aplicações tradicionais de crats de tudo ainda
+
+10:14.650 --> 10:20.650
+estão vivas e bem, há momentos em que você quer apenas processar um post de formulário e
+
+10:20.650 --> 10:24.400
+está perfeitamente bem, por isso vai ser muito específico da aplicação.
+
+10:24.400 --> 10:25.260
+Você consegue.
+
+10:25.270 --> 10:30.140
+Espero ver o comitê provavelmente vai começar a usá-lo, mas os aplicativos de crédito tradicional que o
+
+10:30.150 --> 10:35.650
+que estamos fazendo é que os desenvolvedores Java ainda vão funcionar muito bem no que diz respeito ao desempenho.
+
+10:35.650 --> 10:42.070
+Você pode esperar que o sistema provavelmente irá ganhar algumas vantagens, mas ainda assim esta área ainda é muito
+
+10:42.100 --> 10:43.800
+cedo e ainda está evoluindo.
+
+10:43.810 --> 10:51.190
+Então você sabe que espera ver ganhos de desempenho em termos de eficiência do servidor, mas como tudo o mais
+
+10:51.190 --> 10:54.400
+em termos de desempenho, sua milhagem vai variar.

@@ -1,0 +1,340 @@
+WEBVTT
+
+00:05.340 --> 00:10.080
+Tudo bem, nós estamos passando por muitos slides do PowerPoint nesta seção do curso meio que
+
+00:10.080 --> 00:11.390
+se desculpando por isso.
+
+00:11.400 --> 00:17.640
+Acho que os decks de slides ficam um pouco chatos depois de um tempo, mas tivemos que cobrir
+
+00:18.330 --> 00:23.330
+um monte de conteúdo para entender essa programação reativa, então estabelecemos muito trabalho aqui.
+
+00:23.490 --> 00:27.970
+Mas agora fui pular para o inteligente e vamos dar uma olhada em alguns exemplos.
+
+00:27.990 --> 00:30.910
+Isso é apenas para molhar os pés com a programação reativa.
+
+00:31.050 --> 00:35.520
+Então, vamos olhar para os tipos reativos dentro do Spring Framework, os modelos e os fluxos
+
+00:35.520 --> 00:37.760
+e o que é um projeto bem simples.
+
+00:37.860 --> 00:42.370
+Um par de tipos de dados e vamos entrar e brincar com eles.
+
+00:42.570 --> 00:48.140
+Vou verificar tudo isso para obter hub em uma pequena sandbox uma coleção de coisas que eu tenho.
+
+00:48.180 --> 00:50.110
+Vá em frente, confira, dê uma olhada.
+
+00:50.130 --> 00:51.330
+Encorajo-vos a brincar com isso.
+
+00:51.330 --> 00:56.080
+Comece a se acostumar a trabalhar com esses objetos reativos.
+
+00:56.100 --> 00:59.490
+Esta é uma extensão dos fluxos do Java 8.
+
+00:59.730 --> 01:02.050
+Então eu não estou cobrindo toda essa tecnologia.
+
+01:02.070 --> 01:06.300
+Não vou abordar isso em detalhes, mas vamos usar muito no futuro.
+
+01:06.300 --> 01:12.720
+Portanto, os tipos reativos nos fluxos Java estão muito intimamente relacionados e o uso permite as mesmas técnicas, mas
+
+01:12.840 --> 01:15.050
+acho que tenho alguns exemplos divertidos aqui.
+
+01:15.060 --> 01:17.280
+E novamente para apenas molhar os pés.
+
+01:17.280 --> 01:21.450
+Vamos passar e começar a nos acostumar a usar esses tipos reativos que estão
+
+01:21.450 --> 01:22.940
+disponíveis no Spring Framework Vives.
+
+01:23.430 --> 01:25.530
+Tudo bem, estamos falando muito sobre programação reativa.
+
+01:25.530 --> 01:33.790
+Vamos dar uma olhada em alguns exemplos e o que eu tenho é um pequeno projeto que eu tenho em um sandbox eu entendo como eu
+
+01:33.840 --> 01:36.610
+deixo um link para o projeto aqui com certeza.
+
+01:36.810 --> 01:41.690
+Uma vez que eu verifiquei e você pode ver que tudo está verde lá e me dizendo que não
+
+01:41.740 --> 01:46.150
+foi enviado, mas definitivamente vou deixar isso nos recursos do curso para que você possa ver este exemplo.
+
+01:46.380 --> 01:51.430
+E o que eu tenho é um exemplo bastante simples, nós temos dois objetos, apenas uma pessoa
+
+01:51.480 --> 01:57.000
+e uma pessoa, para que eles tenham apenas o sobrenome e eu tenha um pequeno método de ajuda aqui
+
+01:57.030 --> 02:01.210
+que será usado para obter a saída. tenha o POJO pequeno aqui diga seu nome.
+
+02:01.290 --> 02:03.840
+E, claro, estamos usando o Projeto Lombok.
+
+02:03.990 --> 02:07.100
+Portanto, temos o construtor data Norks all args constructor.
+
+02:07.320 --> 02:13.910
+E então eu tenho um comando aqui para simular um objeto de comando e vamos usá-lo para algumas transformações de tipo e
+
+02:13.920 --> 02:19.990
+eu coloco um método de conveniência lá embaixo com o construtor para criar um comando person a partir de objetos
+
+02:20.070 --> 02:21.150
+de uma pessoa.
+
+02:21.360 --> 02:22.970
+Nada muito emocionante lá.
+
+02:22.980 --> 02:28.830
+Agora vamos dar uma olhada no teste e eu escrevi tudo em testes para que ele possa passar por vários
+
+02:28.830 --> 02:29.830
+exemplos diferentes aqui.
+
+02:30.150 --> 02:36.450
+E eu não sei se você faz meus cursos, sabe que eu sou um fã de gravação, então nós temos os
+
+02:36.450 --> 02:37.940
+personagens do Burn Notice aqui.
+
+02:38.010 --> 02:40.880
+Michael Fionna bom e velho Sam e Jesse.
+
+02:41.070 --> 02:43.470
+E vamos dar uma olhada em alguns dos exemplos aqui.
+
+02:44.250 --> 02:47.890
+E o primeiro que vamos ver é apenas um teste de mano.
+
+02:48.020 --> 02:56.120
+E o que isso está fazendo aqui é que criamos uma nova pessoa mano mano e fazemos uma mano e justa e apenas
+
+02:56.120 --> 03:01.650
+vamos criar um objeto mano a partir do objeto dado com o qual você está trabalhando.
+
+03:01.670 --> 03:03.860
+Então é o modelo da pessoa dos EUA.
+
+03:04.070 --> 03:09.980
+E se quisermos tirar o objeto da pessoa do Mano, chamamos o método de bloco
+
+03:10.280 --> 03:12.150
+e isso retornará essa pessoa.
+
+03:12.150 --> 03:14.090
+Eu sei que podemos fazer logon.
+
+03:14.300 --> 03:20.690
+Eu vou seguir em frente e executar este pequeno teste aqui para que você possa ver a saída do exemplo que você
+
+03:20.960 --> 03:24.070
+vê lá que nós conseguimos tirar Michael Westen do teste.
+
+03:24.110 --> 03:26.760
+Agora vamos em frente e dê uma olhada no próximo teste aqui.
+
+03:27.050 --> 03:33.870
+E neste caso aqui vamos usar a função map para retornar que a pessoa
+
+03:33.870 --> 03:35.810
+está realmente no formato.
+
+03:36.500 --> 03:40.460
+Então, isso é um pouco melhor formatação.
+
+03:40.460 --> 03:46.730
+E neste caso, o mapa é um objeto de transformação, assim como os fluxos Java geram coisas reativas.
+
+03:46.850 --> 03:48.200
+Tem essa função de mapa.
+
+03:48.230 --> 03:51.280
+Então, vamos fazer a transformação de tipo nesse exemplo.
+
+03:51.350 --> 03:56.770
+E mais uma vez, vamos apenas dizer o nome e vamos em frente e executar isso.
+
+03:57.020 --> 04:05.380
+E nós devemos ver Fionna e a saída e eu acho que você precisa lembrar que estamos chamando essa função de bloco
+
+04:05.380 --> 04:11.890
+aqui e é isso que desencadeia isso porque na verdade isso é essencialmente um futuro e não
+
+04:11.890 --> 04:14.810
+será executado até que algo seja bloqueado.
+
+04:14.810 --> 04:22.000
+Agora, aqui em cima, vamos dar uma olhada em um exemplo de filtro, trazer isso até o topo da tela e,
+
+04:22.000 --> 04:26.930
+neste caso, o que vamos fazer é filtrar essa mano Então, vamos fazer um fluxo.
+
+04:27.020 --> 04:31.900
+Então, vamos falar sobre isso e vamos dizer "ei, estou pedindo foo e
+
+04:32.140 --> 04:33.790
+vamos pegar o mesmo objeto".
+
+04:34.120 --> 04:39.420
+E quando eu executar isso, obteremos uma exceção de ponteiro nulo, porque não filtro isso.
+
+04:39.440 --> 04:45.410
+Nenhum resultado retornará para que a pessoa seja um objeto nulo ou NULL.
+
+04:45.430 --> 04:51.540
+Então, neste caso, esse cara vai lançar uma exceção de ponteiro nulo em que isso não acontece.
+
+04:51.710 --> 04:52.060
+J.
+
+04:52.060 --> 04:59.080
+A unidade aqui na linha 47 está dizendo que espero que um ponteiro nulo retorne em todos esses exemplos até agora.
+
+04:59.080 --> 05:00.770
+Nós estamos olhando para a Monto.
+
+05:01.030 --> 05:07.480
+Então, vamos dar uma olhada em um fluxo e lembrar que o fluxo é de múltiplos objetos.
+
+05:07.490 --> 05:16.300
+Então Amano apenas reiterar Amano é zero ou um onde um fluxo tem zero ou muitos.
+
+05:16.510 --> 05:20.570
+Então, neste caso, vamos fazer o teste flexível.
+
+05:20.800 --> 05:22.410
+Veja que ele corre bem rápido.
+
+05:22.640 --> 05:27.340
+Novamente, assim como Mahna, estamos usando um fluxo e ele pode ter em várias
+
+05:27.340 --> 05:33.910
+propriedades algumas maneiras diferentes de criar os fluxos. Mas aqui você pode ver que nós obtivemos o fluxo e quando
+
+05:33.910 --> 05:41.790
+subscrevemos nele estamos passando a informação de registro e nós estão obtendo nossa saída de log aqui a partir dos colapsos de objetos flexíveis.
+
+05:41.890 --> 05:44.240
+E vamos dar uma olhada no próximo.
+
+05:44.240 --> 05:53.130
+Agora aqui também podemos testar um filtro que eu fiz não faz uma pausa OK eu percebo que esqueci de colocar em uma opção de
+
+05:53.130 --> 05:54.200
+filtro sobre isso.
+
+05:54.300 --> 05:57.450
+E então eu entrei rápido assim.
+
+05:57.450 --> 06:01.860
+E o que vamos fazer é filtrar as pessoas basicamente para Fionna.
+
+06:02.070 --> 06:03.080
+Vamos sair e correr isso.
+
+06:03.090 --> 06:04.990
+Agora, certifique-se de que funciona.
+
+06:06.490 --> 06:08.640
+E podemos ver que só recebemos Fionna.
+
+06:08.650 --> 06:14.170
+Então nós ainda tivemos apenas um exemplo antes de ainda termos os quatro objetos lá.
+
+06:14.200 --> 06:20.680
+Então nós temos quatro objetos indo para o fluxo, mas agora estamos fazendo uma operação de filtro
+
+06:20.680 --> 06:23.560
+e vamos filtrar exatamente onde Fiona está.
+
+06:23.560 --> 06:30.730
+E agora aqui também podemos fazer isso e estamos atrasando.
+
+06:30.910 --> 06:33.530
+Então vamos emitir cada segundo aqui.
+
+06:33.670 --> 06:43.330
+E isso é um pouco surpreendente, se você não está acostumado a ver como tudo passou e o que aconteceu lá é que
+
+06:43.330 --> 06:48.640
+estamos atrasando, mas como está sendo executado em segundo plano, não esperamos
+
+06:48.640 --> 06:49.880
+por essa saída.
+
+06:50.020 --> 06:54.910
+Então correu e o teste terminou antes que essa duração expirasse.
+
+06:55.150 --> 07:01.930
+E uma forma de contornar isso quando estamos testando não vai mostrar isso aqui é usar uma contagem regressiva.
+
+07:02.140 --> 07:06.840
+E o que podemos fazer aqui é que ainda vamos fazer um atraso de um segundo.
+
+07:07.000 --> 07:15.210
+Mas agora incompleto desse fluxo nós estamos indo para a contagem regressiva que letch e isso aqui na linha 100 diz ao teste
+
+07:15.230 --> 07:18.010
+esperar até que a contagem regressiva esteja completa.
+
+07:18.010 --> 07:19.660
+Então, uma maneira prática de fazer isso.
+
+07:19.770 --> 07:24.590
+E agora corremos isso e vemos que vai passar por isso.
+
+07:24.630 --> 07:29.760
+E agora vamos obter a saída a cada segundo e, em seguida, o último teste que eu quero
+
+07:29.930 --> 07:32.110
+mostrar é que vamos adicionar um filtro.
+
+07:32.120 --> 07:41.460
+Então, corremos esse cara e, neste caso, vamos apenas pegar Michael e Fiona, porque os outros não se qualificaram.
+
+07:41.460 --> 07:48.870
+Então, estamos procurando por um primeiro nome que contenha que eu possa ver um aparecer todo o caminho para cima.
+
+07:49.020 --> 07:50.950
+Michael e Fiona são os únicos.
+
+07:50.970 --> 07:52.940
+Sam e Jessica não correspondem a esse critério.
+
+07:52.980 --> 07:57.850
+Diversas coisas diferentes que podemos fazer com o fluxo nos modelos.
+
+07:57.860 --> 07:58.690
+Tipos reativos.
+
+07:58.760 --> 07:59.730
+Isso é muito divertido.
+
+07:59.730 --> 08:02.150
+É um pouco diferente, é um pouco difícil entender isso.
+
+08:02.160 --> 08:06.840
+Mas quero gravar este vídeo e mostrar alguns exemplos disso em ação e espero que você tenha
+
+08:06.960 --> 08:08.070
+achado esse vídeo útil.

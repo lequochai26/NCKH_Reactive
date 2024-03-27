@@ -1,0 +1,5 @@
+File: 5. Reactive Programming Examples with Spring.mp4
+Size: 34479632 bytes (32.88 MiB), duration: 00:08:11, avg.bitrate: 562 kb/s
+Audio: aac, 48000 Hz, stereo (und)
+Video: h264, yuv420p, 1280x720, 30.00 fps(r) (und)
+Visit: SAnet.ST/b/DazX

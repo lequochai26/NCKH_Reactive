@@ -1,0 +1,12 @@
+Cách / hướng tiếp cận:
+- Observable và Observer: Mẫu thiết kế phần mềm Observer là nền tảng và là một trong những yếu tố quan trọng hình thành nên Reactive Programming. Hay có thể nói cách khác, Reactive Programming được xây dựng từ các Observable và Observer. Trong đó thì các Observable là các đối tượng, các thành phần sẽ phát ra thông báo về 1 sự kiện nào đó đã xảy ra và các Observer là các đối tượng sẽ tiếp nhận những sự kiện đã xảy ra đó và thực hiện những hành động được chỉ định.
+- Data Streams: Là một chuỗi các sự kiện được sắp xếp theo tuần tự thời gian dựa vào thời gian mà nó diễn ra. Những sự kiện này là những sự kiện mà chúng ta muốn lắng nghe, muốn nắm bắt.
+- Asynchronous: Những sự kiện xảy ra sẽ được nắm bắt một cách bất đồng bộ (asynchronous). Và những sự kiện này được xử lý thông qua 3 hàm được định nghĩa
++ Hàm bắt sự kiện: Hàm này sẽ được thực thi khi có 1 sự kiện xảy ra.
++ Hàm xử lý lỗi: Hàm này sẽ được thực thi khi có lỗi xảy ra trong quá trình xử lý.
++ Hàm hoàn thành: Hàm này sẽ được thực thi khi quá trình xử lý sự kiện đã hoàn thành.
+- Non-blocking:
++ Đối với mô hình Blocking thì quá trình thực thi của một hàm hay một đoạn mã nào đó sẽ phải dừng lại và chờ cho một quá trình thực thi khác hoàn thành rồi nó mới tiếp tục thực thi.
++ Đối với mô hình Non-Blocking thì quá trình thực thi một hàm sẽ thực và xử lý những dữ liệu hiện có, bên cạnh đó, nó sẽ yêu cầu được thông báo khi có nhiều dữ liệu hơn cần xử lý và nó tiếp tục thực thi.
+- Back pressure: ...
+- Failures as messages: Ngoại lệ hay lỗi sẽ không được thả ra như cách mà chúng ta vẫn hay sử dụng thông thường. Vì điều này có thể sẽ khiến một quá trình của stream bị sụp đổ. Mà thay vào đó, ngoại lệ hay lỗi sẽ được xử lý bởi một hàm xử lý lỗi (đã đề cập ở phần Asynchronous) .

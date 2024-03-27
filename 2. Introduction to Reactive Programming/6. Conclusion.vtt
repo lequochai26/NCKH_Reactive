@@ -1,0 +1,46 @@
+WEBVTT
+
+00:05.150 --> 00:05.390
+Tudo bem.
+
+00:05.400 --> 00:10.560
+Isso conclui a seção do curso apresentando a você uma programação reativa agora, desculpe, espero que
+
+00:10.560 --> 00:15.510
+isso não seja muito chato, não tivemos muitas mãos no exemplo de codificação, mas realmente
+
+00:15.510 --> 00:21.240
+precisamos transferir muita informação sobre programação reativa. e apenas tentando estabelecer uma base dos conceitos e coisas com
+
+00:21.240 --> 00:23.610
+as quais temos que lidar daqui para frente.
+
+00:23.610 --> 00:26.360
+Então é preciso dar muita voltas em torno de sua cabeça.
+
+00:26.370 --> 00:30.720
+Definitivamente, um paradigma de programação diferente vai parecer bem desajeitado no começo quando você
+
+00:30.720 --> 00:37.380
+estiver trabalhando com ele mais Lembre-se de que re-active é tudo sobre como lidar com fluxos de dados para que os
+
+00:37.380 --> 00:39.030
+streams venham através dessas bibliotecas.
+
+00:39.270 --> 00:44.610
+É realmente um paradigma de programação muito diferente, porque você está lidando basicamente com um objeto futuro que
+
+00:44.610 --> 00:49.890
+você passa passando e passando, e então algo vai pedir por esses dados e, em seguida, vai
+
+00:49.890 --> 00:53.170
+acionar toda a lógica em seu código de uma só vez.
+
+00:53.220 --> 00:57.790
+Então, é preciso algum tempo para se acostumar com certeza.
+
+00:57.860 --> 01:03.420
+No futuro, vamos analisar alguns exemplos mais concretos e passaremos a algo lentamente e nos
+
+01:03.750 --> 01:08.810
+tornaremos cada vez mais acostumados a um programa reativo com o Spring Framework.

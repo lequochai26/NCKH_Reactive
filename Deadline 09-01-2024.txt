@@ -1,0 +1,4 @@
+Deadline: 11/01/2024
+Mục tiêu: Nghiên cứu nhanh tài liệu RxJava tại địa chỉ: https://www.tutorialspoint.com/rxjava/rxjava_quick_guide.htm
+Thời gian báo cáo: 22:30 - 11/01/2024
+Nội dung báo cáo: Báo cáo những gì đã nghiên cứu được về RxJava trong 2 ngày qua.

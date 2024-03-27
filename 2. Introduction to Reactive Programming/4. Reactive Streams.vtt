@@ -1,0 +1,235 @@
+WEBVTT
+
+00:05.700 --> 00:10.770
+All right in this video you're going to be talking about active streams and how they relate to Spring
+
+00:10.770 --> 00:12.090
+Framework 5.
+
+00:12.150 --> 00:14.220
+Now the re-active streams API.
+
+00:14.490 --> 00:20.990
+The goal was to create a standard for asynchronous stream processing with nonblocking back pressure
+
+00:21.000 --> 00:27.090
+so all the reactive stuff that we've been talking about the initiative was started in 2013 by engineers
+
+00:27.090 --> 00:33.920
+from Netflix pivotal and light penlight business formerly typesafe and just as an interesting tidbit.
+
+00:33.930 --> 00:39.780
+Ron Johnson the founder of Spring Framework actually worked for the board of directors for typesafe
+
+00:40.080 --> 00:44.940
+I think at this point in time he's moved on I'm not I'm percent sure on that but I think he is pursuing
+
+00:45.000 --> 00:50.550
+other things at this point in time but he was with typesafe and Ben is now the company that has been
+
+00:51.210 --> 00:58.290
+VC funded and they are supporting the Skala language and scows some cool stuff and then do have reacted
+
+00:58.290 --> 01:03.390
+streams API is actually just a set of four interfaces which define their API and then there's actually
+
+01:03.390 --> 01:08.400
+a specification about the behavior we expect in the implementation those faces.
+
+01:08.400 --> 01:10.510
+But I'm not going to get into that.
+
+01:10.770 --> 01:15.070
+The 1.0 release was done in 2015.
+
+01:15.240 --> 01:24.060
+And what's notable is under JTP 2 6 6 recta streams is now going to be part of the Java 9 JDK.
+
+01:24.120 --> 01:30.780
+So that will be a fully recognized feature inside of Java 9 and so that is going to be there in the
+
+01:30.780 --> 01:31.490
+future.
+
+01:31.740 --> 01:37.740
+Now there's a number of adoptions in the landscape right now is changing quickly because there's always
+
+01:37.740 --> 01:43.380
+new stuff coming out and a reactive community is becoming more and more active so we have a cost streams
+
+01:43.650 --> 01:44.980
+and that's Scallan.
+
+01:45.150 --> 01:51.500
+DP ratpack reactive rabbit which I have not played with yet but I hope to project reactor that's the
+
+01:51.510 --> 01:53.730
+spring implementation.
+
+01:53.850 --> 01:58.890
+Our next Java if I remember right that is from the folks at Netflix.
+
+01:58.920 --> 02:02.630
+So all of these support the re-active streams API.
+
+02:02.650 --> 02:10.180
+So these different adaptions now should at least in theory play nicely together and work nicely together.
+
+02:11.370 --> 02:21.390
+Now like I said a moment ago the 1 0 0 release was done in 2015 and I am recording this an August 15th
+
+02:21.630 --> 02:28.210
+2017 so just not in the following week that the 1 0.1 release was done.
+
+02:28.260 --> 02:34.650
+Now the data release is a minor release on the API the interface classes did not change at all it was
+
+02:34.650 --> 02:37.600
+more of a specification change of how they behave.
+
+02:37.620 --> 02:42.790
+I think they clarified some things in there but the interfaces have remained the same.
+
+02:44.640 --> 02:51.030
+So let's take a quick look at some of the interfaces we have a publisher and this is going to provide
+
+02:51.060 --> 02:57.420
+a unbounded number of elements so that our data stream and then we have a subscriber.
+
+02:57.420 --> 03:03.430
+So this is going to consume consume from a publisher obviously subscription.
+
+03:03.430 --> 03:09.240
+You can see that these interfaces are pretty simple to use and a lot of times are abstraction is going
+
+03:09.240 --> 03:14.500
+to be really really simple to use and we'll be seeing we'll be definitely looking at examples of these.
+
+03:14.640 --> 03:19.140
+And then finally processor to give you an idea how these all fit together.
+
+03:19.360 --> 03:21.630
+This is how the streams are or processing.
+
+03:21.660 --> 03:27.810
+So a publisher is going to be publishing events which are going to get consumed by a subscriber subscriber
+
+03:27.810 --> 03:34.320
+is going to have a subscription to a publisher and through that subscription the subscriber can give
+
+03:35.310 --> 03:40.680
+feedback on demand or back pressure and hoping and start envisioning how this works we're going to be
+
+03:40.680 --> 03:44.510
+looking at some definitely be looking at some live examples in the coding of those.
+
+03:44.650 --> 03:47.230
+But this is how these interfaces fit together.
+
+03:47.400 --> 03:55.560
+Now in spring MVC and spring flux the reactive stuff is going to be under the right hand side the spring
+
+03:55.560 --> 04:02.720
+web flex and what is happening inside the Spring Framework is the server that container or the server
+
+04:02.730 --> 04:06.370
+that API is not reactive it is blocking.
+
+04:06.360 --> 04:12.990
+So Spring Framework guys created a whole new stack a whole new web framework with inside a spring called
+
+04:12.990 --> 04:14.400
+Spring web flux.
+
+04:14.680 --> 04:20.340
+Now top of these we are still going to be using the controller and request mapping annotations or a
+
+04:20.340 --> 04:27.450
+whole new functional API called router functions and you can use either one of these with spring him
+
+04:27.580 --> 04:29.450
+with MC or spring.
+
+04:29.580 --> 04:34.260
+So this is all handled by the framework and you can use either stack whether you want to be reactive
+
+04:34.350 --> 04:38.580
+or use traditional servlet and there's really nothing wrong with traditional service.
+
+04:38.580 --> 04:40.080
+It still works.
+
+04:40.080 --> 04:47.250
+I mean it is still very robust programming API that we have to deal with the web environment so it still
+
+04:47.250 --> 04:48.270
+ends in the Spring Framework.
+
+04:48.280 --> 04:53.790
+It's not mandatory to use it's not bad use but for the act of functionality when you're in these high
+
+04:53.790 --> 05:00.180
+volume streaming environments we do have this whole new reactive framework was Brank Netflix and we'll
+
+05:00.180 --> 05:04.440
+be looking at that a lot closer in the spring.
+
+05:04.530 --> 05:12.660
+NBC stuff does still support the traditional servlet container but the web flux we now have the option
+
+05:12.720 --> 05:21.050
+of Tom-Kat Jedi Netti or undertow and these are different active implementations that we can work with.
+
+05:21.120 --> 05:28.980
+Nettie is probably the most robust option but Tom-Kat is a little bit simpler and widely widely use
+
+05:29.160 --> 05:33.540
+in your implementation to your needs can vary but you do have options.
+
+05:33.750 --> 05:36.330
+In the Spring Framework will work with any of those.
+
+05:36.330 --> 05:41.840
+Now the next thing we need talk about inside the Spring Framework is the spring RI act of types.
+
+05:42.210 --> 05:48.720
+So there's two new reactive types introduced with Spring Framework five mano as a publisher with 0 or
+
+05:48.780 --> 05:51.080
+1 elements in the data stream.
+
+05:51.150 --> 05:58.260
+And this is important to understand 0 or 1 and then flux is zero or many elements inside the data stream
+
+05:58.590 --> 06:05.730
+and want to point out that both of these types implement the ract of streams publisher interface and
+
+06:05.970 --> 06:11.480
+I expect that you can probably work with just about any publisher inside of the Spring Framework.
+
+06:11.700 --> 06:18.240
+Yes but we are going to be focusing on using the model influxes and using these datatypes and setting
+
+06:18.240 --> 06:20.190
+up our spring controllers.
+
+06:20.200 --> 06:25.890
+Now what you're going to see going forward in the class is because of Loyce bring it back up on slide
+
+06:26.400 --> 06:30.780
+because of the way spring setup things are controller and request mapping.
+
+06:30.900 --> 06:36.540
+Still there we still set up a controller in the same way but now we are going to be working with these
+
+06:36.750 --> 06:43.740
+return types if we have a very active data store like we do with Mongo that reactive of call will go
+
+06:43.740 --> 06:49.980
+through full stack and that is our goal to get here but we need to determine these define this terminology
+
+06:49.980 --> 06:55.680
+first and the next upcoming videos are going to be looking at examples of converting over the controllers
+
+06:55.680 --> 06:59.780
+that we've been working with to start leveraging these reactive types.
