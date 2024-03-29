@@ -8,19 +8,19 @@ Những khái niệm cót lõi của Reactive Programming:
 	+ Các loại Observables:
 		. Cold Observables: Là những Observable mà khi có một Observer đăng ký lắng nghe, Observable này sẽ phát lại tín hiệu cho toàn bộ dữ liệu có trong luồng dữ liệu cho Observer đó. Và những Observables này sẽ và chỉ sẽ phát tín hiệu khi tất cả dữ liệu đã sẵn sàng để được phát đi. Có thể nói cách khác thì các Observables này hoạt động theo hướng bị động, tức là việc phát tín hiệu về dữ liệu sẽ được các Observers yêu cầu thay vì các Observables này chủ động phát tín hiệu. Và như thế, cơ chế xử lý quá tải Backpressure-Handling không cần thiết cho các Observables này.
 		. Hot Observable: Là những Observable sẽ phát tín hiệu ngay từ khi nó dược khởi tạo và có dữ liệu mới đã sẵn sàng và khi một Observer đăng ký lắng nghe Observable này, chỉ nhận được tín hiệu cho dữ liệu đang phát ở thời điểm đó và sẽ không nhận được tín hiệu cho những dữ liệu đã được phát trước khi Observer này đăng ký. Hay có thể nói cách khác là các Observables này hoạt động theo hướng chủ động, nó sẽ chủ động phát dữ dữ liệu và việc các Observers có nhận được hay không là vấn đề ở chúng. Và việc phát dữ liệu một cách chủ động như vậy có thể sẽ dẫn đến trường hợp khi mà các Observers không kịp xử lý những dữ liệu được phát ra bởi các Observables này và những dữ liệu đó sẽ được lưu vào một hàng đợi dữ liệu hay còn gọi là "Buffer" và cần dùng một cơ chế xử lý quá tải (Backpressure-Handling) nào đó để xử lý chúng.
+	+ Cơ chế hoạt động: ...
 
 - Observers: Để có thể nhận và xử lý những tín hiệu do Observable phát ra, cần có những đối tượng Observer để lắng nghe những tín hiệu này và những đối tượng Observer này phải đăng ký lắng nghe từ Observable. Và ngược lại, khi không cần lắng nghe tín hiệu từ Observable nữa, Observer này cũng có thể hủy đăng ký lắng nghe tín hiệu từ một Observable bất kỳ.
+	+ Cơ chế hoạt động: ...
 
 - Operators: Là những phương thức được sử dụng để làm biến đổi một Observable, chẳng hạn như: map (chuyển đổi dữ liệu của một Observable), filter (lọc dữ liệu của một Observable), combine (Kết hợp dữ liệu từ một nguồn khác vào Observable), ...
+	+ Cơ chế hoạt động: ...
 
 - Backpressure Handling (Xử lý quá tải): Khi làm việc với những nguồn dữ liệu bất đồng bộ như thế này, cụ thể là các Hot Observables, sẽ có những trường hợp khi mà tốc độ phát ra dữ liệu của các Observables nhanh hơn tốc độ xử lý những dữ liệu đã được phát ra đó của Observers. Khi đó thì các dữ liệu chưa dược xử lý kịp bởi Observers sẽ được lưu vào danh sách hàng dợi hay còn gọi là "Buffer" chờ được xử lý bằng một cơ chế Backpressure-Handling nào đó. Tuy nhiên thì kích thước của Buffer này cũng có giới hạn, nếu không có cơ chế xử lý quá tải thích hợp, tình trạng sập hệ thống vì quá tải vẫn có thể diễn ra. Khi đó, việc xử lý quá tải (Backpressure Handling) trở nên cần thiết và quan trọng để đảm bảo tính co giãn cho hệ thống, giúp hệ thống không bị sập vì quá tải và không làm giảm đi hiệu suất xử lý của hệ thống. Mỗi thư viện Reactive Programming đều hỗ trợ những phương pháp xử lý quá tải khác nhau giúp hệ thống luôn hoạt động hiệu quả và ổn định.
+	+ Cơ chế hoạt động: ...
 
-- Schedulers: Là những bộ quản lý thời gian cũng như thời điểm mà một tác vụ nào đó được thực thi, chẳng hạn như: Thời điểm phát dữ liệu của một Observable, ... Bộ quản lý thời gian thực thi này là yếu tố chính đảm bảo cho tính bất đồng bộ trong hệ thống Reactive.
-
-1.1. Cơ chế hoạt động của Reactive Programming ?
-- Observable đại diện cho một luồng dữ liệu bất đồng bộ, và khi có dữ liệu đã sẵn sàng trong luồng dữ liệu này, Observable sẽ phát tín hiệu về dữ liệu đó đến các Observers đã đăng ký lắng nghe Observable này. Các Observers sẽ nhận lấy các dữ liệu này và xử lý gì đó (bước này gọi là phản ứng hay React). Trong quá trình này, Schedulers sẽ là đối tượng đứng ra xác định xem các Observers nên được thực thi khi nào ? Lúc nào ? Và trên luồng nào ? ... để mang đến khả năng bất đồng bộ cho việc xử lý, phản ứng với sự kiện. Và cũng trong quá trình này, nếu tốc độ phát dữ liệu của Observable nhanh hơn tốc độ xử lý, phản ứng của Observers thì các dữ liệu chưa được Observers xử lý sẽ được đưa vào một danh sách hàng đợi. Nhưng hàng đợi này có giới hạn về sức chứa, nếu quá tải hàng đợi, lúc này các cơ chế Backpressure Handling vào cuộc để xử lý quá tải hàng đợi dữ liệu.
-
-
+- Schedulers: Là các bộ quản lý luồng giúp xác định luồng và thời điểm một tác vụ Reactive nào đó sẽ được thực thi. Trong đó, các tác vụ có thể là: Observer đăng ký lắng nghe Observable, Observable phát dữ liệu, Biến đổi (transformation) một luồng dữ liệu, ...
+	+ Cơ chế hoạt động: ...
 
 2. What is Reactive System ?
 	+ Là một hệ thống đáp ứng 4 tính chất: Responsive, Resilient, Elastic, Message Driven.
@@ -106,19 +106,38 @@ Những khái niệm cót lõi của Reactive Programming:
 
 7.2.1. Các thành phần cốt lõi trong RxJava ?
 7.2.1.1. Observables ?
-- Trong RxJava, các Observables là các bản triển khai (implementation) của các luồng dữ liệu bất đồng bộ (Asynchronous Data Stream) trong định nghĩa của Reactive Programming.
+- Khái niệm: Trong RxJava, các Observables là các bản triển khai (implementation) của các luồng dữ liệu bất đồng bộ (Asynchronous Data Stream) trong định nghĩa của Reactive Programming.
 	+ Một số loại Observables: Observable, Maybe, Single, Flowable, ...
 		. Observable: Đại diện cho một luồng dữ liệu trong đó có 0 - N dữ liệu. Là một loại Cold Observable.
 		. Maybe: Đại diện cho một luồng dữ liệu mà trong đó có 0 - 1 dữ liệu. Là một loại Cold Observable.
 		. Single: Đại diện cho một luồng dữ liệu mà trong đó chỉ và phải có 1 dữ liệu. Là một loại Cold Observable.
 		. Flowable: Đại diện cho một luồng dữ liệu, trong đó có có 0 - N dữ liệu tương tự như Observable. Nhưng, Flowable được thiết kế để xử lý quá tải (Backpressure-Handling). Là một loại Observable mà vừa có thể là Cold Observable cũng vừa có thể là Hot Observable.
+			=> Nó sẽ là Cold Observable nếu được khởi tạo như thông thường giống Observable.
+			=> Nó sẽ là Hot Observable nếu được khỏi tạo bằng phương thức publish() hay share().
+- Khởi tạo: Các Observables được khỏi tạo thông qua các phương thức tĩnh như: from, just, ... từ các lớp Observables muốn khởi tạo. Ví dụ: Single.just(1) => Trả ra một Observable thuộc kiểu Single có dữ liệu duy nhất tồn tại trong nó là 1.
+- Đăng ký cho phép Observer lắng nghe: Gọi phương thức subscribe và truyền vào một đối tượng Observer tương ứng với Observable này làm tham số cho phương thức.
+- Áp dụng bộ quản lý luồng: Gọi phương thức observeOn và truyền vào một đối tượng Scheduler.
 
 7.2.1.2. Observers ?
-- Trong RxJava, các Observers sẽ là các đối tượng lắng nghe và sau đó xử lý, phản ứng với sự thay đổi của Observables hay tín hiệu được phát ra từ chúng.
+- Khái niệm: Trong RxJava, các Observers sẽ là các đối tượng lắng nghe và sau đó xử lý, phản ứng với sự thay đổi của Observables hay tín hiệu được phát ra từ chúng.
+- Khởi tạo: Các Observers có thể được khỏi tạo thông qua các interface như Consumer, hay Observer dành cho một kiểu Observable cụ thể. Ví dụ: Observer cho Observable, SingleObserver cho Single, MaybeObserver cho Maybe và FlowableObserver cho Flowable, ...
+- Đăng ký lắng nghe: Gọi phương thức subscribe của các Observables và truyền Observer làm tham số cho phương thức đó.
+
+
+7.2.1.3. Operators ?
+- Khái niệm: Là các phương thức thuộc một Observable, cho phép làm biến đổi một Observable hoặc làm biến đổi dãy dữ liệu của Observable.
+- Một số operators thường dùng như là: filter, map, groupBy, ...
+	+ filter: Lọc dãy dữ liệu của Observable dựa trên điều kiện được xác định bởi một đối tượng implement interface Predicate. Từ đó tạo ra một Observable mới chứa dãy dữ liệu đã lọc đó và trả ra Observable mới tạo đó.
+	+ map: Làm biến đổi dãy dữ liệu của Observable bằng cách áp dụng một hàm biến đổi (được người dùng định nghĩa bằng đối tượng implement interface Function) lên từng dữ liệu trên dãy dữ liệu của Observable và sau đó tạo ra một đối tượng Observable mới chứa dãy dữ liệu sau khi biến đổi đó và trả ra Observable mới tạo đó.
+	+ groupBy: Phân loại hay phân nhóm dữ liệu của Observable dựa trên tiêu chí phân nhóm được người dùng định nghĩa thông qua một đối tượng implement interface Function.
 
 7.2.1.3. Schedulers ?
-- Trong RxJava, các Schedulers là các bộ quản lý luồng được sử dụng để tính toán thời điểm cũng như định luồng mà các tác vụ sẽ được thực thi trên đó mang đến khả năng thực thi bất đồng bộ. 
-	+ Có một số loại Schedulers: io, computation, 
+- Trong RxJava, các Schedulers là các bộ quản lý luồng được sử dụng để tính toán thời điểm cũng như định luồng mà các tác vụ sẽ được thực thi trên đó mang đến khả năng thực thi bất đồng bộ. Những tác vụ đó có thể là: Việc một Observer đăng ký lắng nghe một Observable, việc một Observable phát dữ liệu, hoặc là việc thực hiện biến đổi một Observable, ...
+	+ Có một số loại Schedulers được sử dụng phổ biến như: io, computation, single, newThread
+		. Schedulers.io: Quản lý các luồng để thực thi các tác vụ liên quan đến nhập / xuất (I/O). Ví dụ: Đọc file, lấy dữ liệu từ mạng internet, ...
+		. Schedulers.computation: Quản lý các luồng để thực thi các tác vụ liên quan đến tính toán có sử dụng tài nguyên CPU. Ví dụ: Tính toán phức tạp, Xử lý dữ liệu, ...
+		. Schedulers.single: 
+		. Schedulers.newThread: 
 
 
 
