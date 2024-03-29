@@ -6,21 +6,25 @@ Những khái niệm cót lõi của Reactive Programming:
 	+ Khái niệm: Là những luồng dữ liệu bất đồng bộ, thứ mà sẽ phát ra tín hiệu, sự kiện khi: Có dữ liệu mới đã sẵn sàng (next), có lỗi xảy ra (error), đã hoàn thành và không còn dữ liệu mới nào đang chờ (complete). Các Observables được coi là các Publishers trong mẫu thiết kế Publisher - Consumer.
 	+ Khởi tạo: Observables có thể được khởi tạo từ các nguồn dữ liệu như: tập dữ liệu, Promises, Timers (bộ đếm thời gian), User inputs (dữ liệu được nhập bởi người dùng), ... 
 	+ Các loại Observables:
-		. Cold Observables: Là những Observable mà khi có một Observer đăng ký lắng nghe, Observable này sẽ phát lại tín hiệu cho toàn bộ dữ liệu có trong luồng dữ liệu cho Observer đó. Và những Observables này sẽ và chỉ sẽ phát tín hiệu khi tất cả dữ liệu đã sẵn sàng để được phát đi. Có thể nói cách khác thì các Observables này hoạt động theo hướng bị động, tức là việc phát tín hiệu về dữ liệu sẽ được các Observers yêu cầu thay vì các Observables này chủ động phát tín hiệu. Và như thế, cơ chế xử lý quá tải Backpressure-Handling không cần thiết cho các Observables này.
-		. Hot Observable: Là những Observable sẽ phát tín hiệu ngay từ khi nó dược khởi tạo và có dữ liệu mới đã sẵn sàng và khi một Observer đăng ký lắng nghe Observable này, chỉ nhận được tín hiệu cho dữ liệu đang phát ở thời điểm đó và sẽ không nhận được tín hiệu cho những dữ liệu đã được phát trước khi Observer này đăng ký. Hay có thể nói cách khác là các Observables này hoạt động theo hướng chủ động, nó sẽ chủ động phát dữ dữ liệu và việc các Observers có nhận được hay không là vấn đề ở chúng. Và việc phát dữ liệu một cách chủ động như vậy có thể sẽ dẫn đến trường hợp khi mà các Observers không kịp xử lý những dữ liệu được phát ra bởi các Observables này và những dữ liệu đó sẽ được lưu vào một hàng đợi dữ liệu hay còn gọi là "Buffer" và cần dùng một cơ chế xử lý quá tải (Backpressure-Handling) nào đó để xử lý chúng.
-	+ Cơ chế hoạt động: ...
+		. Cold Observables: Là những Observables phục vụ cho các nguồn dữ liệu tĩnh không cập nhật theo thời gian thực. Ví dụ: Kết quả truy vấn CSDL, nội dung file, ...
+		. Hot Observable: Là những Observables phục vụ cho các nguồn dữ liệu động cập nhật theo thời gian thực. Ví dụ: Sự kiện từ chuột, bàn phím, đồng hồ, ...
+	+ Cơ chế hoạt động:
+		. Nhận dữ liệu: Các Observables nhận dữ liệu từ các nguồn dữ liệu, các nguồn dữ liệu đó có thể là một dữ liệu đơn hoặc một tập hợp dữ liệu bất kỳ.
+		. Phát dữ liệu:
+			.. Cold Observable: Khi có một Observer bất kỳ đã đăng ký với Observable này yêu cầu Observable này cung cấp dữ liệu, Observable này sẽ phát đi dữ liệu tiếp theo trong dãy cho Observer đã yêu cầu. Và cứ thế từ dữ liệu đầu tiên đến dữ liệu cuối cùng trong dãy và kết thúc.
+			.. Hot Observable: Ngay từ khi được khởi tạo, các Observables này luôn trong trạng thái chờ nhận dữ liệu và ngay khi có dữ liệu bất kỳ sẵn sàng, nó sẽ lập tức phát dữ liệu đó đi kể cả khi không có Observer nào đang đăng ký lắng nghe.
 
-- Observers: Để có thể nhận và xử lý những tín hiệu do Observable phát ra, cần có những đối tượng Observer để lắng nghe những tín hiệu này và những đối tượng Observer này phải đăng ký lắng nghe từ Observable. Và ngược lại, khi không cần lắng nghe tín hiệu từ Observable nữa, Observer này cũng có thể hủy đăng ký lắng nghe tín hiệu từ một Observable bất kỳ.
-	+ Cơ chế hoạt động: ...
+- Observers: Để có thể nhận và xử lý những tín hiệu dữ liệu do Observable phát ra, cần có những đối tượng Observer để lắng nghe những tín hiệu này và những đối tượng Observer này phải đăng ký lắng nghe từ Observable. Và ngược lại, khi không cần lắng nghe tín hiệu từ Observable nữa, Observer này cũng có thể hủy đăng ký lắng nghe tín hiệu từ một Observable bất kỳ.
+	+ Cơ chế hoạt động:
+		. Cold Observable's Observer: Ngay từ khi đăng ký lắng nghe từ một Observable, các Observers này yêu cầu Observable mà nó đăng ký phát ra dữ liệu. Và khi Observable đó phát ra dữ liệu, các Observers này nhận dữ liệu đã phát ra đó và xử lý.
+		. Hot Observable's Observer: Khi Observable phát ra dữ liệu, các Observers này sẽ nhận dữ liệu và xử lý.
 
-- Operators: Là những phương thức được sử dụng để làm biến đổi một Observable, chẳng hạn như: map (chuyển đổi dữ liệu của một Observable), filter (lọc dữ liệu của một Observable), combine (Kết hợp dữ liệu từ một nguồn khác vào Observable), ...
-	+ Cơ chế hoạt động: ...
+- Operators: Là những phương thức được sử dụng để làm biến đổi một Observable.
+	+ Cơ chế hoạt động: Khi một Observable áp dụng một operator sẽ tạo ra một Observable khác nhận tất cả dữ liệu được phát ra bởi Observable gốc và áp dụng một hàm biến đổi lên mỗi dữ liệu nhận được.
 
-- Backpressure Handling (Xử lý quá tải): Khi làm việc với những nguồn dữ liệu bất đồng bộ như thế này, cụ thể là các Hot Observables, sẽ có những trường hợp khi mà tốc độ phát ra dữ liệu của các Observables nhanh hơn tốc độ xử lý những dữ liệu đã được phát ra đó của Observers. Khi đó thì các dữ liệu chưa dược xử lý kịp bởi Observers sẽ được lưu vào danh sách hàng dợi hay còn gọi là "Buffer" chờ được xử lý bằng một cơ chế Backpressure-Handling nào đó. Tuy nhiên thì kích thước của Buffer này cũng có giới hạn, nếu không có cơ chế xử lý quá tải thích hợp, tình trạng sập hệ thống vì quá tải vẫn có thể diễn ra. Khi đó, việc xử lý quá tải (Backpressure Handling) trở nên cần thiết và quan trọng để đảm bảo tính co giãn cho hệ thống, giúp hệ thống không bị sập vì quá tải và không làm giảm đi hiệu suất xử lý của hệ thống. Mỗi thư viện Reactive Programming đều hỗ trợ những phương pháp xử lý quá tải khác nhau giúp hệ thống luôn hoạt động hiệu quả và ổn định.
-	+ Cơ chế hoạt động: ...
+- Backpressure Handling (Xử lý quá tải): Khi làm việc với các Hot Observables, sẽ có lúc rơi vào tình trạng khi mà tốc độ phát ra dữ liệu của Observables nhanh hơn tốc độ xử lý dữ liệu của Observers. Khi đó, các dữ liệu mà Observers chưa kịp xử lý gọi là dữ liệu quá tải. Và việc xử lý các dữ liệu quá tải đó, gọi là Backpressure Handling.
 
 - Schedulers: Là các bộ quản lý luồng giúp xác định luồng và thời điểm một tác vụ Reactive nào đó sẽ được thực thi. Trong đó, các tác vụ có thể là: Observer đăng ký lắng nghe Observable, Observable phát dữ liệu, Biến đổi (transformation) một luồng dữ liệu, ...
-	+ Cơ chế hoạt động: ...
 
 2. What is Reactive System ?
 	+ Là một hệ thống đáp ứng 4 tính chất: Responsive, Resilient, Elastic, Message Driven.
