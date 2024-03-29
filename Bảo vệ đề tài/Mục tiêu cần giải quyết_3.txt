@@ -111,9 +111,10 @@ Những khái niệm cót lõi của Reactive Programming:
 		. Observable: Đại diện cho một luồng dữ liệu trong đó có 0 - N dữ liệu. Là một loại Cold Observable.
 		. Maybe: Đại diện cho một luồng dữ liệu mà trong đó có 0 - 1 dữ liệu. Là một loại Cold Observable.
 		. Single: Đại diện cho một luồng dữ liệu mà trong đó chỉ và phải có 1 dữ liệu. Là một loại Cold Observable.
-		. Flowable: Đại diện cho một luồng dữ liệu, trong đó có có 0 - N dữ liệu tương tự như Observable. Nhưng, Flowable được thiết kế để xử lý quá tải (Backpressure-Handling). Là một loại Observable mà vừa có thể là Cold Observable cũng vừa có thể là Hot Observable.
+		. Flowable: Đại diện cho một luồng dữ liệu, trong đó có có 0 - N dữ liệu tương tự như Observable. Nhưng, Flowable được thiết kế để xử lý quá tải (Backpressure-Handling) thông qua các chiến lược xử lý quá tải (Backpressure Handling Strategies) dành cho Flowable. Là một loại Observable mà vừa có thể là Cold Observable cũng vừa có thể là Hot Observable.
 			=> Nó sẽ là Cold Observable nếu được khởi tạo như thông thường giống Observable.
 			=> Nó sẽ là Hot Observable nếu được khỏi tạo bằng phương thức publish() hay share().
+		. PublishSubject: Đại diện cho một luồng dữ liệu tự phát, trong đó có 0 - N dữ liệu. Là một loại Hot Observable. Sử dụng operator onNext() để phát dữ liệu.
 - Khởi tạo: Các Observables được khỏi tạo thông qua các phương thức tĩnh như: from, just, ... từ các lớp Observables muốn khởi tạo. Ví dụ: Single.just(1) => Trả ra một Observable thuộc kiểu Single có dữ liệu duy nhất tồn tại trong nó là 1.
 - Đăng ký cho phép Observer lắng nghe: Gọi phương thức subscribe và truyền vào một đối tượng Observer tương ứng với Observable này làm tham số cho phương thức.
 - Áp dụng bộ quản lý luồng: Gọi phương thức observeOn và truyền vào một đối tượng Scheduler.
@@ -134,10 +135,28 @@ Những khái niệm cót lõi của Reactive Programming:
 7.2.1.3. Schedulers ?
 - Trong RxJava, các Schedulers là các bộ quản lý luồng được sử dụng để tính toán thời điểm cũng như định luồng mà các tác vụ sẽ được thực thi trên đó mang đến khả năng thực thi bất đồng bộ. Những tác vụ đó có thể là: Việc một Observer đăng ký lắng nghe một Observable, việc một Observable phát dữ liệu, hoặc là việc thực hiện biến đổi một Observable, ...
 	+ Có một số loại Schedulers được sử dụng phổ biến như: io, computation, single, newThread
-		. Schedulers.io: Quản lý các luồng để thực thi các tác vụ liên quan đến nhập / xuất (I/O). Ví dụ: Đọc file, lấy dữ liệu từ mạng internet, ...
+		. Schedulers.io: Bộ quản lý các luồng thực thi này cung cấp một số lượng luồng thực thi giới hạn để thực thi các tác vụ liên quan đến nhập / xuất (I/O). Ví dụ: Đọc file, lấy dữ liệu từ mạng internet, truy vấn cơ sở dữ liệu, ...
+			=> Tốc độ thực thi của các tác vụ trong luồng này phụ thuộc vào tốc độ nhập, xuất.
 		. Schedulers.computation: Quản lý các luồng để thực thi các tác vụ liên quan đến tính toán có sử dụng tài nguyên CPU. Ví dụ: Tính toán phức tạp, Xử lý dữ liệu, ...
-		. Schedulers.single: 
-		. Schedulers.newThread: 
+			=> Tốc độ thực thi của các tác vụ trong luồng này phụ thuộc vào tài nguyên CPU khả dụng.
+		. Schedulers.single: Quản lý một luồng duy nhất cho phép các tác vụ bất đồng bộ được thực thi theo trình tự được chỉ định. Bộ quản lý luồng này thích hợp cho việc thực thi các tác vụ ngắn và cần được thực thi theo trình tự.
+		. Schedulers.newThread: Bộ quản lý luồng cho phép tạo mới một luồng để thực hiện một tác vụ nào đó. Bộ quản lý luồng này thích hợp cho các tác vụ ngắn và không bị ràng buộc bởi tài nguyên CPU.
+			=> Khác với Schedulers.computation, tốc độ thực thi của các tác vụ ở trong luồng này không bị giới hạn.
+
+7.2.1.4. Backpressure Handling ?
+- Trong RxJava, khi làm việc với các Hot Observable, chúng ta sẽ thường xuyên bắt gặp tình trạng khi mà tốc độp phát ra dữ liệu của Observables nhanh hơn tốc độ xử lý dữ liệu của Observers. Khi đó, các dữ liệu đã phát nhưng chưa được Observers xử lý kịp cần phải được xử lý theo một cơ chế nào đó gọi là Backpressure Handling. Vì vậy, RxJava cung cấp cho chúng ta một số operators giúp chúng ta có thể thực hiện điều này. Các operators này là:
+	+ buffer: Tạo ra một danh sách hàng đợi với kích thước cố định để lưu trữ những dữ liệu chưa được xử lý kịp bởi Observers.
+		=> Vì là kích thước cố định nên việc quá tải, tràn buffer vẫn có thể xảy ra và dẫn đến sập hệ thống.
+	+ window: Nhóm dữ liệu vào một tập hợp (window) với số lượng phần tử được chỉ định và gửi tập hợp (window) đó đến các Observers.
+		=> Điều này giúp giảm số lượng dữ liệu quá tải vì khi Observers nhận dữ liệu sẽ nhận vào một tập hợp dữ liệu và xử lý một tập hợp dữ liệu thay vì từng dữ liệu riêng lẻ.
+	+ sample: Trích danh sách các dữ liệu đã phát đi nhưng chưa được xử lý trong khoảng thời gian được chỉ định và phát lại dữ liệu cuối cùng trong danh sách đã trích, sau đó hủy bỏ các dữ liệu còn lại trong danh sách. Và sẽ tái thực thi hành động tương tự mỗi khi trôi qua một khoảng thời gian được chỉ định kể từ lần cuối cùng thực thi.
+		=> Là một hình thức hủy bỏ các dữ liệu quá tải. Tuy nhiên, khi tốc độ phát 
+	+ throttleFirst: Tương tự như sample nhưng là lấy dữ liệu đầu tiên trong danh sách dữ liệu trích ra.
+	+ onBackpressureBuffer: Tạo ra một danh sách hàng đợi chứa các dữ liệu quá tải (hay còn gọi là buffer) với kích thước được chỉ định và khi hàng đợi này đã đầy, một hành động được chỉ định sẽ được thực thi, các hành động đó có thể là: hủy bỏ dữ liệu đầu tiên hay cuối cùng trong hàng chờ và thêm dữ liệu hiện tại vào hàng chờ, nhã ra ngoại lệ BufferOverflowException.
+		=> Là một phiên bản nâng cao cấp hơn của buffer từ việc kết hợp buffer, sample và throttleFirst. Cho phép kiểm soát hành động của các Observables khi buffer bị lắp đầy.
+
+7.3. Điểm mạnh của RxJava ?
+- 
 
 
 
