@@ -196,3 +196,37 @@ eventSource.onclose = function(event) {
 With this setup, the client-side JavaScript code establishes a connection to the SSE endpoint and listens for incoming events sent from the server. Whenever the server emits an SSE event, the onmessage event listener is triggered, allowing the client to react to the events in real-time.
 
 Make sure to adjust the URL (/test/flowable) in the EventSource constructor to match the actual SSE endpoint in your Spring WebFlux application.
+
+------------------------------------------
+
+Exacly, What is "event loops" you've talked about ?
+
+Event loops are a fundamental concept in asynchronous programming and are commonly used in frameworks and libraries that support non-blocking I/O operations, such as Node.js and Spring WebFlux.
+
+An event loop is a programming construct that continuously monitors and processes events or tasks in a single-threaded environment. It operates by running an event loop, which is a loop that waits for events to occur and then dispatches them to event handlers for processing. The event loop keeps running indefinitely, handling events as they arrive, and ensures that the application remains responsive without blocking the execution flow.
+
+In the context of Spring WebFlux or other reactive programming frameworks, event loops are used to handle I/O operations asynchronously without blocking threads. Instead of dedicating a thread to each request, which can be inefficient and resource-intensive, event loops allow multiple I/O operations to be multiplexed on a single thread. This enables efficient handling of a large number of concurrent connections with minimal overhead.
+
+Event loops are designed to be highly efficient and scalable, making them well-suited for building responsive and high-performance applications that need to handle many concurrent connections, such as web servers, chat applications, and streaming services. They provide a non-blocking, event-driven model that can significantly improve the throughput and responsiveness of applications, especially in scenarios with high concurrency and I/O-bound workloads.
+
+-----------------------------------------------
+
+And, exactly, what is non-blocking I/O ?
+
+Non-blocking I/O (Input/Output) is a programming paradigm that allows a program to perform I/O operations asynchronously without waiting for the operation to complete. In a non-blocking I/O model, when a program initiates an I/O operation (such as reading from or writing to a file, network socket, or database), it doesn't halt the execution of the program until the operation finishes. Instead, the program continues to execute other tasks or operations while waiting for the I/O operation to complete.
+
+Non-blocking I/O is achieved through mechanisms like callbacks, event loops, or futures/promises. When an I/O operation is initiated, the program registers a callback or handler function to be invoked when the operation completes. This allows the program to continue executing other tasks in the meantime, making efficient use of resources and improving overall throughput and responsiveness.
+
+Key characteristics of non-blocking I/O include:
+
+1. Asynchronous Execution: I/O operations are initiated asynchronously, allowing the program to perform other tasks while waiting for the operation to complete.
+
+2. Non-Blocking Nature: The program doesn't block or wait for the I/O operation to finish. Instead, it continues executing other tasks or operations, potentially interleaving multiple I/O operations.
+
+3. Event-Driven Model: Non-blocking I/O typically relies on an event-driven model, where events (such as completion of I/O operations or incoming data) trigger callback functions or event handlers.
+
+4. Efficiency and Scalability: Non-blocking I/O enables efficient resource utilization and scalability by allowing a single thread to handle multiple concurrent connections or I/O operations.
+
+In the context of web servers or network programming, non-blocking I/O is particularly useful for handling large numbers of concurrent connections efficiently. It allows the server to handle incoming requests and responses without the need for a dedicated thread per connection, leading to better resource utilization and improved responsiveness under high load.
+
+Frameworks and libraries that support non-blocking I/O, such as Spring WebFlux or Node.js, are well-suited for building highly scalable and responsive applications, especially in scenarios with high concurrency and I/O-bound workloads. They leverage non-blocking I/O to achieve better performance and scalability compared to traditional blocking I/O models.
