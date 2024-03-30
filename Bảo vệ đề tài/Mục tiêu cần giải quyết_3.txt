@@ -187,40 +187,86 @@ Những khái niệm cót lõi của Reactive Programming:
 8. Spring Web Flux ?
 8.1. Giới thiệu về Spring ?
 	- Spring hay Spring Framework là một Framework được sử dụng rộng rãi trong việc xây dựng ứng dụng Java. Đặc biệt được ứng dụng rộng rãi trong việc xây dựng ứng dụng back-end Java hay còn gọi là các Java Back-end Services.
-8.2. Giới thiệu về Spring Webflux ?
-	8.2.1 Webflux là gì ?
-	- Webflux là một thư viện lập trình Reactive Programming cho hệ sinh thái Spring. 
 
-	8.2.2. Webflux được sử dụng để làm gì ?
+8.2. Giới thiệu về Spring MVC ?
+	8.2.1. Spring MVC là gì ?
+	- Spring MVC là một framework trong hệ sinh thái Spring.
+
+	8.2.2. Spring MVC được sử dụng để làm gì ?
+	- Spring MVC được sử dụng để xây dựng ứng dụng web thực thi đồng bộ, blocking theo mô hình MVC, bằng ngôn ngữ lập trình Java và được thực thi trên môi trường thực thi Java.
+
+	8.2.3. Spring MVC được xây dựng trên nền tảng nào ?
+	- Spring MVC được xây dựng trên nền tảng Servlet API.
+
+	8.2.4. Kiến trúc Spring MVC ?
+	- DispatcherServlet: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó đến Handler Method tương ứng để xử lý.
+	- Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (Hay còn gọi là các Handler Methods). Những đối tượng này thuộc các lớp được gán annotation: @RequestMapping và @Controller.
+	- Handler Methods: Là những phương thức thuộc một đối tượng Controller bất kỳ và sẽ được gọi để xử lý HTTP Request đến URL tương ứng với đường dẫn được định nghĩa trong annotation đã được gán: @GetMapping, @PostMapping, @PutMapping, ...
+		+ Request Mappings: Là các annotation được gán cho các Handler Methods nhằm mục đích khai báo đường dẫn cũng như HTTP Method mà Handler Method đó sẽ xử lý. Trong đó có: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, ...	
+	- Models: Là các đối tượng đại diện cho nghiệp vụ, dữ liệu của hệ thống.
+	- Views: Là các tệp giao diện đồ họa có thể tạo ra nội dung HTML động theo cơ chế SSR (Server-Side Rendering). Đó có thể là các tệp: JSP, Thymeleaf, Freemarker, ...
+	- ModelAndView: Các đối tượng này nắm giữ thông tin của dữ liệu sẽ được render (Models) và nơi sẽ render dữ liệu đó (Views). Và là các đối tượng được trả ra từ các Handler Methods.
+
+8.3. Giới thiệu về Spring Webflux ?
+	8.3.1 Webflux là gì ?
+	- Webflux là một framework lập trình Reactive Programming cho hệ sinh thái Spring. 
+
+	8.3.2. Webflux được sử dụng để làm gì ?
 	- Webflux được sử dụng để xây dựng những ỨNG DỤNG WEB bất đồng bộ, non-blocking bằng ngôn ngữ Java và thực thi trên môi trường Java.
 
-	8.2.3. Webflux được xây dựng trên nền tảng nào ?
+	8.3.3. Webflux được xây dựng trên nền tảng nào ?
 	- Webflux được xây dựng trên nền tảng của Project Reactor, một thư viện lập trình Reactive Programming được triển khai theo chuẩn Reactive Streams được cung cấp bởi Java.
 
-	8.2.4. Kiến trúc Spring Webflux ?
+	8.3.4. Kiến trúc Spring Webflux ?
 	- Trong ngữ cảnh Rest Service:
-		+ Dispatcher Handler: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó cho Controller.
-		+ Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (hay còn gọi là Handler Methods). Những đối tượng này thuộc một lớp được gán annotation: @RestController và @RequestMapping.
-		+ Handler Methods: Những phương thức sẽ được gọi để xử lý HTTP Request đến URL tương ứng với đường dẫn được định nghĩa trong annotation được gán: @GetMapping, @PostMapping, @PutMapping, ...
+		+ DispatcherHandler: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó đến Handler Method tương ứng để xử lý.
+		+ Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (hay còn gọi là Handler Methods). Những đối tượng này thuộc các lớp được gán annotation: @RestController và @RequestMapping.
+		+ Handler Methods: Những phương thức thuộc một đối tượng Controller bất kỳ và sẽ được gọi để xử lý HTTP Request đến URL tương ứng với đường dẫn được định nghĩa trong annotation đã được gán: @GetMapping, @PostMapping, @PutMapping, ...
 			. Request Mapping: Là các annotation được gán cho các Handler Methods nhằm mục đích khai báo đường dẫn cũng như HTTP Method mà Handler Method đó sẽ xử lý. Trong đó có: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, ...
 		+ Flux, Mono: Những luồng dữ liệu bất đồng bộ được triển khai từ định nghĩa của Reactive Programming hỗ trợ mô hình lập trình Reactive Programming cho việc xây dựng Rest Service.
 		+ ServerResponse: Là những đối tượng đại diện cho HTTP Response. Cho phép tạo nội dung phản hồi từ Rest Service về Client. (Thông thường, trong việc phát triển REST Service, chúng ta sẽ không trực tiếp tương tác với các đối tượng này, mà các đối tượng này sẽ được Spring xử lý tự động)
 
-	8.2.5. Cơ chế hoạt động của Spring Webflux ?
+	8.3.5. Cơ chế hoạt động của Spring Webflux ?
 	- Trong ngữ cảnh Rest Service:
 		+ Nhận HTTP Request: Khi client gửi HTTP Request đến Rest Service. Request đó sẽ được tiếp nhận bởi WebFlux DispatcherHandler và đồng thời kết nối SSE (Server-Sent Events) giữa Client và Rest Service cũng được thiết lập.
 		+ Chuyển tiếp HTTP Request tới Handler: đối tượng DispatcherHandler sẽ phân tích thông tin Request đó và chuyển tiếp Request đó đến Handler Method tương ứng dựa vào các RequestMapping annotations hay có thể nói cách khác là gọi Handler Method tương ứng với đường dẫn của Request để xử lý HTTP Request này.
 		+ Xử lý HTTP Request: Handler Method nhận và xử lý HTTP Request và trả ra một đối tượng Observable (hay còn gọi là Publisher trong định nghĩa của Spring) bất kỳ.
 		+ Phản hồi về Client: Sau khi nhận đối tượng Observable trả về từ Handler, Spring WebFlux tiến hành đăng ký lắng nghe từ Observable đó. Và mỗi khi Observable đó phát ra dữ liệu, Spring WebFlux sẽ chuyển đổi dữ liệu đó sang định dạng JSON và phản hồi về Client thông qua kết nối SSE đã thiết lập cho đến khi Observable đó phát hết dữ liệu có trong luồng.
 		+ Client nhận phản hồi: Client nhận được từng dữ liệu một ở định dạng JSON được phản hồi về từ Rest Service. Và thực hiện thao tác gì đó trên dữ liệu đã nhận được.
-	
-8.3. Các thành phần cốt lõi của Spring Webflux ?
-8.3.1. Observables ?
+
+8.4. So sánh giữa Spring Webflux và Spring MVC ?
+8.4.1. Kiến trúc giữa Spring MVC và Spring Webflux ?
+	- DispatchServlet / DispatchHandler:
+		. Vì Spring MVC được xây dựng trên nền tảng Servlet API được cung cấp bởi JavaEE, nên đối tượng nhận HTTP Request trong Spring MVC là DispatchServlet.
+		. Vì Spring Webflux không còn được xây dựng trên nền tảng Servlet API, nên đối tượng nhận HTTP Request trong Spring Webflux là DispatchHandler thuộc Webflux framework.
+	- View - Model / Flux - Mono:
+		. Vì Spring MVC tuân theo kiến trúc MVC nên trong hệ thống chủ yếu làm việc với các View(s) và Model(s).
+		. Vì Spring Webflux tuân theo mô hình Reactive Programming nên trong hệ thống chủ yếu làm việc với các Flux(s) và Mono(s).
+			=> Điều này không có nghĩa là trong Spring Webflux không thể có View và Model. Chúng ta vẫn có thể có View và Model tùy vào thiết kế của chúng ta. Nhưng nó không phải là thành phần chủ yếu trong kiến trúc của Spring Webflux.
+	- ModelAndView / ServerResponse:
+		. Vì Spring MVC tuân theo kiến trúc MVC, nên khi xử lý HTTP Request, chủ yếu sẽ phản hồi về HTML cho Client nên kết thúc mỗi Handler Methods sẽ trả ra một đối tượng ModelAndView, Spring MVC sẽ dựa trên đối tượng này và render mã HTML và phản hồi về Client.
+		. Vì Spring Webflux tuân theo Reactive Programming và chủ yếu được sử dụng để xây dựng Rest Service. Cũng vì vậy mà phản hồi về Client chủ yếu là JSON. Nên kết thúc mỗi Handler Methods thường sẽ trả ra một Flux hoặc Mono (Vì Reactive Programming chủ yếu hoạt động trên các Observables), Spring Webflux sẽ tự tạo ra đối tượng ServerResponse để tạo nội dung phản hồi từ Flux và Mono được trả ra từ các Handler Methods và phản hồi về Client.
+
+8.4.2. Sự khác biệt giữa Spring MVC và Spring Webflux ?
+	- Mô hình lập trình:
+		+ Spring MVC: Tuân theo mô hình lập trình MVC, xử lý đồng bộ theo cơ chế blocking.
+			=> Vì Spring MVC xử lý HTTP Request dựa vào Thread Pool của Servlet Container. Điều này có nghĩa là số lượng luồng để xử lý HTTP Request. Và việc xử lý HTTP Request theo cơ chế đồng bộ, blocking như vậy sẽ dẫn tới tình trạng không đủ luồng thực thi và kém hiệu quả khi chịu tải lớn.
+		+ Spring Webflux: Tuân theo mô hình lập trình Reactive, xử lý sự kiện từ các luồng dữ liệu bất đồng bộ và theo cơ chế non-blocking.
+			=> Nâng cao khả năng chịu tải và mang đến tính co giãn cho hệ thống, sử dụng tài nguyên phần cứng hệ thống hiệu quả và tiết kiệm và mang đến thời gian phản hồi nhanh, nhất quán.
+	- Xử lý bất đồng bộ:
+		+ Spring MVC: Sử dụng Thread Pool của Servlet Container để xử lý bất đồng bộ. Sinh ra một luồng mới mỗi khi xử lý một HTTP Request nào đó.
+		+ Spring Webflux: Sử dụng cơ chế non-blocking I/O, event loops để xử lý các HTTP Request, tạo nên tính bất đồng bộ cao mà không cần phải sử dụng quá nhiều luồng.
+	- Sự phù hợp:
+		+ Spring MVC: Thích hợp xây dựng những ứng dụng web cổ điển theo cơ chế SSR (Server-Side Rendering). Trong đó có: Giao diện HTML, xử lý form, quản lý phiên làm việc (session) ...
+		+ Spring Webflux: Thích hợp trong việc xây dựng những ứng dụng Reactive yêu cầu khả năng co giãn tốt, phản hồi nhanh và có khả năng xử lý dữ liệu thời gian thực.
+
+8.5. Các thành phần cốt lõi của Spring Webflux ?
+8.5.1. Observables ?
 	=> Các Observable ngoài Webflux có dùng được hay không ? Vì sao nó dùng được ?
-8.3.2. Observers ?
-8.3.3. Operators ?
-8.3.4. Schedulers ?
-8.3.5. Backpressure Handling ?
+8.5.2. Observers ?
+8.5.3. Operators ?
+8.5.4. Schedulers ?
+8.5.5. Backpressure Handling ?
 -- 8.1. Spring MVC's Architecture vs Spring Web Flux's Architecture ?
 9. RxJava vs Web Flux ?
 10. Demo ?
