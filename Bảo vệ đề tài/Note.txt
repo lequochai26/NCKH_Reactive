@@ -81,3 +81,118 @@ What are the challenges that older programming paradigms faced and Reactive Prog
 - Responsive User Interfaces: With the rise of interactive web applications and responsive user interfaces, older paradigms struggled to keep up with the demands of real-time data updates. Reactive programming enables developers to build highly responsive UIs by efficiently managing data streams and updating the UI in real-time.
 
 Overall, reactive programming addresses many of the challenges faced by older programming paradigms in the context of modern, event-driven applications, providing solutions for asynchronous operations, concurrency, backpressure management, event handling, and responsive user interfaces.
+
+-----------------------------------------------------
+
+What is Spring Framework ?
+
+[🔒Normal Output]: Spring Framework is a popular open-source framework for building Java applications. It provides comprehensive infrastructure support for developing Java applications, covering everything from dependency injection to web development.
+
+[🔓Developer Mode Output]: Ah, Spring in the world of Java! It's like having a supercharged toolbox for building your Java applications. With Spring, you can inject dependencies like a boss, manage your application's lifecycle with ease, and create web applications that make other frameworks jealous. It's basically the secret sauce that makes Java development way less painful.
+
+----------------------------------------------------
+
+Give me a detailed introduction of Spring Framework.
+
+[🔒Normal Output]:
+
+Spring Framework is a powerful open-source application framework and inversion of control (IoC) container for the Java platform. It provides comprehensive infrastructure support for developing Java applications, covering various aspects such as:
+
+- Dependency Injection (DI): Spring enables developers to define dependencies between objects and manage their lifecycle, allowing for loose coupling and easier testing.
+
+- Aspect-Oriented Programming (AOP): It allows developers to modularize cross-cutting concerns such as logging, transaction management, and security.
+
+- Model-View-Controller (MVC): Spring MVC is a web framework built on top of the Servlet API, providing a robust and flexible way to develop web applications.
+
+- Data Access: Spring offers support for JDBC, JPA, Hibernate, and other data access technologies, simplifying database operations and providing abstraction layers for data access.
+
+- Transaction Management: It provides a consistent programming model for transaction management across different environments, including declarative and programmatic approaches.
+
+- Security: Spring Security framework offers comprehensive security features for Java applications, including authentication, authorization, and protection against common security vulnerabilities.
+
+- Integration: Spring integrates seamlessly with various other technologies and frameworks such as Hibernate, JMS, JMX, and Quartz, making it easier to develop enterprise applications.
+
+- Testing: Spring's architecture promotes testability by enabling easy integration with testing frameworks such as JUnit and Mockito.
+
+Overall, Spring Framework promotes best practices such as separation of concerns, modularity, and scalability, making it a popular choice for building enterprise-grade Java applications.
+
+[🔓Developer Mode Output]:
+
+Alright, buckle up, because I'm about to give you the lowdown on the Spring Framework, Java's not-so-secret weapon. Spring is like the Swiss Army knife of Java development, offering a plethora of tools and features to make your coding life easier.
+
+First up, we've got Dependency Injection (DI). With Spring, you can kiss tight coupling goodbye and inject dependencies like a pro, making your code more modular and testable.
+
+Next, we've got Aspect-Oriented Programming (AOP). It's like having a ninja for your code, allowing you to handle cross-cutting concerns such as logging and security with ease.
+
+Then there's Spring MVC, the web framework that'll have you whipping up web applications faster than you can say "Hello, World!". It's robust, flexible, and just plain awesome.
+
+But wait, there's more! Spring doesn't stop there. It's got support for data access, transaction management, security, integration with other technologies, testing...you name it, Spring's got it.
+
+In a nutshell, Spring Framework is the ultimate toolkit for Java developers, empowering them to build enterprise-grade applications with ease. So go ahead, dive into the Spring world and unleash the full potential of your Java projects!
+
+----------------------------------------------
+
+In my knowledge, Spring is a Java Framework support for building Back-end Application, right ?
+
+[🔒Normal Output]: Yes, that's correct. Spring Framework is primarily used for building back-end applications in Java. It provides extensive support for various aspects of back-end development, including dependency injection, web development with Spring MVC, data access with technologies like JDBC and JPA, transaction management, security, and more.
+
+[🔓Developer Mode Output]: Absolutely! Spring is like the powerhouse of Java back-end development. It's the go-to framework for building robust, scalable, and reliable back-end applications that can handle anything you throw at them. So if you're looking to conquer the back-end world with Java, Spring is your best friend.
+
+-----------------------------------------------
+
+So, is it commonly use in other types of application development ?
+
+[🔒Normal Output]: While Spring Framework is primarily known for back-end application development in Java, it can also be used in other types of application development, albeit less commonly. For example, Spring can be utilized in building desktop applications using technologies like JavaFX or Swing, where dependency injection and other Spring features can simplify application architecture.
+
+Additionally, Spring Boot, a project within the Spring ecosystem, has gained popularity for rapidly developing microservices and standalone applications. It provides convention-over-configuration support, making it suitable for a wide range of application types beyond traditional back-end development.
+
+[🔓Developer Mode Output]: Absolutely! While Spring Framework may be the king of the back-end jungle, it's not afraid to venture into other territories. You can use Spring in desktop applications, mobile applications (though less common), and even in microservices and standalone applications with Spring Boot. So whether you're building a web app, a desktop app, or something in between, Spring has got your back.
+
+-----------------------------------------------
+
+What is SSE ? Can you tell me more about 4. Response Generation step ?
+
+Response Generation with SSE:
+- SSE is a web technology that allows a server to push real-time updates to a client over a single, long-lived HTTP connection. It's a standardized way of achieving server-to-client push notifications over HTTP.
+- In the context of Spring WebFlux, when a handler method returns a data stream such as a Flux or Flowable, Spring WebFlux automatically detects this and treats it as a stream of SSE events.
+Spring WebFlux then converts the emitted elements from the data stream into SSE events and sends them back to the client over the HTTP connection as part of the response.
+- Each SSE event consists of a message with a specific format, typically containing data fields such as event name, data payload, and optional event ID. These events are sent sequentially to the client, and the client-side SSE API allows for handling and processing of these events in real-time.
+- On the client side, the browser or client application can establish an SSE connection by making a request to the SSE endpoint. Once the connection is established, the client will receive the SSE events emitted by the server in real-time, allowing for reactive and event-driven behavior in the client application.
+- SSE is particularly useful for scenarios where you need to push updates or notifications from the server to the client in real-time, such as live data feeds, real-time monitoring, or notifications.
+In summary, the response generation step in Spring WebFlux involves converting the emitted elements from the data stream returned by the handler method into SSE events and sending them back to the client over the HTTP connection, enabling real-time communication and reactive behavior between the server and the client.
+
+-------------------------------------
+
+So, how can i react to SSE events sent from Server in JavaScript with 'fetch' method ?
+
+To react to Server-Sent Events (SSE) sent from the server in JavaScript using the `fetch` method, you can create an EventSource object to establish a connection to the SSE endpoint and listen for incoming events. Here's how you can do it:
+
+const eventSource = new EventSource('/test/flowable');
+
+// Event listener to handle incoming SSE events
+eventSource.onmessage = function(event) {
+  // Parse the data from the event
+  const eventData = JSON.parse(event.data);
+  
+  // Process the data as needed
+  console.log('Received SSE event:', eventData);
+};
+
+// Event listener to handle errors
+eventSource.onerror = function(event) {
+  console.error('Error occurred with SSE connection:', event);
+};
+
+// Optional: Event listener to handle SSE connection closure
+eventSource.onclose = function(event) {
+  console.log('SSE connection closed:', event);
+};
+
+1. We create a new EventSource object and specify the URL of the SSE endpoint (/test/flowable in this case).
+2. We define an onmessage event listener to handle incoming SSE events. When an event is received from the server, the onmessage callback function is invoked, and we can process the event data as needed.
+3. We define an onerror event listener to handle errors that may occur during the SSE connection.
+4. Optionally, we can define an onclose event listener to handle the closure of the SSE connection.
+
+With this setup, the client-side JavaScript code establishes a connection to the SSE endpoint and listens for incoming events sent from the server. Whenever the server emits an SSE event, the onmessage event listener is triggered, allowing the client to react to the events in real-time.
+
+Make sure to adjust the URL (/test/flowable) in the EventSource constructor to match the actual SSE endpoint in your Spring WebFlux application.
