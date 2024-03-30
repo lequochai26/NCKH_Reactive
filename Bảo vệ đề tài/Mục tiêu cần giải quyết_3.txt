@@ -186,14 +186,34 @@ Những khái niệm cót lõi của Reactive Programming:
 
 8. Spring Web Flux ?
 8.1. Giới thiệu về Spring ?
+	- Spring hay Spring Framework là một Framework được sử dụng rộng rãi trong việc xây dựng ứng dụng Java. Đặc biệt được ứng dụng rộng rãi trong việc xây dựng ứng dụng back-end Java hay còn gọi là các Java Back-end Services.
 8.2. Giới thiệu về Spring Webflux ?
-	=> Webflux là gì ?
-	=> Dùng để làm gì ?
-	=> Xây dựng trên nền tảng nào ?
-		* Project Reactor
-			* Reactive Streams
-	=> Kiến trúc của Webflux ?
-		=> Từ lúc request được nhận vào thông qua các phương thức được gán annotation Mapping cho tới lúc response về JSON, có những thành phần nào tham gia ? Vai trò của những thành phần đó ?
+	8.2.1 Webflux là gì ?
+	- Webflux là một thư viện lập trình Reactive Programming cho hệ sinh thái Spring. 
+
+	8.2.2. Webflux được sử dụng để làm gì ?
+	- Webflux được sử dụng để xây dựng những ỨNG DỤNG WEB bất đồng bộ, non-blocking bằng ngôn ngữ Java và thực thi trên môi trường Java.
+
+	8.2.3. Webflux được xây dựng trên nền tảng nào ?
+	- Webflux được xây dựng trên nền tảng của Project Reactor, một thư viện lập trình Reactive Programming được triển khai theo chuẩn Reactive Streams được cung cấp bởi Java.
+
+	8.2.4. Kiến trúc Spring Webflux ?
+	- Trong ngữ cảnh Rest Service:
+		+ Dispatcher Handler: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó cho Controller.
+		+ Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (hay còn gọi là Handler Methods). Những đối tượng này thuộc một lớp được gán annotation: @RestController và @RequestMapping.
+		+ Handler Methods: Những phương thức sẽ được gọi để xử lý HTTP Request đến URL tương ứng với đường dẫn được định nghĩa trong annotation được gán: @GetMapping, @PostMapping, @PutMapping, ...
+			. Request Mapping: Là các annotation được gán cho các Handler Methods nhằm mục đích khai báo đường dẫn cũng như HTTP Method mà Handler Method đó sẽ xử lý. Trong đó có: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, ...
+		+ Flux, Mono: Những luồng dữ liệu bất đồng bộ được triển khai từ định nghĩa của Reactive Programming hỗ trợ mô hình lập trình Reactive Programming cho việc xây dựng Rest Service.
+		+ ServerResponse: Là những đối tượng đại diện cho HTTP Response. Cho phép tạo nội dung phản hồi từ Rest Service về Client. (Thông thường, trong việc phát triển REST Service, chúng ta sẽ không trực tiếp tương tác với các đối tượng này, mà các đối tượng này sẽ được Spring xử lý tự động)
+
+	8.2.5. Cơ chế hoạt động của Spring Webflux ?
+	- Trong ngữ cảnh Rest Service:
+		+ Nhận HTTP Request: Khi client gửi HTTP Request đến Rest Service. Request đó sẽ được tiếp nhận bởi WebFlux DispatcherHandler và đồng thời kết nối SSE (Server-Sent Events) giữa Client và Rest Service cũng được thiết lập.
+		+ Chuyển tiếp HTTP Request tới Handler: đối tượng DispatcherHandler sẽ phân tích thông tin Request đó và chuyển tiếp Request đó đến Handler Method tương ứng dựa vào các RequestMapping annotations hay có thể nói cách khác là gọi Handler Method tương ứng với đường dẫn của Request để xử lý HTTP Request này.
+		+ Xử lý HTTP Request: Handler Method nhận và xử lý HTTP Request và trả ra một đối tượng Observable (hay còn gọi là Publisher trong định nghĩa của Spring) bất kỳ.
+		+ Phản hồi về Client: Sau khi nhận đối tượng Observable trả về từ Handler, Spring WebFlux tiến hành đăng ký lắng nghe từ Observable đó. Và mỗi khi Observable đó phát ra dữ liệu, Spring WebFlux sẽ chuyển đổi dữ liệu đó sang định dạng JSON và phản hồi về Client thông qua kết nối SSE đã thiết lập cho đến khi Observable đó phát hết dữ liệu có trong luồng.
+		+ Client nhận phản hồi: Client nhận được từng dữ liệu một ở định dạng JSON được phản hồi về từ Rest Service. Và thực hiện thao tác gì đó trên dữ liệu đã nhận được.
+	
 8.3. Các thành phần cốt lõi của Spring Webflux ?
 8.3.1. Observables ?
 	=> Các Observable ngoài Webflux có dùng được hay không ? Vì sao nó dùng được ?
