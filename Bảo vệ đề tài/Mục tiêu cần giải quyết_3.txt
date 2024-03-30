@@ -66,33 +66,7 @@ Những khái niệm cót lõi của Reactive Programming:
 	+ Tính co giãn: Đối với các mô hình lập trình trước đây, việc quyết định phân bổ tài nguyên phần cứng cho một hệ thống nào đó phụ thuộc vào các yếu tố bên ngoài. Và như thế, thời gian phản hồi hay hiệu suất của hệ thống được quyết định bởi các yếu tố bên ngoài.
 
 - Để có cái nhìn tốt hơn, ta hãy so sánh với các mô hình lập trình trước đây:
-	+ Xử lý sự kiện, tác vụ đồng bộ:
-		. Reactive Programming: Xử lý các tác vụ bất đồng bộ hiệu quả và kiến trúc mặc định của Reactive Programming là dựa trên việc xử lý sự kiện.
-		. Procedural Programming: Gặp rất nhiều vấn đề và khó khăn trong việc quản lý các tác vụ bất đồng bộ.
-		. Functional Programming: Cần có các thư viện bổ sung và xử lý kém hiệu quả hơn vì kiến trúc của nó không giống với kiến trúc dựa trên việc xử lý sự kiện như Reactive Programming.
-	
-	+ Mã nguồn dễ hiểu và rõ ràng:
-		. Reactive Programming: Tập trung vào việc phản ứng với những sự thay đổi thay vì tập trung vào việc làm rõ làm thế nào mà điều này có thể thực hiện được. Vì vậy, nên mã nguồn lập trình theo mô hình Reactive Programming tương đối dễ hiểu và khá rõ ràng.
-		. Procedural Programming: Thực hiện từng bước step-by-step khiến mã nguồn trở nên phức tạp hơn và khó hiểu hơn vài dài dòng hơn, khó khăn hơn khi làm việc với nó.
-		. Functional Programming: Viết mã nguồn chủ yếu bằng việc khai báo và sử dụng hàm nên tương đối dễ đọc, dễ hiểu và cũng khá rõ ràng.
-
-	+ Khả năng co giãn:
-		. Reactive Programming: Hỗ trợ sẵn việc quản lý các thông điệp, các sự kiện bất đồng bộ như một phần cốt lõi giúp cũng như hỗ trợ các cơ chế xử lý quá tải giúp mang đến khả năng co giãn tốt cho hệ thống.
-		. Procedural Programming: Gặp rất nhiều thử thách trong việc quản lý bất đồng bộ nên không mang đến khả năng co giãn hiệu quả cho hệ thống.
-		. Functional Programming: Gặp nhiều vấn đề trong việc quản lý các tác vụ bất đồng bộ cũng như các hoạt động bất đồng bộ. Nên dẫn đến khả năng co giãn của hệ thống không được tốt.
-
-	+ Khả năng phản hồi:
-		. Reactive Programming: Tập trung vào việc phản ứng với những sự thay đổi thời gian thực một cách bất đồng bộ, non-blocking nên mang đến thời gian phản hồi nhanh và nhất quán.
-		. Procedural Programming: Xử lý các tác vụ blocking từng bước một nên dẫn đến thời gian phản hồi của hệ thống tùy thuộc vào kích thước dữ liệu xử lý.
-		. Functional Programming: Xử lý các tác vụ  thông qua các hàm và mặc định thì vẫn theo hướng blocking nên dẫn đến thời gian phản hồi của hệ thống tùy thuộc vào kích thước dữ liệu xử lý.
-
-	+ Sự phức tạp trong việc quản lý dữ liệu
-		. Reactive Programming: Xử lý một chuỗi các tác vụ bất đồng bộ nên việc quản lý dữ liệu trở nên phức tạp hơn.
-		. Procedural Programming, Functional Programming: Quản lý các dữ liệu thông qua các biến nên đơn giản hơn rất nhiều.
-
-	+ Xử lý lỗi:
-		. Reactive Progtramming: Xử lý lỗi thông qua cơ chế truyền thông điệp, nên việc xử lý lỗi sẽ hiệu quả hơn và giúp đảm bảo tính kiên cố của hệ thống.
-		. Procedural Programming, Functional Programming: Xử lý lỗi thủ công và phải dự đoán khả năng xảy ra lỗi ở mã nguồn. Dẫn đến khả năng sập khi hệ thống gặp sự cố hoặc lỗi.
+	+ 
 
 
 
@@ -107,6 +81,7 @@ Những khái niệm cót lõi của Reactive Programming:
 
 7.2. Giới thiệu về RxJava ?
 - RxJava là một bản triển khai (implementation) của dự án ReactiveX cho ngôn ngữ cũng như môi trường thực thi Java.
+- RxJava được triển khai dựa trên bộ API Rective Streams được cung cấp bởi Java.
 
 7.2.1. Các thành phần cốt lõi trong RxJava ?
 7.2.1.1. Observables ?
@@ -127,7 +102,6 @@ Những khái niệm cót lõi của Reactive Programming:
 - Khái niệm: Trong RxJava, các Observers sẽ là các đối tượng lắng nghe và sau đó xử lý, phản ứng với sự thay đổi của Observables hay tín hiệu được phát ra từ chúng.
 - Khởi tạo: Các Observers có thể được khỏi tạo thông qua các interface như Consumer, hay Observer dành cho một kiểu Observable cụ thể. Ví dụ: Observer cho Observable, SingleObserver cho Single, MaybeObserver cho Maybe và FlowableObserver cho Flowable, ...
 - Đăng ký lắng nghe: Gọi phương thức subscribe của các Observables và truyền Observer làm tham số cho phương thức đó.
-
 
 7.2.1.3. Operators ?
 - Khái niệm: Là các phương thức thuộc một Observable, cho phép làm biến đổi một Observable hoặc làm biến đổi dãy dữ liệu của Observable.

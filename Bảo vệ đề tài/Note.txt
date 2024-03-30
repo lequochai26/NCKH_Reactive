@@ -68,3 +68,16 @@ Examples of items emitted by a hot Observable might include mouse & keyboard eve
 
 ---------------------------------------------
 
+What are the challenges that older programming paradigms faced and Reactive Programming solved ?
+
+- Handling Asynchronous Operations: Older paradigms, such as imperative and object-oriented programming, struggled with managing asynchronous operations effectively. Reactive programming provides a streamlined way to handle asynchronous data streams, making it easier to work with event-driven architectures and real-time data processing.
+
+- Concurrency and Parallelism: Traditional paradigms often faced challenges with concurrency and parallelism, especially when dealing with mutable state. Reactive programming promotes immutable data and provides constructs for handling concurrency, allowing developers to write more concurrent and scalable applications without the risk of race conditions or deadlocks.
+
+- Backpressure Management: Reactive programming introduces the concept of backpressure, allowing consumers to control the rate at which they receive data from producers. This helps prevent overwhelm in scenarios where the producer is generating data faster than the consumer can process, leading to more robust and resilient systems.
+
+- Complex Event Handling: Reactive programming simplifies event handling by providing declarative constructs for reacting to events in real-time. This reduces the complexity of event-driven systems, making it easier to develop and maintain reactive applications.
+
+- Responsive User Interfaces: With the rise of interactive web applications and responsive user interfaces, older paradigms struggled to keep up with the demands of real-time data updates. Reactive programming enables developers to build highly responsive UIs by efficiently managing data streams and updating the UI in real-time.
+
+Overall, reactive programming addresses many of the challenges faced by older programming paradigms in the context of modern, event-driven applications, providing solutions for asynchronous operations, concurrency, backpressure management, event handling, and responsive user interfaces.
