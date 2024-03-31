@@ -184,9 +184,6 @@ Những khái niệm cót lõi của Reactive Programming:
 	+ onBackpressureBuffer: Tạo ra một danh sách hàng đợi chứa các dữ liệu quá tải (hay còn gọi là buffer) với kích thước được chỉ định và khi hàng đợi này đã đầy, một hành động được chỉ định sẽ được thực thi, các hành động đó có thể là: hủy bỏ dữ liệu đầu tiên hay cuối cùng trong hàng chờ và thêm dữ liệu hiện tại vào hàng chờ, nhã ra ngoại lệ BufferOverflowException.
 		=> Là một phiên bản nâng cao cấp hơn của buffer từ việc kết hợp buffer, sample và throttleFirst. Cho phép kiểm soát hành động của các Observables khi buffer bị lắp đầy.
 
-7.3. Điểm mạnh của RxJava ?
-- 
-
 
 
 8. Spring Web Flux ?
@@ -272,8 +269,40 @@ Những khái niệm cót lõi của Reactive Programming:
 8.5.3. Operators ?
 8.5.4. Schedulers ?
 8.5.5. Backpressure Handling ?
--- 8.1. Spring MVC's Architecture vs Spring Web Flux's Architecture ?
+
 9. RxJava vs Web Flux ?
+9.1. Điểm mạnh và yếu của RxJava và Spring Webflux khi so sánh với nhau ?
+	- RxJava:
+		+ Điểm mạnh:
+			. Tích hợp tốt, sử dụng được cho hầu hết mọi dự án Java.
+			. Có thể được sử dụng để xây dựng hầu hết các loại ứng dụng.
+			. Hỗ trợ nhiều loại Observable với tên rõ ràng và mục đích cụ thể.
+		+ Điểm yếu:
+			. Phức tạp khi xây dựng Reactive REST Service với những framework không cung cấp cơ chế xử lý Reactive tốt.
+			. Phải blocking khi làm việc với Reactive trong một framework không hỗ trợ tốt cho Reactive Programming.
+			. Khả năng co giãn còn phụ thuộc vào framework sử dụng.
+
+	- Spring Webflux:
+		+ Điểm mạnh:
+			. Hỗ trợ hầu hết mọi thư viện Reactive Programming tuân theo chuẩn Reactive Streams được cung cấp bởi Java.
+			. Thích hợp xây dựng Reactive REST Service. Hỗ trợ cơ chế xử lý Reactive tốt cho REST Service kết hợp sử dụng kết nối SSE để tạo nội dung phản hồi và gửi về Client mỗi khi có dữ liệu sẵn sàng.
+			. Khả năng co giãn tốt.
+		+ Điểm yếu:
+			. Hoạt động chủ yếu cho hệ sinh thái Spring.
+			. Chỉ có thể sử dụng để xây dựng ứng dụng web hoặc REST service.
+			. Hỗ trợ chỉ 2 loại Observable với tên không thân thiện lắm, đôi lúc dẫn đến khó hiểu cho người mới bắt đầu với Reactive Programming và Spring Webflux.
+
+9.2. Sự phù hợp của RxJava và Spring Webflux
+	- RxJava:
+		+ Các hệ thống quy mô nhỏ - vừa.
+		+ Các framework hỗ trợ Reactive Programming tốt (Ví dụ: Spring Webflux).
+		+ Các hệ thống được thiết kế theo hướng xử lý sự kiện.
+	- Spring Webflux:
+		+ Các hệ thống web theo hướng Reactive.
+		+ Các hệ thống với quy mô từ nhỏ đến lớn.
+		+ Hệ sinh thái Spring.
+		+ Hệ thống xử lý dữ liệu thời gian thực.
+
 10. Demo ?
 10.1. Without Reactive
 10.2. With RxJava
