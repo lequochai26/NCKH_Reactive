@@ -230,3 +230,9 @@ Key characteristics of non-blocking I/O include:
 In the context of web servers or network programming, non-blocking I/O is particularly useful for handling large numbers of concurrent connections efficiently. It allows the server to handle incoming requests and responses without the need for a dedicated thread per connection, leading to better resource utilization and improved responsiveness under high load.
 
 Frameworks and libraries that support non-blocking I/O, such as Spring WebFlux or Node.js, are well-suited for building highly scalable and responsive applications, especially in scenarios with high concurrency and I/O-bound workloads. They leverage non-blocking I/O to achieve better performance and scalability compared to traditional blocking I/O models.
+
+-------------------------------------
+
+Is There any Hot Observable in Spring Webflux ?
+
+No, There's no Hot Observable in Spring Webflux.

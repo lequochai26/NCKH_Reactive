@@ -148,12 +148,17 @@ Những khái niệm cót lõi của Reactive Programming:
 - Khái niệm: Trong RxJava, các Observers sẽ là các đối tượng lắng nghe và sau đó xử lý, phản ứng với sự thay đổi của Observables hay tín hiệu được phát ra từ chúng.
 - Khởi tạo: Các Observers có thể được khỏi tạo thông qua các interface như Consumer, hay Observer dành cho một kiểu Observable cụ thể. Ví dụ: Observer cho Observable, SingleObserver cho Single, MaybeObserver cho Maybe và FlowableObserver cho Flowable, ...
 - Đăng ký lắng nghe: Gọi phương thức subscribe của các Observables và truyền Observer làm tham số cho phương thức đó.
+- Nhận và xử lý dữ liệu được phát ra từ Observables: Các Observers sẽ nhận và xử lý các dữ liệu được phát ra từ Observables thông qua việc triển khai phương thức trừu tượng onNext() đối với Observables có 0 hoặc nhiều dữ liệu và onSuccess() đối với Observables có 0 hoặc 1 dữ liệu.
+- Nhận thông điệp lỗi: Khi có lỗi xảy ra trong suốt quá trình hoạt động của Observables, Lỗi đó sẽ được gửi đến Observers, Observers sẽ nhận và xử lý lỗi đó thông qua việc triển khai phương thức trừu tượng onError().
+- Nhận thông báo về quá trình phát dữ liệu hoàn tất: Khi làm viếc với các Observables có 0 hoặc nhiều dữ liệu, khi chúng đã phát hết dữ liệu, chúng sẽ thông báo cho các Observers đang lắng nghe chúng biết thông qua phương thức trừu tượng onSuccess().
 
 7.2.1.3. Operators ?
 - Khái niệm: Là các phương thức thuộc một Observable, cho phép làm biến đổi một Observable hoặc làm biến đổi dãy dữ liệu của Observable.
 - Một số operators thường dùng như là: filter, map, groupBy, ...
 	+ filter: Lọc dãy dữ liệu của Observable dựa trên điều kiện được xác định bởi một đối tượng implement interface Predicate. Từ đó tạo ra một Observable mới chứa dãy dữ liệu đã lọc đó và trả ra Observable mới tạo đó.
+		=> (Tạo ra một Observable mới cùng loại, đóng vai trò là một Observer đăng ký lắng nghe từ Observable gốc. Và khi nhận được dữ liệu phát ra từ Observable gốc, Observable này sẽ áp dụng hàm filter dựa trên tiêu chí được cung cấp (Một đối tượng implement interface Predicate) vào dữ liệu được phát ra từ Observable gốc và nếu thỏa điều kiện sẽ phát ra dữ liệu cho các Observer khác đang lắng nghe Observable này)
 	+ map: Làm biến đổi dãy dữ liệu của Observable bằng cách áp dụng một hàm biến đổi (được người dùng định nghĩa bằng đối tượng implement interface Function) lên từng dữ liệu trên dãy dữ liệu của Observable và sau đó tạo ra một đối tượng Observable mới chứa dãy dữ liệu sau khi biến đổi đó và trả ra Observable mới tạo đó.
+		=> (Tạo ra một Observable mới cùng loại, đóng vai trò là một Observer đăng ký lắng nghe từ Observable gốc. Và khi nhận được dữ liệu phát ra từ Observable gốc, Observable này sẽ áp dụng hàm map (Là đối tượng implement interface Function) vào dữ liệu được phát ra từ Observable gốc và lấy kết quả đó phát ra cho các Observer khác đang lắng nghe Observable này)
 	+ groupBy: Phân loại hay phân nhóm dữ liệu của Observable dựa trên tiêu chí phân nhóm được người dùng định nghĩa thông qua một đối tượng implement interface Function.
 
 7.2.1.3. Schedulers ?
