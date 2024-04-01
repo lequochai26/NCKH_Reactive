@@ -219,7 +219,15 @@ Những khái niệm cót lõi của Reactive Programming:
 	8.3.3. Webflux được xây dựng trên nền tảng nào ?
 	- Webflux được xây dựng trên nền tảng của Project Reactor, một thư viện lập trình Reactive Programming được triển khai theo chuẩn Reactive Streams được cung cấp bởi Java.
 
-	8.3.4. Kiến trúc Spring Webflux ?
+	8.3.4. Các thành phần cốt lõi của Spring Webflux ?
+		8.3.4.1. Observables ?
+			=> Các Observable ngoài Webflux có dùng được hay không ? Vì sao nó dùng được ?
+		8.3.4.2. Observers ?
+		8.3.4.3. Operators ?
+		8.3.4.4. Schedulers ?
+		8.3.4.5. Backpressure Handling ?
+
+	8.3.5. Kiến trúc Spring Webflux ?
 	- Trong ngữ cảnh Rest Service:
 		+ DispatcherHandler: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó đến Handler Method tương ứng để xử lý.
 		+ Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (hay còn gọi là Handler Methods). Những đối tượng này thuộc các lớp được gán annotation: @RestController và @RequestMapping.
@@ -228,7 +236,7 @@ Những khái niệm cót lõi của Reactive Programming:
 		+ Flux, Mono: Những luồng dữ liệu bất đồng bộ được triển khai từ định nghĩa của Reactive Programming hỗ trợ mô hình lập trình Reactive Programming cho việc xây dựng Rest Service.
 		+ ServerResponse: Là những đối tượng đại diện cho HTTP Response. Cho phép tạo nội dung phản hồi từ Rest Service về Client. (Thông thường, trong việc phát triển REST Service, chúng ta sẽ không trực tiếp tương tác với các đối tượng này, mà các đối tượng này sẽ được Spring xử lý tự động)
 
-	8.3.5. Cơ chế hoạt động của Spring Webflux ?
+	8.3.6. Cơ chế hoạt động của Spring Webflux ?
 	- Trong ngữ cảnh Rest Service:
 		+ Nhận HTTP Request: Khi client gửi HTTP Request đến Rest Service. Request đó sẽ được tiếp nhận bởi WebFlux DispatcherHandler và đồng thời kết nối SSE (Server-Sent Events) giữa Client và Rest Service cũng được thiết lập.
 		+ Chuyển tiếp HTTP Request tới Handler: đối tượng DispatcherHandler sẽ phân tích thông tin Request đó và chuyển tiếp Request đó đến Handler Method tương ứng dựa vào các RequestMapping annotations hay có thể nói cách khác là gọi Handler Method tương ứng với đường dẫn của Request để xử lý HTTP Request này.
@@ -261,14 +269,6 @@ Những khái niệm cót lõi của Reactive Programming:
 	- Sự phù hợp:
 		+ Spring MVC: Thích hợp xây dựng những ứng dụng web cổ điển theo cơ chế SSR (Server-Side Rendering). Trong đó có: Giao diện HTML, xử lý form, quản lý phiên làm việc (session) ...
 		+ Spring Webflux: Thích hợp trong việc xây dựng những ứng dụng Reactive yêu cầu khả năng co giãn tốt, phản hồi nhanh và có khả năng xử lý dữ liệu thời gian thực.
-
-8.5. Các thành phần cốt lõi của Spring Webflux ?
-8.5.1. Observables ?
-	=> Các Observable ngoài Webflux có dùng được hay không ? Vì sao nó dùng được ?
-8.5.2. Observers ?
-8.5.3. Operators ?
-8.5.4. Schedulers ?
-8.5.5. Backpressure Handling ?
 
 9. RxJava vs Web Flux ?
 9.1. Điểm mạnh và yếu của RxJava và Spring Webflux khi so sánh với nhau ?
