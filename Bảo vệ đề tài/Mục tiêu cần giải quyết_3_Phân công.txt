@@ -1,0 +1,331 @@
+1. What is Reactive Programming ?
+Reactive Programming là một mô hình lập trình tập trung vào việc phản ứng hay xử lý đối với những sự thay đổi hay những sự kiện được phát ra bởi những luồng dữ liệu bất đồng bộ (asynchronous) một cách non-blocking.
+
+Những khái niệm cót lõi của Reactive Programming:
+- Observables:
+	+ Khái niệm: Là những luồng dữ liệu bất đồng bộ, thứ mà sẽ phát ra tín hiệu, sự kiện khi: Có dữ liệu mới đã sẵn sàng (next), có lỗi xảy ra (error), đã hoàn thành và không còn dữ liệu mới nào đang chờ (complete). Các Observables được coi là các Publishers trong mẫu thiết kế Publisher - Consumer.
+	+ Khởi tạo: Observables có thể được khởi tạo từ các nguồn dữ liệu như: tập dữ liệu, Promises, Timers (bộ đếm thời gian), User inputs (dữ liệu được nhập bởi người dùng), ... 
+	+ Các loại Observables:
+		. Cold Observables: Là những Observables phục vụ cho các nguồn dữ liệu tĩnh không cập nhật theo thời gian thực. Ví dụ: Kết quả truy vấn CSDL, nội dung file, ...
+		. Hot Observable: Là những Observables phục vụ cho các nguồn dữ liệu động cập nhật theo thời gian thực. Ví dụ: Sự kiện từ chuột, bàn phím, đồng hồ, ...
+	+ Cơ chế hoạt động:
+		. Nhận dữ liệu: Các Observables nhận dữ liệu từ các nguồn dữ liệu, các nguồn dữ liệu đó có thể là một dữ liệu đơn hoặc một tập hợp dữ liệu bất kỳ.
+		. Phát dữ liệu:
+			.. Cold Observable: Khi có một Observer bất kỳ đã đăng ký với Observable này yêu cầu Observable này cung cấp dữ liệu, Observable này sẽ phát đi dữ liệu tiếp theo trong dãy cho Observer đã yêu cầu. Và cứ thế từ dữ liệu đầu tiên đến dữ liệu cuối cùng trong dãy và kết thúc.
+			.. Hot Observable: Ngay từ khi được khởi tạo, các Observables này luôn trong trạng thái chờ nhận dữ liệu và ngay khi có dữ liệu bất kỳ sẵn sàng, nó sẽ lập tức phát dữ liệu đó đi kể cả khi không có Observer nào đang đăng ký lắng nghe.
+
+- Observers: Để có thể nhận và xử lý những tín hiệu dữ liệu do Observable phát ra, cần có những đối tượng Observer để lắng nghe những tín hiệu này và những đối tượng Observer này phải đăng ký lắng nghe từ Observable. Và ngược lại, khi không cần lắng nghe tín hiệu từ Observable nữa, Observer này cũng có thể hủy đăng ký lắng nghe tín hiệu từ một Observable bất kỳ.
+	+ Cơ chế hoạt động:
+		. Cold Observable's Observer: Ngay từ khi đăng ký lắng nghe từ một Observable, các Observers này yêu cầu Observable mà nó đăng ký phát ra dữ liệu. Và khi Observable đó phát ra dữ liệu, các Observers này nhận dữ liệu đã phát ra đó và xử lý.
+		. Hot Observable's Observer: Khi Observable phát ra dữ liệu, các Observers này sẽ nhận dữ liệu và xử lý.
+
+- Operators: Là những phương thức được sử dụng để làm biến đổi một Observable.
+	+ Cơ chế hoạt động: Khi một Observable áp dụng một operator sẽ tạo ra một Observable khác nhận tất cả dữ liệu được phát ra bởi Observable gốc và áp dụng một hàm biến đổi lên mỗi dữ liệu nhận được.
+
+- Backpressure Handling (Xử lý quá tải): Khi làm việc với các Hot Observables, sẽ có lúc rơi vào tình trạng khi mà tốc độ phát ra dữ liệu của Observables nhanh hơn tốc độ xử lý dữ liệu của Observers. Khi đó, các dữ liệu mà Observers chưa kịp xử lý gọi là dữ liệu quá tải. Và việc xử lý các dữ liệu quá tải đó, gọi là Backpressure Handling.
+
+- Schedulers: Là các bộ quản lý luồng giúp xác định luồng và thời điểm một tác vụ Reactive nào đó sẽ được thực thi. Trong đó, các tác vụ có thể là: Observer đăng ký lắng nghe Observable, Observable phát dữ liệu, Biến đổi (transformation) một luồng dữ liệu, ...
+
+2. What is Reactive System ?
+	+ Là một hệ thống đáp ứng 4 tính chất: Responsive, Resilient, Elastic, Message Driven.
+	+ Responsive (Tính phản hồi): Hệ thống có thời gian phản hồi nhanh và nhất quán. Ví dụ: Khi truy cập vào ứng dụng / trang web Facebook thì hệ thống lập tức phản hồi cho chúng ta thấy giao diện, mặc dù có thể là những hình ảnh, bài viết chưa được tải lên hết nhưng hệ thống gần như phản hồi ngay lập tức cho ta biết hệ thống vẫn đang hoạt động.
+		=> Vì hệ thống Reactive chủ yếu dựa trên việc xử lý luồng dữ liệu một cách bất đồng bộ, nên cung cấp cho hệ thống khả năng phản hồi gần như là ngay lập tức mà không có sự chậm trễ.
+
+	+ Resilient (Tính kiên cố): Hệ thống vẫn ở trong trạng thái ổn định và phản hồi nhanh chóng ngay cả khi gặp sự cố hay lỗi. Ví dụ: Trong một hệ thống lớn như Facebook, việc xảy ra lỗi dưới phần xử lý của hệ thống là chuyện không thể tránh khỏi, vì kích thước hệ thống quá lớn, quá rộng, sức con người không thể nào quản lý hết được, nên việc xảy ra lỗi hoặc gặp sự cố là hoàn toàn có thể xảy ra. Nhưng khi điều đó xảy ra, hệ thống chỉ đơn giản là xuất ra một thông báo lỗi cho người dùng biết là đã gặp sự cố ở phía xử lý và hệ thống vẫn tiếp tục hoạt động bình thường mà không bị ảnh hưởng bởi sự cố kia.
+		=> Vì hệ thống Reactive vận hành dựa trên việc xử lý luồng dữ liệu bất đồng bộ và làm việc với những luồng dữ liệu này, khi có lỗi hoặc sự có gì đó xảy ra, lỗi đó sẽ được truyền đi dưới dạng là một thông điệp đến các bộ xử lý đang lắng nghe luồng sự kiện này và vì thế đảm bảo hệ thống luôn trong trạng thái hoạt động và ổn định mà không bị ảnh hưởng bởi lỗi hay sự cố đã xảy ra kia.
+
+	+ Elastic (Tính co giãn): Hệ thống vẫn giữ thời gian phản hồi nhất quán và cố định ngay cả khi chịu tải lớn và không làm ảnh hưởng đến tính ổn định của hệ thống và thời gian phản hồi của hệ thống. Ví dụ: Các trang thương mại điện tử như Amazon vào các dịp khuyến mại lớn thì lượng truy cập rất cao từ khắp các nơi trên thế giới, nhiều đến mức chúng ta cũng không tưởng tượng được con số bao nhiêu. Thế nhưng, ngay cả khi nhiều lượt truy cập được thực hiện như vậy thì hệ thống vẫn phản hồi trong khoảng thời gian rất cố định, nhất quán và hầu như không bị ảnh hưởng gì bởi lượng truy cập khủng đó.
+		=> Vì trong các thư viện lập trình Reactive đều có hỗ trợ Backpressure Handling (xử lý quá tải) như đã đề cập ở trên, giúp tài nguyên hệ thống được sử dụng hợp lý và tiết kiệm và từ đó tối ưu hiệu suất xử lý của hệ thống và mang đến thời gian phản hồi nhất quán và không bị ảnh hưởng khi chịu tải lớn trong hệ thống.
+
+	+ Message Driven (Khả năng truyền thông điệp): Khả năng truyền thông điệp giữa các thành phần trong một hệ thống giúp định hình rõ ranh giới giữa các thành phần trong hệ thống, giúp các thành phần trong hệ thống ít phụ thuộc nhau hơn.
+		. Nó mang đến TÍNH CO GIÃN cho hệ thống, vì thông qua việc các thành phần trong hệ thống giao tiếp với nhau thông qua các thông điệp, nó giúp cho hệ thống có thể kiểm soát lượng tải thông qua việc quản lý hàng chờ (queue) thông điệp.
+		. Nó mang đến TÍNH KIÊN CỐ cho hệ thống, vì thông qua việc các thành phần trong hệ thống giao tiếp với nhau thông qua các thông điệp, nó giúp cho các thành phần trong hệ thống biệt lặp với nhau và ít phụ thuộc nhau nhất có thể. Và khi có sự cố hay lỗi xảy ra ở một thành phần bất kỳ, lỗi đó sẽ được gửi đi cho một thành phần khác xử lý dưới dạng là một thông điệp. Giúp cho hệ thống không bị sập mỗi khi xảy ra lỗi hay sự cố ở một thành phần bất kỳ trong hệ thống.
+		. Nó mang đến TÍNH PHẢN HỒI cho hệ thống, vì thông qua việc các thành phần trong hệ thống giao tiếp với nhau thông qua các thông điệp bất đồng bộ, và xử lý chủ yếu dựa trên thông điệp nên thời gian phản hồi lúc nào cũng nhất quán và ổn định, hầu như không có sự chậm trễ.
+		. Nó mang đến khả năng quản lý luồng xử lý tốt hơn cho hệ thống thông qua việc xử lý dựa trên thông điệp.
+
+
+
+#3. Pros of Reactive Programming ?
+- Tối ưu thời gian phản hồi: Vì Reactive Programming chủ yếu dựa trên việc xử lý luồng dữ liệu một cách bất đồng bộ, nên nó cung cấp cho hệ thống khả năng phản hồi gần như là ngay lập tức mà không có sự chậm trễ.
+- Đẩy mạnh khả năng phục hồi sau sự cố: Vì Reactive Programming vận hành dựa trên việc xử lý luồng dữ liệu bất đồng bộ và làm việc với những luồng dữ liệu này, khi có lỗi hoặc sự có gì đó xảy ra, lỗi đó sẽ được truyền đi dưới dạng là một thông điệp đến các bộ xử lý đang lắng nghe luồng sự kiện này (observers) và vì thế đảm bảo hệ thống luôn trong trạng thái hoạt động và ổn định mà không bị ảnh hưởng bởi lỗi hay sự cố đã xảy ra kia.
+- Tối ưu hóa tài nguyên phần cứng hệ thống: Vì trong các thư viện lập trình Reactive đều có hỗ trợ Backpressure Handling (xử lý quá tải) như đã đề cập ở trên, giúp tài nguyên hệ thống được sử dụng hợp lý và tiết kiệm và từ đó tối ưu hiệu suất xử lý của hệ thống và mang đến thời gian phản hồi nhất quán và không bị ảnh hưởng khi chịu tải lớn trong hệ thống.
+
+
+
+#4. Reactive in real-life scenarios ?
+- Khả năng phản hồi: Khi truy cập vào ứng dụng / trang web Facebook thì hệ thống lập tức phản hồi cho chúng ta thấy giao diện, mặc dù có thể là những hình ảnh, bài viết chưa được tải lên hết nhưng hệ thống gần như phản hồi ngay lập tức cho ta biết hệ thống vẫn đang hoạt động.
+- Khả năng phục hồi sau sự cố: Trong một hệ thống lớn như Facebook, việc xảy ra lỗi dưới phần xử lý của hệ thống là chuyện không thể tránh khỏi, vì kích thước hệ thống quá lớn, quá rộng, sức con người không thể nào quản lý hết được, nên việc xảy ra lỗi hoặc gặp sự cố là hoàn toàn có thể xảy ra. Nhưng khi điều đó xảy ra, hệ thống chỉ đơn giản là xuất ra một thông báo lỗi cho người dùng biết là đã gặp sự cố ở phía xử lý và hệ thống vẫn tiếp tục hoạt động bình thường mà không bị ảnh hưởng bởi sự cố kia.
+- Khả năng co giãn: Các trang thương mại điện tử như Amazon vào các dịp khuyến mại lớn thì lượng truy cập rất cao từ khắp các nơi trên thế giới, nhiều đến mức chúng ta cũng không tưởng tượng được con số bao nhiêu. Thế nhưng, ngay cả khi nhiều lượt truy cập được thực hiện như vậy thì hệ thống vẫn phản hồi trong khoảng thời gian rất cố định, nhất quán và hầu như không bị ảnh hưởng gì bởi lượng truy cập khủng đó.
+
+
+
+5. What if without Reactive ?
+- Nếu không có mô hình lập trình Reactive, hệ thống của chúng ta sẽ gặp các vấn đề về:
+	+ Thời gian phản hồi: Vì thông thường, theo các mô hình lập trình trước đây, đa phần mọi tác vụ đều được thực thi một các đồng bộ và blocking. Cụ thể là khi xử lý một các vụ nào đó có rất nhiều bước, nhưng phải xong bước 1 mới đến được bước 2 và cứ như thế đến bước cuối cùng mới phản hồi. Như vậy, thời gian phản hồi của hệ thống sẽ bị kéo dài.
+	+ Tính kiên cố: Theo các mô hình lập trình trước đây, việc xử lý lỗi chủ yếu thông qua việc dự đoán, nắm bắt và xử lý một cách thủ công. Nhưng, nếu như vậy, hệ thống không được xử lý lỗi khéo sẽ dẫn đến tình trạng hệ thống bị sập và ngừng hoạt động, không thể phản hồi được nữa.
+	+ Tính co giãn: Đối với các mô hình lập trình trước đây, việc quyết định phân bổ tài nguyên phần cứng cho một hệ thống nào đó phụ thuộc vào các yếu tố bên ngoài. Và như thế, thời gian phản hồi hay hiệu suất của hệ thống được quyết định bởi các yếu tố bên ngoài.
+
+- Để có cái nhìn tốt hơn, ta hãy so sánh với các mô hình lập trình trước đây:
+	+ Mã nguồn rõ ràng, dễ đọc, dễ hiểu:
+		. Imperative Programming: Vì là mô hình lập trình theo tuần tự step by step nên mã nguồn khá rõ ràng và dễ hiểu.
+		. Object-Oriented Programming: Vì là mô hình lập trình chủ yếu làm việc với các đối tượng và các trạng thái của đối tượng. Nên nếu làm việc trong một dự án lớn, có nhiều lớp và đối tượng mà không có chú thích hay tài liệu cụ thể, sẽ dẫn đến mã nguồn bị khó hiểu, khó bảo trì.
+		. Functional Programming: Vì là mô hình lập trình chủ yếu làm việc với các hàm, chủ yếu gọi các hàm để đạt được kết quả cuối cùng mong muốn. Tuy nhiên, đối với những người không rõ hàm đó dùng để làm gì, mã nguồn sẽ trở nên khó hiểu.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý, phản ứng với các luồng dữ liệu nên mã nguồn sẽ phân tán rời rạc và trở nên khó hiểu, khó bảo trì hơn rất nhiều.
+	+ Khả năng tái sử dụng mã nguồn:
+		. Imperative Programming: Vì là mô hình lập trình tuần tự theo dãy tác vụ nên việc tái sử dụng mã nguồn hầu như là không thể.
+		. Object-Oriented Programming: Vì là mô hình lập trình chủ yếu làm việc với các đối tượng và lớp nên việc tái sử dụng mã nguồn có thể dễ dàng được thực hiện thông qua việc gọi lại phương thức hay sử dụng mối quan hệ kế thừa, ...
+		. Functional Programming: Vì là mô hình lập trình tập trung vào việc sử dụng hàm và viết hàm nên việc tái sử dụng lại mã nguồn có thể dễ dàng được thực hiện thông qua việc gọi hàm.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý sự kiện từ các luồng dữ liệu, nên mã nguồn bị phân tán và khó sử dụng lại.
+	+ Khả năng bảo toàn tính nguyên vẹn của dữ liệu:
+		. Imperative Programming: Vì là mô hình lập trình tuần tự theo dãy tác vụ và chủ yếu làm việc với các biến và dữ liệu của các biến này thay đổi liên tục suốt quá trình thực thi các tác vụ. Nên mô hình lập trình này không có khả năng bảo toàn tính nguyên vẹn của dữ liệu.
+		. Object-Oriented Programming: Vì là mô hình lập trình chủ yếu làm việc với các đối tượng và lớp. Nên việc thay đổi trạng thái (fields) của các đối tượng diễn ra rất thường xuyên và cũng không mang đến khả năng bảo toàn tính nguyên vẹn của dữ liệu.
+		. Functional Programming: Vì là mô hình lập trình chủ yếu làm việc với các hàm pure (pure functions). Mà các hàm pure đáp ứng 2 tính chất: Referential Transparency (Kết quả đầu ra của hàm phụ thuộc hoàn toàn vào dữ liệu đầu vào, và chắc chắn sẽ cho ra kết quả đầu ra giống nhau nếu dữ liệu đầu vào giống nhau), No Side Effects (Không làm thay đổi bất cứ thứ gì ngoài hàm này). Vì vậy, Functional Programming mang đến khả năng bảo toàn tính toàn vẹn của dữ liệu.
+		. Reactive Programming: Vì là mô hình lập trình chủ yếu dựa trên việc phản ứng với sự kiện từ các luồng dữ liệu. Vì thế, trạng thái (fields) của các đối tượng, sẽ thường xuyên bị thay đổi xuyên suốt quá trình xử lý sự kiện. Vì thế, mô hình lập trình này không mang đến khả năng bảo toàn tính toàn vẹn của dữ liệu.
+	+ Xử lý tác vụ bất đồng bộ:
+		. Imperative Programming: Vì là mô hình lập trình theo phong cách xử lý tuần một dãy các tác vụ theo thứ tự được lập trình. Nên việc xử lý bất đồng bộ là rất khó.
+		. Object-Oriented Programming: Vì là mô hình lập trình xử lý chủ yếu với các đối tượng và các lớp, mặc định thì mô hình lập trình này được thiết kế phù hợp cho xử lý đồng bộ hơn là bất đồng bộ. Việc thực thi các tác vụ bất đồng bộ ở mô hình lập trình này sẽ dẫn tới những khó khăn:
+			.. Quản lý trạng thái đối tượng: Vì là thực thi các tác vụ bất đồng bộ, nên việc trạng thái của đối tượng bị thay đổi theo một cách không mong muốn là rất có nguy cơ xảy ra.
+			.. Quản lý luồng: Vì theo mô hình lập trình này, khi thực thi một tác vụ bất đồng bộ nào đó, sẽ có một luồng sinh ra để thực thi tác vụ tương ứng đó. Điều này có nghĩa là trong một hệ thống sẽ có rất nhiều luồng chạy song song nhau. Vì vậy, việc không có cơ chế quản lý chúng khéo léo sẽ dẫn đến: Tiêu tốn tài nguyên hệ thống, kết quả thực thi không mong muốn.
+		. Functional Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các hàm, nên mặc định thì mô hình lập trình này vẫn thích hợp cho việc thực thi đồng bộ hơn là bất đồng bộ. Và việc thực thi bất đồng bộ một tác vụ có nghĩa là hệ thống sẽ sinh ra một luồng mới để thực thi, và cứ như vậy sẽ có rất nhiều luồng chạy song song để thực thi các tác vụ bất đồng bộ này. Vì vậy, việc không có cơ chế quản lý chúng khéo léo sẽ dẫn đến: Tiêu tốn tài nguyên hệ thống, kết quả thực thi không mong muốn.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý dữ liệu từ các nguồn dữ liệu bất đồng bộ một cách non-blocking. Nên mặc định, các thư viện hỗ trợ mô hình lập trình này đều cung cấp các bộ quản lý luồng giúp quản lý các tác vụ bất đồng bộ hiệu quả hơn giúp: Sử dụng tài nguyên hệ thống hiệu quả hơn và tiết kiệm hơn, đảm bảo kết quả thực thi như mong muốn mặc dù chạy trên các luồng song song.
+	+ Xử lý dữ liệu thời gian thực:
+		. Imperative Programming: Vì là mô hình lập trình tập trung vào việc thực thi một dãy các tác vụ tuần tự theo trình tự chúng được lập trình. Nên hầu như là không có cách nào để có thể xử lý dữ liệu thời gian thực.
+		. Object-Oriented Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các đối tượng và các lớp, mặc định thì mô hình lập trình này được thiết kế để xử lý các tác vụ đồng bộ. Nên việc xử lý dữ liệu thời gian thực như: Sự kiện từ bàn phím, chuột, ... Vẫn còn khó khăn vì vẫn còn gặp khó khăn trong việc quản lý bất đồng bộ.
+		. Functional Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các hàm, mặc định thì mô hình lập trình này được thiết kế để xử lý các tác vụ đồng bộ. Cũng vì mô hình lập trình này vẫn đang gặp khó khăn trong việc xử lý bất đồng bộ nên việc xử lý các dữ liệu thời gian thực như: Sự kiện từ bàn phím, chuột, ... Cũng gặp khó khăn.
+		. Reactive Programming: Vì là mô hình lập trình được thiết kế theo hướng xử lý sự kiện (event-based) và làm việc với các luồng dữ liệu bất đồng bộ nên việc xử lý các dữ liệu thời gian thực được thực hiện dễ dàng mà không gặp khó khăn nào.
+	+ Xử lý sự kiện:
+		. Imperative Programming: Vì là mô hình lập trình tập trung vào việc thực thi một dãy các tác vụ tuần tự theo trình tự chúng được lập trình. Cũng vì mô hình lập trình này được thiết kế chủ yếu cho xử lý các tác vụ đồng bộ nên việc áp dụng thiết kế xử lý sự kiện hầu như rất không hiệu quả. Vì blocking nên dẫn đến hệ thống bị trì trệ và kém hiệu quả.
+		. Object-Oriented Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các đối tượng và các lớp. Vì mặc định thì mô hình lập trình này được thiết kế để xử lý các tác vụ đồng bộ nên việc áp dụng thiết kế xử lý sự kiện vào mô hình lập trình này có thể khiến hệ thống bị trì trệ và kém hiệu quả vì blocking.
+		. Funtional Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các hàm. Vì mặc định thì mô hình lập trình này được thiết kế để xử lý các tác vụ đồng bộ, nên việc áp dụng thiết kế xử lý sự kiện vào mô hình lập trình này có thể khiến hệ thống bị trì trệ và kém hiệu quả vì blocking.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý các sự kiện, các dữ liệu được phát ra bởi các luồng dữ liệu bất đồng bộ. Kèm theo việc hỗ trợ quản lý bất đồng bộ tốt, nên mô hình này hoạt động tốt cho thiết kế xử lý sự kiện.
+	+ Giao diện người dùng phản hồi tốt: 
+		. Imperative Programming: Vì là mô hình lập trình tập trung vào việc thực thi một dãy các tác vụ tuần tự theo trình tự chúng được lập trình. Cũng vì mô hình lập trình này được thiết kế chủ yếu cho xử lý các tác vụ đồng bộ nên việc tạo ra giao diện người dùng phản hồi tốt gặp rất nhiều khó khăn vì blocking.
+		. Object-Oriented Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các đối tượng và các lớp. Vì mặc định thì mô hình lập trình này được thiết kế để xử lý các tác vụ đồng bộ nên việc tạo ra giao diện đồ họa có khả năng phản hồi tốt thì gặp rất nhiều khó khăn vì blocking.
+		. Funtional Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các hàm. Vì mặc định thì mô hình lập trình này được thiết kế để xử lý các tác vụ đồng bộ, nên việc tạo ra giao diện người dùng phan hồi tốt gặp rất nhiều khó khăn vì blocking.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý các sự kiện, các dữ liệu được phát ra bởi các luồng dữ liệu bất đồng bộ một cách non-blocking. Nên việc tạo ra các giao diện người dùng phản hồi tốt là cực kỳ dễ dàng.
+	+ Khả năng co giãn:
+		. Imperative Programming: Vì là mô hình lập trình tập trung vào việc thực thi một dãy các tác vụ tuần tự theo trình tự chúng được lập trình. Và chúng không có bất kỳ cơ chế nào để tối sử dụng tối ưu hóa tài nguyên phần cứng hệ thống, nên việc tối ưu hóa xử lý và mở rộng hệ thống là gần như không thể.
+		. Object-Oriented Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các đối tượng và các lớp. Và mặc định, mô hình lập trình này không có bất kỳ cơ chế nào giúp sử dụng tối ưu hóa tài nguyên hệ thống, nên việc tối ưu hóa xử lý và mở rộng hệ thống là gần như không thể.
+		. Funtional Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các hàm. Và cũng vì mặc định mô hình lập trình này không có bất kỳ cơ chế nào giúp sử dụng tối ưu hóa tài nguyên hệ thống, nên việc tối ưu hóa xử lý và mở rộng hệ thống là gần như không thể.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý các sự kiện, các dữ liệu được phát ra bởi các luồng dữ liệu bất đồng bộ một cách non-blocking. Và các thư viện hỗ trợ mô hình lập trình này hầu hết đều cung cấp các cơ chế để sử dụng tối ưu hóa tài nguyên phần cứng hệ thống hiệu quả và tiết kiệm (Ví dụ: RxJava có Schedulers, Project Reactor cũng có Schedulers). Nên việc tối ưu hóa xử lý và mở rộng hệ thống trở nên dễ dàng hơn.
+	+ Xử lý lỗi:
+		. Imperative Programming: Vì là mô hình lập trình tập trung vào việc thực thi một dãy các tác vụ tuần tự theo trình tự chúng được lập trình. Nên khi lỗi xảy ra ở tác vụ nào mà không được xử lý hiệu quả hoặc người lập trình không lường trước được có thể dẫn tới hệ thống bị sập.
+		. Object-Oriented Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các đối tượng và các lớp. Nên khi lỗi xảy ra ở tác vụ nào mà không được xử lý hiệu quả hoặc người lập trình không lường trước được có thể dẫn tới hệ thống bị sập.
+		. Funtional Programming: Vì là mô hình lập trình tập trung vào việc làm việc với các hàm. Nên khi lỗi xảy ra ở tác vụ nào mà không được xử lý hiệu quả hoặc người lập trình không lường trước được có thể dẫn tới hệ thống bị sập.
+		. Reactive Programming: Vì là mô hình lập trình tập trung vào việc xử lý các sự kiện, các dữ liệu được phát ra bởi các luồng dữ liệu bất đồng bộ. Vì là mô hình lập trình theo hướng xử lý sự kiện nên khi có lỗi xảy ra, lỗi đó sẽ được gói lại dưới dạng một thông điệp và truyền cho các bên khác xử lý thay vì khiến cho hệ thống sập vì lỗi đó.
+
+
+
+6. Why Reactive ?
+- Vì nhu cầu của người dùng ngày một cao lên theo sự tiến hóa của môi trường công nghệ. Nên các hệ thống, phần mềm phải phát triển theo để mang đến trải nghiệm người dùng tốt nhất có thể và phải đảm bảo chất lượng dịch vụ lúc nào cũng tốt nhất. Tuy nhiên, ở các mô hình lập trình cũ, hệ thống sẽ gặp rất nhiều các vấn đề về khả năng phản hồi, tính kiên cố, tính co giãn khiến cho chất lượng dịch vụ bị ảnh hưởng, tốn kém chi phí mở rộng tài nguyên phần cứng cũng như không đáp ứng được nhu cầu người dùng ở thị trường công nghệ ngày nay. Nên chúng ta phải áp dụng mô hình lập trình Reactive để mang đến một hệ thống có khả năng phản hồi tốt, một hệ thống có tính kiên cố cao và tính co giãn thật tốt để đáp ứng nhu cầu của thị trường hiện nay.
+
+
+
+7. RxJava ? [Hiếu, Tiến]
+7.1. Giới thiệu về Reactive X ? [Hiếu]
+- Reactive X là một dự án tập trung vào việc mang mô hình lập trình Reactive Programming đến với các ngôn ngữ lập trình, môi trường thực thi khác nhau. Trong đó có: Java, JavaScript, C#, Python, ...
+
+7.2. Giới thiệu về RxJava ? [Hiếu]
+- RxJava là một bản triển khai (implementation) của dự án ReactiveX cho ngôn ngữ cũng như môi trường thực thi Java.
+- RxJava được triển khai dựa trên bộ API Rective Streams được cung cấp bởi Java.
+
+7.2.1. Các thành phần cốt lõi trong RxJava ?
+7.2.1.1. Observables ? [Hiếu]
+- Khái niệm: Trong RxJava, các Observables là các bản triển khai (implementation) của các luồng dữ liệu bất đồng bộ (Asynchronous Data Stream) trong định nghĩa của Reactive Programming.
+	+ Một số loại Observables: Observable, Maybe, Single, Flowable, ...
+		. Observable: Đại diện cho một luồng dữ liệu trong đó có 0 - N dữ liệu. Là một loại Cold Observable.
+		. Maybe: Đại diện cho một luồng dữ liệu mà trong đó có 0 - 1 dữ liệu. Là một loại Cold Observable.
+		. Single: Đại diện cho một luồng dữ liệu mà trong đó chỉ và phải có 1 dữ liệu. Là một loại Cold Observable.
+		. Flowable: Đại diện cho một luồng dữ liệu, trong đó có có 0 - N dữ liệu tương tự như Observable. Nhưng, Flowable được thiết kế để xử lý quá tải (Backpressure-Handling) thông qua các chiến lược xử lý quá tải (Backpressure Handling Strategies) dành cho Flowable. Là một loại Observable mà vừa có thể là Cold Observable cũng vừa có thể là Hot Observable.
+			=> Nó sẽ là Cold Observable nếu được khởi tạo như thông thường giống Observable.
+			=> Nó sẽ là Hot Observable nếu được khỏi tạo bằng phương thức publish() hay share().
+		. PublishSubject: Đại diện cho một luồng dữ liệu tự phát, trong đó có 0 - N dữ liệu. Là một loại Hot Observable. Sử dụng operator onNext() để phát dữ liệu.
+- Khởi tạo: Các Observables được khỏi tạo thông qua các phương thức tĩnh như: from, just, ... từ các lớp Observables muốn khởi tạo. Ví dụ: Single.just(1) => Trả ra một Observable thuộc kiểu Single có dữ liệu duy nhất tồn tại trong nó là 1.
+- Đăng ký cho phép Observer lắng nghe: Gọi phương thức subscribe và truyền vào một đối tượng Observer tương ứng với Observable này làm tham số cho phương thức.
+- Áp dụng bộ quản lý luồng: Gọi phương thức observeOn và truyền vào một đối tượng Scheduler.
+
+7.2.1.2. Observers ? [Tiến]
+- Khái niệm: Trong RxJava, các Observers sẽ là các đối tượng lắng nghe và sau đó xử lý, phản ứng với sự thay đổi của Observables hay tín hiệu được phát ra từ chúng.
+- Khởi tạo: Các Observers có thể được khỏi tạo thông qua các interface như Consumer, hay Observer dành cho một kiểu Observable cụ thể. Ví dụ: Observer cho Observable, SingleObserver cho Single, MaybeObserver cho Maybe và FlowableObserver cho Flowable, ...
+- Đăng ký lắng nghe: Gọi phương thức subscribe của các Observables và truyền Observer làm tham số cho phương thức đó.
+- Nhận và xử lý dữ liệu được phát ra từ Observables: Các Observers sẽ nhận và xử lý các dữ liệu được phát ra từ Observables thông qua việc triển khai phương thức trừu tượng onNext() đối với Observables có 0 hoặc nhiều dữ liệu và onSuccess() đối với Observables có 0 hoặc 1 dữ liệu.
+- Nhận thông điệp lỗi: Khi có lỗi xảy ra trong suốt quá trình hoạt động của Observables, Lỗi đó sẽ được gửi đến Observers, Observers sẽ nhận và xử lý lỗi đó thông qua việc triển khai phương thức trừu tượng onError().
+- Nhận thông báo về quá trình phát dữ liệu hoàn tất: Khi làm viếc với các Observables có 0 hoặc nhiều dữ liệu, khi chúng đã phát hết dữ liệu, chúng sẽ thông báo cho các Observers đang lắng nghe chúng biết thông qua phương thức trừu tượng onSuccess().
+
+7.2.1.3. Operators ? [Tiến]
+- Khái niệm: Là các phương thức thuộc một Observable, cho phép làm biến đổi một Observable hoặc làm biến đổi dãy dữ liệu của Observable.
+- Một số operators thường dùng như là: filter, map, groupBy, ...
+	+ filter: Lọc dãy dữ liệu của Observable dựa trên điều kiện được xác định bởi một đối tượng implement interface Predicate. Từ đó tạo ra một Observable mới chứa dãy dữ liệu đã lọc đó và trả ra Observable mới tạo đó.
+		=> (Tạo ra một Observable mới cùng loại, đóng vai trò là một Observer đăng ký lắng nghe từ Observable gốc. Và khi nhận được dữ liệu phát ra từ Observable gốc, Observable này sẽ áp dụng hàm filter dựa trên tiêu chí được cung cấp (Một đối tượng implement interface Predicate) vào dữ liệu được phát ra từ Observable gốc và nếu thỏa điều kiện sẽ phát ra dữ liệu cho các Observer khác đang lắng nghe Observable này)
+	+ map: Làm biến đổi dãy dữ liệu của Observable bằng cách áp dụng một hàm biến đổi (được người dùng định nghĩa bằng đối tượng implement interface Function) lên từng dữ liệu trên dãy dữ liệu của Observable và sau đó tạo ra một đối tượng Observable mới chứa dãy dữ liệu sau khi biến đổi đó và trả ra Observable mới tạo đó.
+		=> (Tạo ra một Observable mới cùng loại, đóng vai trò là một Observer đăng ký lắng nghe từ Observable gốc. Và khi nhận được dữ liệu phát ra từ Observable gốc, Observable này sẽ áp dụng hàm map (Là đối tượng implement interface Function) vào dữ liệu được phát ra từ Observable gốc và lấy kết quả đó phát ra cho các Observer khác đang lắng nghe Observable này)
+	+ groupBy: Phân loại hay phân nhóm dữ liệu của Observable dựa trên tiêu chí phân nhóm được người dùng định nghĩa thông qua một đối tượng implement interface Function.
+
+7.2.1.3. Schedulers ? [Tiến]
+- Trong RxJava, các Schedulers là các bộ quản lý luồng được sử dụng để tính toán thời điểm cũng như định luồng mà các tác vụ sẽ được thực thi trên đó mang đến khả năng thực thi bất đồng bộ. Những tác vụ đó có thể là: Việc một Observer đăng ký lắng nghe một Observable, việc một Observable phát dữ liệu, hoặc là việc thực hiện biến đổi một Observable, ...
+	+ Có một số loại Schedulers được sử dụng phổ biến như: io, computation, single, newThread
+		. Schedulers.io: Bộ quản lý các luồng thực thi này cung cấp một số lượng luồng thực thi giới hạn để thực thi các tác vụ liên quan đến nhập / xuất (I/O). Ví dụ: Đọc file, lấy dữ liệu từ mạng internet, truy vấn cơ sở dữ liệu, ...
+			=> Tốc độ thực thi của các tác vụ trong luồng này phụ thuộc vào tốc độ nhập, xuất.
+		. Schedulers.computation: Quản lý các luồng để thực thi các tác vụ liên quan đến tính toán có sử dụng tài nguyên CPU. Ví dụ: Tính toán phức tạp, Xử lý dữ liệu, ...
+			=> Tốc độ thực thi của các tác vụ trong luồng này phụ thuộc vào tài nguyên CPU khả dụng.
+		. Schedulers.single: Quản lý một luồng duy nhất cho phép các tác vụ bất đồng bộ được thực thi theo trình tự được chỉ định. Bộ quản lý luồng này thích hợp cho việc thực thi các tác vụ ngắn và cần được thực thi theo trình tự.
+		. Schedulers.newThread: Bộ quản lý luồng cho phép tạo mới một luồng để thực hiện một tác vụ nào đó. Bộ quản lý luồng này thích hợp cho các tác vụ ngắn và không bị ràng buộc bởi tài nguyên CPU.
+			=> Khác với Schedulers.computation, tốc độ thực thi của các tác vụ ở trong luồng này không bị giới hạn.
+
+7.2.1.4. Backpressure Handling ? [Hiếu, Tiến]
+- Trong RxJava, khi làm việc với các Hot Observable, chúng ta sẽ thường xuyên bắt gặp tình trạng khi mà tốc độp phát ra dữ liệu của Observables nhanh hơn tốc độ xử lý dữ liệu của Observers. Khi đó, các dữ liệu đã phát nhưng chưa được Observers xử lý kịp cần phải được xử lý theo một cơ chế nào đó gọi là Backpressure Handling. Vì vậy, RxJava cung cấp cho chúng ta một số operators giúp chúng ta có thể thực hiện điều này. Các operators này là:
+	+ buffer [Tiến]: Tạo ra một danh sách hàng đợi với kích thước cố định để lưu trữ những dữ liệu chưa được xử lý kịp bởi Observers.
+		=> Vì là kích thước cố định nên việc quá tải, tràn buffer vẫn có thể xảy ra và dẫn đến sập hệ thống.
+	+ window [Tiến]: Nhóm dữ liệu vào một tập hợp (window) với số lượng phần tử được chỉ định và gửi tập hợp (window) đó đến các Observers.
+		=> Điều này giúp giảm số lượng dữ liệu quá tải vì khi Observers nhận dữ liệu sẽ nhận vào một tập hợp dữ liệu và xử lý một tập hợp dữ liệu thay vì từng dữ liệu riêng lẻ.
+	+ sample [Hiếu]: Trích danh sách các dữ liệu đã phát đi nhưng chưa được xử lý trong khoảng thời gian được chỉ định và phát lại dữ liệu cuối cùng trong danh sách đã trích, sau đó hủy bỏ các dữ liệu còn lại trong danh sách. Và sẽ tái thực thi hành động tương tự mỗi khi trôi qua một khoảng thời gian được chỉ định kể từ lần cuối cùng thực thi.
+		=> Là một hình thức hủy bỏ các dữ liệu quá tải. Tuy nhiên, khi tốc độ phát 
+	+ throttleFirst [Hiếu]: Tương tự như sample nhưng là lấy dữ liệu đầu tiên trong danh sách dữ liệu trích ra.
+	+ onBackpressureBuffer [Hiếu]: Tạo ra một danh sách hàng đợi chứa các dữ liệu quá tải (hay còn gọi là buffer) với kích thước được chỉ định và khi hàng đợi này đã đầy, một hành động được chỉ định sẽ được thực thi, các hành động đó có thể là: hủy bỏ dữ liệu đầu tiên hay cuối cùng trong hàng chờ và thêm dữ liệu hiện tại vào hàng chờ, nhã ra ngoại lệ BufferOverflowException.
+		=> Là một phiên bản nâng cao cấp hơn của buffer từ việc kết hợp buffer, sample và throttleFirst. Cho phép kiểm soát hành động của các Observables khi buffer bị lắp đầy.
+
+
+
+8. Spring Web Flux ? [Quang, Khuyến]
+8.1. Giới thiệu về Spring ? [Khuyến]
+	- Spring hay Spring Framework là một Framework được sử dụng rộng rãi trong việc xây dựng ứng dụng Java. Đặc biệt được ứng dụng rộng rãi trong việc xây dựng ứng dụng back-end Java hay còn gọi là các Java Back-end Services.
+
+8.2. Giới thiệu về Spring MVC ? [Quang]
+	8.2.1. Spring MVC là gì ?
+	- Spring MVC là một framework trong hệ sinh thái Spring.
+
+	8.2.2. Spring MVC được sử dụng để làm gì ?
+	- Spring MVC được sử dụng để xây dựng ứng dụng web thực thi đồng bộ, blocking theo mô hình MVC, bằng ngôn ngữ lập trình Java và được thực thi trên môi trường thực thi Java.
+
+	8.2.3. Spring MVC được xây dựng trên nền tảng nào ?
+	- Spring MVC được xây dựng trên nền tảng Servlet API.
+
+	8.2.4. Kiến trúc Spring MVC ?
+	- DispatcherServlet: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó đến Handler Method tương ứng để xử lý.
+	- Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (Hay còn gọi là các Handler Methods). Những đối tượng này thuộc các lớp được gán annotation: @RequestMapping và @Controller.
+	- Handler Methods: Là những phương thức thuộc một đối tượng Controller bất kỳ và sẽ được gọi để xử lý HTTP Request đến URL tương ứng với đường dẫn được định nghĩa trong annotation đã được gán: @GetMapping, @PostMapping, @PutMapping, ...
+		+ Request Mappings: Là các annotation được gán cho các Handler Methods nhằm mục đích khai báo đường dẫn cũng như HTTP Method mà Handler Method đó sẽ xử lý. Trong đó có: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, ...	
+	- Models: Là các đối tượng đại diện cho nghiệp vụ, dữ liệu của hệ thống.
+	- Views: Là các tệp giao diện đồ họa có thể tạo ra nội dung HTML động theo cơ chế SSR (Server-Side Rendering). Đó có thể là các tệp: JSP, Thymeleaf, Freemarker, ...
+	- ModelAndView: Các đối tượng này nắm giữ thông tin của dữ liệu sẽ được render (Models) và nơi sẽ render dữ liệu đó (Views). Và là các đối tượng được trả ra từ các Handler Methods.
+
+8.3. Giới thiệu về Spring Webflux ? [Khuyến]
+	8.3.1 Webflux là gì ?
+	- Webflux là một framework lập trình Reactive Programming cho hệ sinh thái Spring. 
+
+	8.3.2. Webflux được sử dụng để làm gì ?
+	- Webflux được sử dụng để xây dựng những ỨNG DỤNG WEB bất đồng bộ, non-blocking bằng ngôn ngữ Java và thực thi trên môi trường Java.
+
+	8.3.3. Webflux được xây dựng trên nền tảng nào ?
+	- Webflux được xây dựng trên nền tảng của Project Reactor, một thư viện lập trình Reactive Programming được triển khai theo chuẩn Reactive Streams được cung cấp bởi Java.
+
+	8.3.4. Các thành phần cốt lõi của Spring Webflux ?
+		8.3.4.1. Observables ?
+			=> Các Observable ngoài Webflux có dùng được hay không ? Vì sao nó dùng được ?
+		8.3.4.2. Observers ?
+		8.3.4.3. Operators ?
+		8.3.4.4. Schedulers ?
+		8.3.4.5. Backpressure Handling ?
+
+	8.3.5. Kiến trúc Spring Webflux ?
+	- Trong ngữ cảnh Rest Service:
+		+ DispatcherHandler: Những đối tượng tiếp nhận HTTP Request được gửi từ phía client và chịu trách nhiệm chuyển tiếp Request đó đến Handler Method tương ứng để xử lý.
+		+ Controller: Những đối tượng chứa những phương thức xử lý HTTP Request (hay còn gọi là Handler Methods). Những đối tượng này thuộc các lớp được gán annotation: @RestController và @RequestMapping.
+		+ Handler Methods: Những phương thức thuộc một đối tượng Controller bất kỳ và sẽ được gọi để xử lý HTTP Request đến URL tương ứng với đường dẫn được định nghĩa trong annotation đã được gán: @GetMapping, @PostMapping, @PutMapping, ...
+			. Request Mapping: Là các annotation được gán cho các Handler Methods nhằm mục đích khai báo đường dẫn cũng như HTTP Method mà Handler Method đó sẽ xử lý. Trong đó có: @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, ...
+		+ Flux, Mono: Những luồng dữ liệu bất đồng bộ được triển khai từ định nghĩa của Reactive Programming hỗ trợ mô hình lập trình Reactive Programming cho việc xây dựng Rest Service.
+		+ ServerResponse: Là những đối tượng đại diện cho HTTP Response. Cho phép tạo nội dung phản hồi từ Rest Service về Client. (Thông thường, trong việc phát triển REST Service, chúng ta sẽ không trực tiếp tương tác với các đối tượng này, mà các đối tượng này sẽ được Spring xử lý tự động)
+
+	8.3.6. Cơ chế hoạt động của Spring Webflux ?
+	- Trong ngữ cảnh Rest Service:
+		+ Nhận HTTP Request: Khi client gửi HTTP Request đến Rest Service. Request đó sẽ được tiếp nhận bởi WebFlux DispatcherHandler và đồng thời kết nối SSE (Server-Sent Events) giữa Client và Rest Service cũng được thiết lập.
+		+ Chuyển tiếp HTTP Request tới Handler: đối tượng DispatcherHandler sẽ phân tích thông tin Request đó và chuyển tiếp Request đó đến Handler Method tương ứng dựa vào các RequestMapping annotations hay có thể nói cách khác là gọi Handler Method tương ứng với đường dẫn của Request để xử lý HTTP Request này.
+		+ Xử lý HTTP Request: Handler Method nhận và xử lý HTTP Request và trả ra một đối tượng Observable (hay còn gọi là Publisher trong định nghĩa của Spring) bất kỳ.
+		+ Phản hồi về Client: Sau khi nhận đối tượng Observable trả về từ Handler, Spring WebFlux tiến hành đăng ký lắng nghe từ Observable đó. Và mỗi khi Observable đó phát ra dữ liệu, Spring WebFlux sẽ chuyển đổi dữ liệu đó sang định dạng JSON và phản hồi về Client thông qua kết nối SSE đã thiết lập cho đến khi Observable đó phát hết dữ liệu có trong luồng.
+		+ Client nhận phản hồi: Client nhận được từng dữ liệu một ở định dạng JSON được phản hồi về từ Rest Service. Và thực hiện thao tác gì đó trên dữ liệu đã nhận được.
+
+8.4. So sánh giữa Spring Webflux và Spring MVC ? [Quang, Khuyến]
+8.4.1. Kiến trúc giữa Spring MVC và Spring Webflux ?
+	- DispatcherServlet / DispatcherHandler:
+		. Vì Spring MVC được xây dựng trên nền tảng Servlet API được cung cấp bởi JavaEE, nên đối tượng nhận HTTP Request trong Spring MVC là DispatchServlet.
+		. Vì Spring Webflux không còn được xây dựng trên nền tảng Servlet API, nên đối tượng nhận HTTP Request trong Spring Webflux là DispatchHandler thuộc Webflux framework.
+	- View - Model / Flux - Mono:
+		. Vì Spring MVC tuân theo kiến trúc MVC nên trong hệ thống chủ yếu làm việc với các View(s) và Model(s).
+		. Vì Spring Webflux tuân theo mô hình Reactive Programming nên trong hệ thống chủ yếu làm việc với các Flux(s) và Mono(s).
+			=> Điều này không có nghĩa là trong Spring Webflux không thể có View và Model. Chúng ta vẫn có thể có View và Model tùy vào thiết kế của chúng ta. Nhưng nó không phải là thành phần chủ yếu trong kiến trúc của Spring Webflux.
+	- ModelAndView / ServerResponse:
+		. Vì Spring MVC tuân theo kiến trúc MVC, nên khi xử lý HTTP Request, chủ yếu sẽ phản hồi về HTML cho Client nên kết thúc mỗi Handler Methods sẽ trả ra một đối tượng ModelAndView, Spring MVC sẽ dựa trên đối tượng này và render mã HTML và phản hồi về Client.
+		. Vì Spring Webflux tuân theo Reactive Programming và chủ yếu được sử dụng để xây dựng Rest Service. Cũng vì vậy mà phản hồi về Client chủ yếu là JSON. Nên kết thúc mỗi Handler Methods thường sẽ trả ra một Flux hoặc Mono (Vì Reactive Programming chủ yếu hoạt động trên các Observables), Spring Webflux sẽ tự tạo ra đối tượng ServerResponse để tạo nội dung phản hồi từ Flux và Mono được trả ra từ các Handler Methods và phản hồi về Client.
+
+8.4.2. Sự khác biệt giữa Spring MVC và Spring Webflux ?
+	- Mô hình lập trình:
+		+ Spring MVC: Tuân theo mô hình lập trình MVC, xử lý đồng bộ theo cơ chế blocking.
+			=> Vì Spring MVC xử lý HTTP Request dựa vào Thread Pool của Servlet Container. Điều này có nghĩa là số lượng luồng để xử lý HTTP Request. Và việc xử lý HTTP Request theo cơ chế đồng bộ, blocking như vậy sẽ dẫn tới tình trạng không đủ luồng thực thi và kém hiệu quả khi chịu tải lớn.
+		+ Spring Webflux: Tuân theo mô hình lập trình Reactive, xử lý sự kiện từ các luồng dữ liệu bất đồng bộ và theo cơ chế non-blocking.
+			=> Nâng cao khả năng chịu tải và mang đến tính co giãn cho hệ thống, sử dụng tài nguyên phần cứng hệ thống hiệu quả và tiết kiệm và mang đến thời gian phản hồi nhanh, nhất quán.
+	- Xử lý bất đồng bộ:
+		+ Spring MVC: Sử dụng Thread Pool của Servlet Container để xử lý bất đồng bộ. Sinh ra một luồng mới mỗi khi xử lý một HTTP Request nào đó.
+		+ Spring Webflux: Sử dụng cơ chế non-blocking I/O, event loops để xử lý các HTTP Request, tạo nên tính bất đồng bộ cao mà không cần phải sử dụng quá nhiều luồng.
+	- Sự phù hợp:
+		+ Spring MVC: Thích hợp xây dựng những ứng dụng web cổ điển theo cơ chế SSR (Server-Side Rendering). Trong đó có: Giao diện HTML, xử lý form, quản lý phiên làm việc (session) ...
+		+ Spring Webflux: Thích hợp trong việc xây dựng những ứng dụng Reactive yêu cầu khả năng co giãn tốt, phản hồi nhanh và có khả năng xử lý dữ liệu thời gian thực.
+
+9. RxJava vs Web Flux ?
+9.1. Điểm mạnh và yếu của RxJava và Spring Webflux khi so sánh với nhau ?
+	- RxJava:
+		+ Điểm mạnh:
+			. Tích hợp tốt, sử dụng được cho hầu hết mọi dự án Java.
+			. Có thể được sử dụng để xây dựng hầu hết các loại ứng dụng.
+			. Hỗ trợ nhiều loại Observable với tên rõ ràng và mục đích cụ thể.
+		+ Điểm yếu:
+			. Phức tạp khi xây dựng Reactive REST Service với những framework không cung cấp cơ chế xử lý Reactive tốt.
+			. Phải blocking khi làm việc với Reactive trong một framework không hỗ trợ tốt cho Reactive Programming.
+			. Khả năng co giãn còn phụ thuộc vào framework sử dụng.
+
+	- Spring Webflux:
+		+ Điểm mạnh:
+			. Hỗ trợ hầu hết mọi thư viện Reactive Programming tuân theo chuẩn Reactive Streams được cung cấp bởi Java.
+			. Thích hợp xây dựng Reactive REST Service. Hỗ trợ cơ chế xử lý Reactive tốt cho REST Service kết hợp sử dụng kết nối SSE để tạo nội dung phản hồi và gửi về Client mỗi khi có dữ liệu sẵn sàng.
+			. Khả năng co giãn tốt.
+		+ Điểm yếu:
+			. Hoạt động chủ yếu cho hệ sinh thái Spring.
+			. Chỉ có thể sử dụng để xây dựng ứng dụng web hoặc REST service.
+			. Hỗ trợ chỉ 2 loại Observable với tên không thân thiện lắm, đôi lúc dẫn đến khó hiểu cho người mới bắt đầu với Reactive Programming và Spring Webflux.
+
+9.2. Sự phù hợp của RxJava và Spring Webflux
+	- RxJava:
+		+ Các hệ thống quy mô nhỏ - vừa.
+		+ Các framework hỗ trợ Reactive Programming tốt (Ví dụ: Spring Webflux).
+		+ Các hệ thống được thiết kế theo hướng xử lý sự kiện.
+	- Spring Webflux:
+		+ Các hệ thống web theo hướng Reactive.
+		+ Các hệ thống với quy mô từ nhỏ đến lớn.
+		+ Hệ sinh thái Spring.
+		+ Hệ thống xử lý dữ liệu thời gian thực.
+
+10. Demo ?
+10.1. Without Reactive
+10.2. With RxJava
+=> Must show the uses of RxJava in this demo application
+10.3. With Web Flux
+=> Must show the uses of Web Flux in this demo application
+11. When will this project done ?
+12. The cost of this project ?
+
+
+
+
+
+-- Câu hỏi bên ngoài
+1. Tại sao phải dùng Reactive ? Lý do mà Rective Programming ra đời ?
+- Vì nhu cầu của người dùng ngày một cao lên theo sự tiến hóa của môi trường công nghệ. Nên các hệ thống, phần mềm phải phát triển theo để mang đến trải nghiệm người dùng tốt nhất có thể và phải đảm bảo chất lượng dịch vụ lúc nào cũng tốt nhất. Tuy nhiên, ở các mô hình lập trình cũ, hệ thống sẽ gặp rất nhiều các vấn đề về khả năng phản hồi, tính kiên cố, tính co giãn khiến cho chất lượng dịch vụ bị ảnh hưởng, tốn kém chi phí mở rộng tài nguyên phần cứng cũng như không đáp ứng được nhu cầu người dùng ở thị trường công nghệ ngày nay. Nên chúng ta phải áp dụng mô hình lập trình Reactive để mang đến một hệ thống có khả năng phản hồi tốt, một hệ thống có tính kiên cố cao và tính co giãn thật tốt để đáp ứng nhu cầu của thị trường hiện nay.
+
+- Nếu không có mô hình lập trình Reactive, hệ thống của chúng ta sẽ gặp các vấn đề về:
+	+ Thời gian phản hồi: Vì thông thường, theo các mô hình lập trình trước đây, đa phần mọi tác vụ đều được thực thi một các đồng bộ và blocking. Cụ thể là khi xử lý một các vụ nào đó có rất nhiều bước, nhưng phải xong bước 1 mới đến được bước 2 và cứ như thế đến bước cuối cùng mới phản hồi. Như vậy, thời gian phản hồi của hệ thống sẽ bị kéo dài.
+	+ Tính kiên cố: Theo các mô hình lập trình trước đây, việc xử lý lỗi chủ yếu thông qua việc dự đoán, nắm bắt và xử lý một cách thủ công. Nhưng, nếu như vậy, hệ thống không được xử lý lỗi khéo sẽ dẫn đến tình trạng hệ thống bị sập và ngừng hoạt động, không thể phản hồi được nữa.
+	+ Tính co giãn: Đối với các mô hình lập trình trước đây, việc quyết định phân bổ tài nguyên phần cứng cho một hệ thống nào đó phụ thuộc vào các yếu tố bên ngoài. Và như thế, thời gian phản hồi hay hiệu suất của hệ thống được quyết định bởi các yếu tố bên ngoài.
+
+2. Tại sao chắc chắn Facebook, Amazon có Reactive ?
+- Các hệ thống phầm mềm lớn với lượng dữ liệu khổng lồ ngày nay, để đạt được tốc độ phản hồi nhanh nhất và mang lại trải nghiệm người dùng tốt nhất thì hầu hết đều là Reactive, vì ở thời điểm hiện tại thì Reactive nó đang giữ vai trò chủ đạo giải quyết vấn đề này.
+- Front-end của Facebook có sử dụng React.JS (một framework front-end nổi tiếng với khả năng phát triển giao diện sống, phản ứng với tương tác ngay lập tức. Mà để đạt được khả năng phản ứng tốt như vậy của React.JS thì chắc chắn không thể thiếu Reactive)
+
